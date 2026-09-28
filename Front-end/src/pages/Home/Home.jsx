@@ -134,8 +134,8 @@ function Home() {
     setProgress(0);
   };
 
-  // SVG Progress Ring calculations
-  const ringRadius = 9;
+  // SVG Progress Ring calculations (30x30 viewBox)
+  const ringRadius = 11;
   const ringCircumference = 2 * Math.PI * ringRadius;
   const ringOffset = ringCircumference - (progress / 100) * ringCircumference;
 
@@ -173,7 +173,7 @@ function Home() {
               </figure>
             ))}
 
-            {/* Minimalist Navigation Arrows (no circular background, low opacity default, larger on hover) */}
+            {/* Clear, Minimalist Navigation Arrows */}
             {gallery.length > 1 && (
               <>
                 <button
@@ -181,7 +181,7 @@ function Home() {
                   onClick={handlePrevSlide}
                   aria-label="Previous slide"
                 >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 18l-6-6 6-6" />
                   </svg>
                 </button>
@@ -191,12 +191,12 @@ function Home() {
                   onClick={handleNextSlide}
                   aria-label="Next slide"
                 >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 18l6-6-6-6" />
                   </svg>
                 </button>
 
-                {/* Centered Bullet Indicators with Animated Circular Progress Ring around active bullet */}
+                {/* Larger Centered Bullets with Clear Circular Progress Ring */}
                 <div className={styles.centeredDotsContainer}>
                   {gallery.map((_, idx) => {
                     const isActive = idx === currentSlide;
@@ -207,30 +207,30 @@ function Home() {
                         onClick={() => handleDotClick(idx)}
                         aria-label={`Go to slide ${idx + 1}`}
                       >
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                          {/* Inner Dot */}
+                        <svg width="30" height="30" viewBox="0 0 30 30">
+                          {/* Larger Center Dot with Drop Shadow */}
                           <circle
-                            cx="12"
-                            cy="12"
-                            r="3.5"
-                            fill={isActive ? '#FFFFFF' : 'rgba(255, 255, 255, 0.4)'}
+                            cx="15"
+                            cy="15"
+                            r="5"
+                            fill={isActive ? '#FFFFFF' : 'rgba(255, 255, 255, 0.65)'}
                           />
                           {/* Outer Circular Timer Progress Ring around active bullet */}
                           {isActive && (
                             <circle
-                              cx="12"
-                              cy="12"
+                              cx="15"
+                              cy="15"
                               r={ringRadius}
                               fill="none"
                               stroke="#FFFFFF"
-                              strokeWidth="1.5"
+                              strokeWidth="2.2"
                               strokeDasharray={ringCircumference}
                               strokeDashoffset={ringOffset}
                               strokeLinecap="round"
                               style={{
                                 transform: 'rotate(-90deg)',
                                 transformOrigin: '50% 50%',
-                                opacity: 0.85,
+                                opacity: 0.95,
                               }}
                             />
                           )}
