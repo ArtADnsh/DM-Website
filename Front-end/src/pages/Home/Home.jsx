@@ -66,12 +66,15 @@ const FALLBACK_FILES = [
   },
 ];
 
+const SLIDE_DURATION = 4000; // 4 seconds per slide
+
 function Home() {
   const { gallery, course, links } = homeContent;
 
   // Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   // API Data State
   const [latestRecitation, setLatestRecitation] = useState(FALLBACK_RECITATION);
@@ -79,7 +82,6 @@ function Home() {
 
   // Fetch API updates on mount
   useEffect(() => {
-    // Fetch Recitations
     fetch('http://localhost:8000/api/recitations/')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -89,7 +91,6 @@ function Home() {
       })
       .catch(() => {});
 
-    // Fetch Files
     fetch('http://localhost:8000/api/files/')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
@@ -100,22 +101,43 @@ function Home() {
       .catch(() => {});
   }, []);
 
-  // Auto-slide effect
+  // Timer & progress animation loop
   useEffect(() => {
     if (isPaused || gallery.length <= 1) return;
+
+    const intervalStep = 40; // 40ms updates for smooth progress ring
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % gallery.length);
-    }, 4000);
+      setProgress((prev) => {
+        if (prev >= 100) {
+          setCurrentSlide((slide) => (slide + 1) % gallery.length);
+          return 0;
+        }
+        return prev + (intervalStep / SLIDE_DURATION) * 100;
+      });
+    }, intervalStep);
+
     return () => clearInterval(timer);
   }, [isPaused, gallery.length]);
 
   const handleNextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % gallery.length);
+    setProgress(0);
   };
 
   const handlePrevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + gallery.length) % gallery.length);
+    setProgress(0);
   };
+
+  const handleDotClick = (idx) => {
+    setCurrentSlide(idx);
+    setProgress(0);
+  };
+
+  // SVG Progress Ring calculations
+  const ringRadius = 9;
+  const ringCircumference = 2 * Math.PI * ringRadius;
+  const ringOffset = ringCircumference - (progress / 100) * ringCircumference;
 
   return (
     <div className={styles.home}>
@@ -132,7 +154,7 @@ function Home() {
         </div>
 
         <div className={styles.heroGrid}>
-          {/* LEFT: SLIDESHOW CAROUSEL */}
+          {/* LEFT: MINIMALIST SLIDESHOW CAROUSEL */}
           <div
             className={styles.slideshowContainer}
             onMouseEnter={() => setIsPaused(true)}
@@ -148,38 +170,74 @@ function Home() {
                 ) : (
                   <PhotoPlaceholder label={photo.label} />
                 )}
-                <figcaption>{photo.label}</figcaption>
               </figure>
             ))}
 
-            {/* Slideshow Controls */}
+            {/* Minimalist Navigation Arrows (no circular background, low opacity default, larger on hover) */}
             {gallery.length > 1 && (
               <>
                 <button
-                  className={`${styles.carouselBtn} ${styles.prevBtn}`}
+                  className={`${styles.carouselArrow} ${styles.prevArrow}`}
                   onClick={handlePrevSlide}
                   aria-label="Previous slide"
                 >
-                  ‹
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
                 </button>
+
                 <button
-                  className={`${styles.carouselBtn} ${styles.nextBtn}`}
+                  className={`${styles.carouselArrow} ${styles.nextArrow}`}
                   onClick={handleNextSlide}
                   aria-label="Next slide"
                 >
-                  ›
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
                 </button>
 
-                {/* Dot Indicators */}
-                <div className={styles.dotContainer}>
-                  {gallery.map((_, idx) => (
-                    <button
-                      key={idx}
-                      className={`${styles.dot} ${idx === currentSlide ? styles.activeDot : ''}`}
-                      onClick={() => setCurrentSlide(idx)}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
+                {/* Centered Bullet Indicators with Animated Circular Progress Ring around active bullet */}
+                <div className={styles.centeredDotsContainer}>
+                  {gallery.map((_, idx) => {
+                    const isActive = idx === currentSlide;
+                    return (
+                      <button
+                        key={idx}
+                        className={styles.dotBtn}
+                        onClick={() => handleDotClick(idx)}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      >
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                          {/* Inner Dot */}
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="3.5"
+                            fill={isActive ? '#FFFFFF' : 'rgba(255, 255, 255, 0.4)'}
+                          />
+                          {/* Outer Circular Timer Progress Ring around active bullet */}
+                          {isActive && (
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r={ringRadius}
+                              fill="none"
+                              stroke="#FFFFFF"
+                              strokeWidth="1.5"
+                              strokeDasharray={ringCircumference}
+                              strokeDashoffset={ringOffset}
+                              strokeLinecap="round"
+                              style={{
+                                transform: 'rotate(-90deg)',
+                                transformOrigin: '50% 50%',
+                                opacity: 0.85,
+                              }}
+                            />
+                          )}
+                        </svg>
+                      </button>
+                    );
+                  })}
                 </div>
               </>
             )}
