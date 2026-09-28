@@ -16,22 +16,18 @@ function getInitials(name = '') {
     .toUpperCase();
 }
 
-function TeamMemberCard({ name, role, focus, image, email, telegram }) {
+function TeamMemberCard({ name, role, focus, image, email, telegram, gender = 'male' }) {
   const roleVariant = ROLE_VARIANTS[role] || '';
   const telegramHandle = telegram?.replace(/^@/, '');
   const isPlaceholderTelegram = telegramHandle?.startsWith('replace_me_');
 
+  const defaultAvatar = gender === 'female' ? '/images/anonymous_female.svg' : '/images/anonymous_male.svg';
+  const avatarSrc = image || defaultAvatar;
+
   return (
     <article className={`${styles.card} ${roleVariant}`}>
       <div className={styles.top}>
-        {image ? (
-          <img src={image} alt={name} className={styles.avatar} />
-        ) : (
-          <div className={styles.avatarFallback} aria-hidden="true">
-            {getInitials(name)}
-          </div>
-        )}
-
+        <img src={avatarSrc} alt={name} className={styles.avatar} />
         <span className={styles.badge}>{role}</span>
       </div>
 

@@ -92,10 +92,6 @@ function TeamMembers({
                     <p className={styles.groupDescription}>{group.description}</p>
                   )}
                 </div>
-
-                <span className={styles.groupCount} aria-label={`${group.members.length} people`}>
-                  {group.members.length.toString().padStart(2, '0')}
-                </span>
               </div>
 
               <div className={`${styles.grid} ${GRID_VARIANTS[group.role] || styles.taGrid}`}>
@@ -108,6 +104,7 @@ function TeamMembers({
                     image={member.image}
                     email={member.email}
                     telegram={member.telegram}
+                    gender={member.gender}
                   />
                 ))}
               </div>
