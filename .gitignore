@@ -1,8 +1,24 @@
-# Dependencies
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Django database & media
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Node Dependencies & Build outputs
 node_modules/
 .pnpm-store/
-
-# Build outputs
 dist/
 dist-ssr/
 build/
@@ -28,5 +44,5 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
-# Docker temporary/local overrides
+# Docker overrides
 docker-compose.override.yml
