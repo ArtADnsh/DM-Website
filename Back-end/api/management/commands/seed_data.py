@@ -1,52 +1,85 @@
 from django.core.management.base import BaseCommand
-from api.models import CourseInfo, ClassroomPhoto, CourseMaterial, TeachingAssistant
+from django.contrib.auth.models import User
+from api.models import RecitationClass, CourseFile
 
 class Command(BaseCommand):
-    help = "Seed database with initial sample course data"
+    help = "Seed database with initial sample course data and superuser"
 
     def handle(self, *args, **options):
-        # Course Info
-        CourseInfo.objects.get_or_create(
-            id=1,
-            defaults={
-                'term': 'نیمسال پاییز ۱۴۰۵ (Fall 2026)',
-                'description': 'درس ریاضیات گسسته و مبانی داده ورزی دانشکده مهندسی کامپیوتر - زیر نظر دکتر طاهایی',
-                'characteristics': 'مباحث شامل منطق ریاضی، نظریه مجموعه‌ها، نظریه گراف، روابط بازگشتی، ترکیبیات و الگوریتم‌های گسسته.',
-                'telegram_channel': 'https://t.me/dm_tahaei_channel',
-                'telegram_group': 'https://t.me/dm_tahaei_group',
-                'bale_link': 'https://bale.ai/dm_tahaei'
-            }
-        )
+        # Create Superuser if not existing
+        if not User.objects.filter(username='admin').exists():
+            User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
+            self.stdout.write(self.style.SUCCESS("Created admin user (username: admin, password: admin123)"))
 
-        # Classroom Photos
-        photos_data = [
-            {'title': 'کلاس درس دکتر طاهایی - جلسه اول', 'image_url': 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80', 'caption': 'معرفی سرفصل‌های جدید درس ریاضیات گسسته', 'order': 1},
-            {'title': 'کارگاه حل تمرین', 'image_url': 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80', 'caption': 'جلسه رفع اشکال و رفع ابهام پروژه', 'order': 2},
-            {'title': 'محیط دانشگاه و کلاس', 'image_url': 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80', 'caption': 'برگزاری کوییز حضوری', 'order': 3},
-            {'title': 'جلسه گروهی دستیاران آموزشی', 'image_url': 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80', 'caption': 'هماهنگی و طراحی تمرین‌های سری جدید', 'order': 4},
-        ]
-        for item in photos_data:
-            ClassroomPhoto.objects.get_or_create(title=item['title'], defaults=item)
+        # Seed Recitation Classes
+        if RecitationClass.objects.count() == 0:
+            recitations = [
+                {
+                    'title': 'Recitation Session 1: Mathematical Logic & Induction',
+                    'date_time': 'Mondays, 14:00 - 16:00',
+                    'location_or_link': 'Classroom 102 (Live & Skyroom)',
+                    'description': 'Problem-solving session covering truth tables, quantifiers, and mathematical induction.',
+                    'video_url': 'https://lms.univ.ac.ir/recitations/session1'
+                },
+                {
+                    'title': 'Recitation Session 2: Set Theory & Relations',
+                    'date_time': 'Mondays, 14:00 - 16:00',
+                    'location_or_link': 'Classroom 102 (Live & Skyroom)',
+                    'description': 'Exercises on equivalence relations, partial orderings, and Cartesian products.',
+                    'video_url': 'https://lms.univ.ac.ir/recitations/session2'
+                },
+                {
+                    'title': 'Recitation Session 3: Graph Theory & Trees',
+                    'date_time': 'Wednesdays, 16:00 - 18:00',
+                    'location_or_link': 'Online Skyroom Room #3',
+                    'description': 'Solving Eulerian and Hamiltonian graph problems, tree traversals, and planar graphs.',
+                    'video_url': 'https://lms.univ.ac.ir/recitations/session3'
+                }
+            ]
+            for r in recitations:
+                RecitationClass.objects.create(**r)
 
-        # TAs
-        tas_data = [
-            {'name': 'امیر جبلی', 'role': 'سر دستیار آموزشی (Head TA)', 'email': 'amir.jebbeli@univ.ac.ir', 'telegram_id': '@amir_jebbeli', 'gender': 'male', 'order': 1},
-            {'name': 'سارا احمدی', 'role': 'مسئول کوییزها و تمرین‌ها', 'email': 'sara.ahmadi@univ.ac.ir', 'telegram_id': '@sara_ahmadi_ta', 'gender': 'female', 'order': 2},
-            {'name': 'علی محمدی', 'role': 'مسئول پروژه‌های برنامه‌نویسی', 'email': 'ali.mohammadi@univ.ac.ir', 'telegram_id': '@ali_m_ta', 'gender': 'male', 'order': 3},
-        ]
-        for item in tas_data:
-            TeachingAssistant.objects.get_or_create(name=item['name'], defaults=item)
+        # Seed Course Files
+        if CourseFile.objects.count() == 0:
+            files = [
+                {
+                    'title': 'Homework #1: Propositional Logic & Quantifiers',
+                    'category': 'assignment',
+                    'description': 'Due Oct 15th at 23:59',
+                    'file_url': '/materials/homeworks/hw1_logic.pdf'
+                },
+                {
+                    'title': 'Homework #2: Set Theory & Relations',
+                    'category': 'assignment',
+                    'description': 'Due Oct 29th at 23:59',
+                    'file_url': '/materials/homeworks/hw2_sets.pdf'
+                },
+                {
+                    'title': 'Quiz #1: Logic & Truth Tables (Questions & Solutions)',
+                    'category': 'quiz',
+                    'description': 'In-class Quiz 1 solved sheet',
+                    'file_url': '/materials/quizzes/quiz1_solutions.pdf'
+                },
+                {
+                    'title': 'Programming Project Phase 1: Graph Algorithms in Python',
+                    'category': 'project',
+                    'description': 'Implementation specs for BFS, DFS, and Dijkstra algorithm',
+                    'file_url': '/materials/projects/project_phase1_spec.pdf'
+                },
+                {
+                    'title': 'Midterm Exam Past Papers (2023 - 2025) with Solutions',
+                    'category': 'sample_exam',
+                    'description': 'Collection of past 3 years midterm exams',
+                    'file_url': '/materials/exams/midterm_past_papers.pdf'
+                },
+                {
+                    'title': 'Lecture Notes Chapter 1: Mathematical Logic',
+                    'category': 'lecture_note',
+                    'description': 'Dr. Tahaei slides for Chapter 1',
+                    'file_url': '/materials/notes/chapter1_logic.pdf'
+                }
+            ]
+            for f in files:
+                CourseFile.objects.create(**f)
 
-        # Materials
-        materials_data = [
-            {'title': 'جزوه فصل اول: منطق ریاضی و گزاره‌ها', 'category': 'lecture_notes', 'description': 'فایل PDF اسلایدهای فصل اول درس', 'file_url': '/media/materials/notes_ch1.pdf'},
-            {'title': 'تمرین سری اول (نظریه مجموعه‌ها)', 'category': 'assignment', 'description': 'مهلت تحویل: جمعه ۱۴ مهرماه', 'file_url': '/media/materials/hw1.pdf'},
-            {'title': 'کوییز شماره ۱ (گزاره‌ها و استنتاج)', 'category': 'quiz', 'description': 'صورت سوالات و پاسخنامه تشریحی کوییز اول', 'file_url': '/media/materials/quiz1_solved.pdf'},
-            {'title': 'ویدیو کلاس تمرین ۱: کاربردهای الگوریتم الگویابی', 'category': 'recitation', 'description': 'ضبط شده در اسکای‌روم کلاس رفع اشکال', 'file_url': 'https://lms.univ.ac.ir/recitation1'},
-            {'title': 'صورت پروژه فاز اول: پیاده‌سازی الگوریتم‌های گراف', 'category': 'project', 'description': 'توضیحات ورودی و خروجی پروژه پایتون', 'file_url': '/media/materials/project_phase1.pdf'},
-            {'title': 'نمونه سوالات امتحانی میان‌ترم سال‌های گذشته', 'category': 'sample_exam', 'description': 'مجموعه آزمون‌های میان‌ترم سه ترم اخیر همراه پاسخنامه', 'file_url': '/media/materials/midterm_samples.pdf'},
-        ]
-        for item in materials_data:
-            CourseMaterial.objects.get_or_create(title=item['title'], defaults=item)
-
-        self.stdout.write(self.style.SUCCESS("Database seeded successfully with initial course data!"))
+        self.stdout.write(self.style.SUCCESS("Database migration and seeding verified successfully!"))
