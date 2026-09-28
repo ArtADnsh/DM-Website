@@ -123,58 +123,59 @@
   right: 14px;
 }
 
-/* SENIOR UI EXPANDING PILL INDICATORS IN A FROSTED GLASS CAPSULE */
+/* CIRCULAR TIMER BULLET INDICATORS IN A FROSTED GLASS CAPSULE */
 .seniorPillContainer {
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 12px;
+  gap: 6px;
+  padding: 4px 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
-.pillBtn {
+.circleBulletBtn {
   position: relative;
-  width: 6px;
-  height: 6px;
+  width: 30px;
+  height: 30px;
   padding: 0;
+  display: grid;
+  place-items: center;
   border: none;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.35);
+  background: transparent;
   cursor: pointer;
-  overflow: hidden;
   outline: none;
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, transform 0.2s ease;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
 }
 
-.pillBtn:hover:not(.activePill) {
-  background: rgba(255, 255, 255, 0.75);
-  transform: scale(1.15);
+.bulletSvg {
+  width: 24px;
+  height: 24px;
+  overflow: visible;
+  pointer-events: none;
 }
 
-.activePill {
-  width: 28px;
-  background: rgba(255, 255, 255, 0.22);
+.centerDot {
+  fill: rgba(255, 255, 255, 0.45);
+  transition: fill 0.25s ease, r 0.25s ease;
 }
 
-.pillProgressFill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background: #ffffff;
-  border-radius: 999px;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
-  transition: width 0.04s linear;
+.circleBulletBtn:hover .centerDot {
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.activeCircleBullet .centerDot {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
 }
 
 /* LATEST UPDATES & RECITATIONS WIDGET */
@@ -577,7 +578,7 @@
   color: var(--primary-light);
 }
 
-/* RESPONSIVE LAYOUT FOR TABLETS AND MOBILE */
+/* RESPONSIVE LAYOUT FOR TABLETS AND MOBILE PHONES */
 @media (max-width: 960px) {
   .heroGrid {
     grid-template-columns: 1fr;
@@ -621,31 +622,109 @@
 
 @media (max-width: 680px) {
   .home {
-    width: min(100% - 28px, var(--container-width));
-    padding: 38px 0 72px;
+    width: min(100% - 24px, var(--container-width));
+    padding: 24px 0 60px;
   }
 
   .slideshowContainer {
-    min-height: 260px;
-    border-radius: 20px;
+    min-height: 230px;
+    height: 230px;
+    border-radius: 18px;
+  }
+
+  .carouselArrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carouselArrow svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .prevArrow {
+    left: 6px;
+  }
+
+  .nextArrow {
+    right: 6px;
+  }
+
+  .seniorPillContainer {
+    bottom: 10px;
+    padding: 3px 8px;
+    gap: 4px;
+  }
+
+  .circleBulletBtn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .bulletSvg {
+    width: 20px;
+    height: 20px;
   }
 
   .updatesWidget {
-    padding: 18px;
-    border-radius: 20px;
+    padding: 16px;
+    border-radius: 18px;
+    gap: 14px;
   }
 
   .recitationCard {
     padding: 14px;
+    border-radius: 16px;
   }
 
   .courseCard {
-    margin-top: 64px;
-    padding: 28px 22px;
-    border-radius: 22px;
+    margin-top: 40px;
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  .courseFacts {
+    grid-template-columns: 1fr;
+  }
+
+  .courseFacts > div {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
   }
 
   .resourceGrid {
     grid-template-columns: 1fr;
+  }
+
+  .resourceCard {
+    padding: 14px 16px;
+    border-radius: 16px;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 440px) {
+  .slideshowContainer {
+    min-height: 200px;
+    height: 200px;
+    border-radius: 14px;
+  }
+
+  .recitationHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .fileItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .downloadBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 8px 12px;
   }
 }

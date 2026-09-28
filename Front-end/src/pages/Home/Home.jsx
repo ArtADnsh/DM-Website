@@ -191,23 +191,56 @@ function Home() {
                   </svg>
                 </button>
 
-                {/* SENIOR UI EXPANDING PILL INDICATORS IN A FROSTED GLASS CAPSULE */}
+                {/* CIRCULAR TIMER BULLET INDICATORS IN A FROSTED GLASS CAPSULE */}
                 <div className={styles.seniorPillContainer}>
                   {gallery.map((_, idx) => {
                     const isActive = idx === currentSlide;
+                    const radius = 9;
+                    const circumference = 2 * Math.PI * radius; // 56.5487
+                    const strokeDashoffset = circumference - (circumference * progress) / 100;
+
                     return (
                       <button
                         key={idx}
-                        className={`${styles.pillBtn} ${isActive ? styles.activePill : ''}`}
+                        className={`${styles.circleBulletBtn} ${isActive ? styles.activeCircleBullet : ''}`}
                         onClick={() => handleDotClick(idx)}
                         aria-label={`Go to slide ${idx + 1}`}
                       >
-                        {isActive && (
-                          <span
-                            className={styles.pillProgressFill}
-                            style={{ width: `${progress}%` }}
+                        <svg viewBox="0 0 24 24" className={styles.bulletSvg}>
+                          {/* Outer track circle for active bullet */}
+                          {isActive && (
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r={radius}
+                              stroke="rgba(255, 255, 255, 0.28)"
+                              strokeWidth="2"
+                              fill="none"
+                            />
+                          )}
+                          {/* Active progress ring circling the bullet */}
+                          {isActive && (
+                            <circle
+                              cx="12"
+                              cy="12"
+                              r={radius}
+                              stroke="#ffffff"
+                              strokeWidth="2.2"
+                              fill="none"
+                              strokeDasharray={circumference}
+                              strokeDashoffset={strokeDashoffset}
+                              strokeLinecap="round"
+                              style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
+                            />
+                          )}
+                          {/* Center Bullet Dot */}
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r={isActive ? 4.5 : 3.5}
+                            className={styles.centerDot}
                           />
-                        )}
+                        </svg>
                       </button>
                     );
                   })}
