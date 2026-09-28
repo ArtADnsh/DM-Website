@@ -1,18 +1,8 @@
 from django.urls import path
-from .views import (
-    health_check,
-    CourseInfoView,
-    ClassroomPhotoListView,
-    CourseMaterialListView,
-    TeachingAssistantListView,
-    InternalSearchApiView
-)
+from .views import health_check, RecitationClassListView, CourseFileListView
 
 urlpatterns = [
     path('health/', health_check, name='health-check'),
-    path('course-info/', CourseInfoView.as_view(), name='course-info'),
-    path('photos/', ClassroomPhotoListView.as_view(), name='classroom-photos'),
-    path('materials/', CourseMaterialListView.as_view(), name='course-materials'),
-    path('tas/', TeachingAssistantListView.as_view(), name='teaching-assistants'),
-    path('search/', InternalSearchApiView.as_view(), name='internal-search'),
+    path('recitations/', RecitationClassListView.as_view(), name='recitations-list'),
+    path('files/', CourseFileListView.as_view(), name='files-list'),
 ]

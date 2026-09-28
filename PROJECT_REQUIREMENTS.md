@@ -1,60 +1,43 @@
 # DM-Website Project Requirements (Discrete Mathematics Course)
 
-This portal is a dedicated website exclusively for **Discrete Mathematics & Data Fundamentals (CS-201)** taught by **Dr. Tahaei** at the Department of Computer Engineering.
+Lightweight, focused portal for **Discrete Mathematics & Data Fundamentals (CS-201)** (Dr. Tahaei & Head TA Amir Jebbeli).
 
 ---
 
-## 📌 Scope & Architecture
-- **Single Course Focus**: Discrete Mathematics for CS.
-- **Static Assets & Content**: Course details, classroom photos, semester information, and social media links are maintained in clean, static structures.
-- **No Over-Engineering**: Lightweight architecture focused purely on course navigation, TA team display, downloadable material categories, and in-site internal search.
+## 💡 Simplified Architecture & Principles
+
+1. **Static Frontend Content (No Database needed)**:
+   - Course Info & Professor Details (Fixed static page)
+   - TA Team Cards with Oval Avatars (Fixed static array)
+   - Navigation Menu & Footer (Fixed layout)
+   - **No Search Bar Needed**: Content volume is small (~10 homeworks, 3 TAs, ~10 recitations), so scanning organized category grids is faster and cleaner.
+
+2. **Backend Use Case (Managed via Django Admin `/admin/`)**:
+   - **Recitation Classes (`RecitationClass`)**: Amir can add/edit weekly practice class dates, times, locations/links, and video links via `/admin/`.
+   - **Downloadable Course Files (`CourseFile`)**: Amir can upload or update Homework, Quiz, Project, and Sample Question PDF files and download links during the semester.
 
 ---
 
-## 🎨 Design & Aesthetic Guidelines
-- **Color Palette Options**: Pistachio Green, Soft Light Orange, Muted Light Blue, or Soft Lavender accents.
-- **Navigation**: Collapsible Sandwich (Hamburger) Menu & Header/Footer navigation.
-
----
-
-## 📄 Pages & Layout Sections
+## 📄 Page Layouts & Features
 
 ### 1. Landing Page (`/`)
-- **Classroom Photo Album**: 2–4 classroom environment photos.
-- **Course Description & Overview**:
-  - Course overview & syllabus summary
-  - Offered term ("Fall 2026")
-  - Course characteristics and prerequisites
-- **Social Media Links Section**: Telegram Channel, Telegram Group, Bale, etc.
-- **Footer**: Re-used navigation links and social links.
+- 2–4 static classroom environment photos.
+- Course overview, instructor info, offered term ("Fall 2026").
+- Social media links (Telegram Channel, Group, Bale).
+- Footer with menu links.
 
-### 2. Main Navigation Menu Items
-- **Lecture Notes** (`lecture_notes`)
-- **Assignments** (`assignment`)
-- **Quizzes** (`quiz`)
-- **Recitation Classes** (`recitation`)
-- **Projects** (`project`)
-- **Sample Exams** (`sample_exam`)
-- **Teaching Assistants Team** (`tas`)
-- **Contact Us** (`contact`)
-
-### 3. Teaching Assistants Page (`/ta-team`)
-- Grid layout with **maximum 3 columns**.
-- Ellipse/oval avatar frames (with default male/female avatar placeholders if photo is missing).
-- TA profile details:
-  1. Full Name
-  2. Role / Responsibility in team (e.g. Head TA, Quiz Lead, Project Lead)
-  3. Email
-  4. Telegram Handle/ID
-
-### 4. Search Functionality
-- **In-Site Internal Search**: Searches through course materials (booklets, exercises, quizzes, exams) and TA team list directly without redirecting to external search engines.
+### 2. Main Navigation Items
+- **Lecture Notes** (`/notes`)
+- **Assignments** (`/assignments`) - Download buttons for homework PDFs.
+- **Quizzes** (`/quizzes`) - Download buttons for quiz PDFs.
+- **Recitation Classes** (`/recitations`) - Schedule, dates, times, and video links (Managed by Amir via Admin).
+- **Projects** (`/projects`) - Downloadable project specs.
+- **Sample Exams** (`/sample-exams`) - Past exam PDFs.
+- **Teaching Assistants Team** (`/tas`) - Static grid (max 3 columns) with oval avatars, role, email, and Telegram handle.
+- **Contact Us** (`/contact`)
 
 ---
 
-## 🌐 API Endpoints (`/api/`)
-- `GET /api/course-info/` - Retrieve course description, instructor info, term, and social links.
-- `GET /api/photos/` - Retrieve classroom album photos for landing page.
-- `GET /api/materials/?category=<category>` - Downloadable materials by category.
-- `GET /api/tas/` - TA team list with roles and contact info.
-- `GET /api/search/?q=<query>` - Internal search API.
+## 🌐 Dynamic Backend Endpoints (`/api/`)
+- `GET /api/recitations/` - Weekly recitation class schedules, times, and links.
+- `GET /api/files/?category=<type>` - Downloadable course files by category (`assignment`, `quiz`, `project`, `sample_exam`, `lecture_note`).
