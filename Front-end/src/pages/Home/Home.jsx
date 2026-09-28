@@ -191,12 +191,12 @@ function Home() {
                   </svg>
                 </button>
 
-                {/* CIRCULAR TIMER BULLET INDICATORS IN A FROSTED GLASS CAPSULE */}
+                {/* ULTRA-CLEAN ELEGANT CIRCULAR TIMER BULLETS IN A FROSTED GLASS CAPSULE */}
                 <div className={styles.seniorPillContainer}>
                   {gallery.map((_, idx) => {
                     const isActive = idx === currentSlide;
-                    const radius = 9;
-                    const circumference = 2 * Math.PI * radius; // 56.5487
+                    const ringRadius = 8;
+                    const circumference = 2 * Math.PI * ringRadius; // ~50.265
                     const strokeDashoffset = circumference - (circumference * progress) / 100;
 
                     return (
@@ -207,39 +207,47 @@ function Home() {
                         aria-label={`Go to slide ${idx + 1}`}
                       >
                         <svg viewBox="0 0 24 24" className={styles.bulletSvg}>
-                          {/* Outer track circle for active bullet */}
-                          {isActive && (
+                          {isActive ? (
+                            <>
+                              {/* Subtle hairline track ring */}
+                              <circle
+                                cx="12"
+                                cy="12"
+                                r={ringRadius}
+                                stroke="rgba(255, 255, 255, 0.25)"
+                                strokeWidth="1.5"
+                                fill="none"
+                              />
+                              {/* Crisp white countdown stroke ring */}
+                              <circle
+                                cx="12"
+                                cy="12"
+                                r={ringRadius}
+                                stroke="#ffffff"
+                                strokeWidth="1.8"
+                                fill="none"
+                                strokeDasharray={circumference}
+                                strokeDashoffset={strokeDashoffset}
+                                strokeLinecap="round"
+                                style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
+                              />
+                              {/* Active solid white center dot */}
+                              <circle
+                                cx="12"
+                                cy="12"
+                                r="3.5"
+                                fill="#ffffff"
+                              />
+                            </>
+                          ) : (
+                            /* Inactive bullet dot */
                             <circle
                               cx="12"
                               cy="12"
-                              r={radius}
-                              stroke="rgba(255, 255, 255, 0.28)"
-                              strokeWidth="2"
-                              fill="none"
+                              r="3"
+                              className={styles.centerDot}
                             />
                           )}
-                          {/* Active progress ring circling the bullet */}
-                          {isActive && (
-                            <circle
-                              cx="12"
-                              cy="12"
-                              r={radius}
-                              stroke="#ffffff"
-                              strokeWidth="2.2"
-                              fill="none"
-                              strokeDasharray={circumference}
-                              strokeDashoffset={strokeDashoffset}
-                              strokeLinecap="round"
-                              style={{ transform: 'rotate(-90deg)', transformOrigin: '50% 50%' }}
-                            />
-                          )}
-                          {/* Center Bullet Dot */}
-                          <circle
-                            cx="12"
-                            cy="12"
-                            r={isActive ? 4.5 : 3.5}
-                            className={styles.centerDot}
-                          />
                         </svg>
                       </button>
                     );

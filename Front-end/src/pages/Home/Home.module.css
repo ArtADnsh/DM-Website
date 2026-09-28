@@ -123,7 +123,7 @@
   right: 14px;
 }
 
-/* CIRCULAR TIMER BULLET INDICATORS IN A FROSTED GLASS CAPSULE */
+/* ULTRA-CLEAN ELEGANT CIRCULAR TIMER BULLETS IN A FROSTED GLASS CAPSULE */
 .seniorPillContainer {
   position: absolute;
   bottom: 16px;
@@ -132,20 +132,20 @@
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   padding: 4px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 .circleBulletBtn {
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   padding: 0;
   display: grid;
   place-items: center;
@@ -154,28 +154,27 @@
   cursor: pointer;
   outline: none;
   border-radius: 50%;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bulletSvg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   overflow: visible;
   pointer-events: none;
 }
 
 .centerDot {
-  fill: rgba(255, 255, 255, 0.45);
-  transition: fill 0.25s ease, r 0.25s ease;
+  fill: rgba(255, 255, 255, 0.4);
+  transition: fill 0.2s ease;
 }
 
 .circleBulletBtn:hover .centerDot {
-  fill: rgba(255, 255, 255, 0.85);
+  fill: rgba(255, 255, 255, 0.9);
 }
 
-.activeCircleBullet .centerDot {
-  fill: #ffffff;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
+.circleBulletBtn:hover {
+  transform: scale(1.15);
 }
 
 /* LATEST UPDATES & RECITATIONS WIDGET */
