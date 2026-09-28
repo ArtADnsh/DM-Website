@@ -36,7 +36,7 @@ function TeamMemberCard({ name, role, focus, image, email, telegram }) {
       </div>
 
       <div className={styles.identity}>
-        <h4 className={styles.name}>{name}</h4>
+        <h3 className={styles.name}>{name}</h3>
         {focus && <p className={styles.focus}>{focus}</p>}
       </div>
 

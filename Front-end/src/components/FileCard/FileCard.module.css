@@ -1,0 +1,187 @@
+/*
+ * Accent tokens — each variant only overrides these.
+ *   --accent        tints, borders and glows
+ *   --accent-strong solid fills (number badge)
+ *   --accent-text   icon colour
+ */
+.card {
+  --accent: var(--primary);
+  --accent-strong: var(--primary);
+  --accent-text: var(--primary-light);
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 18px 16px 16px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--card-bg);
+  box-shadow: 0 12px 32px color-mix(in srgb, var(--shadow) 22%, transparent);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--shadow) 32%, transparent);
+}
+
+/* Variants (colours match the TA / HTA palette used on the TAs page) */
+.document {
+  --accent: var(--primary);
+  --accent-strong: var(--primary);
+  --accent-text: var(--primary-light);
+}
+
+.video {
+  --accent: #14b8a6;
+  --accent-strong: #0d9488;
+  --accent-text: #0d9488;
+}
+
+:global([data-theme='dark']) .video {
+  --accent-text: #5eead4;
+}
+
+/* Icon tile */
+.icon {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--border));
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--accent) 26%, transparent),
+      color-mix(in srgb, var(--accent) 8%, transparent)
+    ),
+    var(--surface);
+  color: var(--accent-text);
+}
+
+.icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.number {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--background);
+  border-radius: 8px;
+  background: var(--accent-strong);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Text */
+.content {
+  min-width: 0;
+}
+
+.title {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.meta {
+  margin-top: 4px;
+  color: color-mix(in srgb, var(--text-muted) 78%, transparent);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Action button */
+.action {
+  min-width: 128px;
+  min-height: 46px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+  color: var(--text);
+  font-size: 14.5px;
+  font-weight: 550;
+  white-space: nowrap;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.action svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+a.action:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+a.action:active {
+  transform: translateY(0);
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+
+@media (max-width: 640px) {
+  .card {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 14px 16px;
+    padding: 15px;
+  }
+
+  .icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+  }
+
+  .icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .action {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}

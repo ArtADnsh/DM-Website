@@ -9,6 +9,21 @@
       content="Discrete Mathematics course website — Iran University of Science and Technology"
     />
     <title>Discrete Mathematics · IUST</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a light-mode flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('dm-theme');
+          var theme =
+            saved === 'dark' || saved === 'light'
+              ? saved
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

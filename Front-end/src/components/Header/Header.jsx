@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import llogo from '../../assets/logo_light.webp';
+import logoLight from '../../assets/logo_light.webp';
+import logoDark from '../../assets/logo_dark.webp';
 import styles from './Header.module.css';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
@@ -69,9 +70,8 @@ function Header() {
 
   return (
     <header
-      className={`${styles.header} ${
-        isScrolled ? styles.headerScrolled : ''
-      }`}
+      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''
+        }`}
     >
       <div className={styles.container}>
         <a
@@ -81,9 +81,14 @@ function Header() {
           aria-label="Discrete Mathematics home"
         >
           <img
-            src={llogo}
+            src={logoLight}
             alt="IUST Logo"
-            className={styles.logo}
+            className={`${styles.logo} ${styles.logoLight}`}
+          />
+          <img
+            src={logoDark}
+            alt="IUST Logo"
+            className={`${styles.logo} ${styles.logoDark}`}
           />
 
           <div className={styles.courseText}>
@@ -91,9 +96,9 @@ function Header() {
               Iran University of Science and Technology
             </p>
 
-            <h1 className={styles.courseName}>
+            <p className={styles.courseName}>
               Discrete Mathematics
-            </h1>
+            </p>
 
             <p className={styles.semester}>
               Semester 4051
@@ -119,9 +124,8 @@ function Header() {
       </div>
 
       <button
-        className={`${styles.overlay} ${
-          isMenuOpen ? styles.overlayOpen : ''
-        }`}
+        className={`${styles.overlay} ${isMenuOpen ? styles.overlayOpen : ''
+          }`}
         onClick={closeMenu}
         aria-label="Close navigation menu"
         tabIndex={isMenuOpen ? 0 : -1}
@@ -129,9 +133,8 @@ function Header() {
 
       <nav
         id="site-navigation"
-        className={`${styles.menu} ${
-          isMenuOpen ? styles.menuOpen : ''
-        }`}
+        className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''
+          }`}
         aria-hidden={!isMenuOpen}
       >
         <div className={styles.menuHeader}>
@@ -154,12 +157,12 @@ function Header() {
           Home
         </a>
 
-        <a href="/#lectures" onClick={closeMenu}>
+        <a href="/#lectures" data-internal-link onClick={closeMenu}>
           Lectures
         </a>
 
-        <a href="/#videos" onClick={closeMenu}>
-          Videos
+        <a href="/tutorials" data-internal-link onClick={closeMenu}>
+          Tutorials
         </a>
 
         <a
@@ -170,12 +173,16 @@ function Header() {
           TAs
         </a>
 
-        <a href="/#mentors" onClick={closeMenu}>
+        <a href="/#mentors" data-internal-link onClick={closeMenu}>
           Mentors
         </a>
 
-        <a href="/#materials" onClick={closeMenu}>
-          Materials
+        <a
+          href="/materials"
+          data-internal-link
+          onClick={closeMenu}
+        >
+          Course Materials
         </a>
       </nav>
     </header>

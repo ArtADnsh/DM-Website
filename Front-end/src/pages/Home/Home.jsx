@@ -108,9 +108,9 @@ function Home() {
         <div className={styles.courseMain}>
           <p className={styles.eyebrow}>{course.eyebrow}</p>
 
-          <h2 id="home-title" className={styles.title}>
+          <h1 id="home-title" className={styles.title}>
             {course.title}
-          </h2>
+          </h1>
 
           <p className={styles.description}>
             {course.description}
@@ -121,7 +121,6 @@ function Home() {
           </p>
 
           <div
-            id="videos"
             className={styles.features}
             aria-label="Website resources"
           >
@@ -170,7 +169,7 @@ function Home() {
       </section>
 
       <section
-        id="materials"
+        id="links"
         className={styles.resourcesSection}
         aria-labelledby="resources-title"
       >

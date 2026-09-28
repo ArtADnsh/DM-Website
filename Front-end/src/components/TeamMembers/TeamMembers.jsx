@@ -70,9 +70,9 @@ function TeamMembers({
         <header className={styles.header}>
           <div className={styles.headingCopy}>
             <p className={styles.eyebrow}>{eyebrow}</p>
-            <h2 id="team-title" className={styles.title}>
+            <h1 id="team-title" className={styles.title}>
               {title}
-            </h2>
+            </h1>
             {description && <p className={styles.description}>{description}</p>}
           </div>
 
@@ -87,7 +87,7 @@ function TeamMembers({
             <section className={styles.group} key={group.role}>
               <div className={styles.groupHeader}>
                 <div className={styles.groupHeading}>
-                  <h3 className={styles.groupTitle}>{group.label}</h3>
+                  <h2 className={styles.groupTitle}>{group.label}</h2>
                   {group.description && (
                     <p className={styles.groupDescription}>{group.description}</p>
                   )}

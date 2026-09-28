@@ -40,8 +40,16 @@
   will-change: transform;
 }
 
-[data-theme='dark'] .logo {
-  content: url('../../assets/logo_dark.webp');
+.logoDark {
+  display: none;
+}
+
+[data-theme='dark'] .logoLight {
+  display: none;
+}
+
+[data-theme='dark'] .logoDark {
+  display: block;
 }
 
 .headerScrolled .logo {
