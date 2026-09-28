@@ -116,75 +116,71 @@ function Header() {
             aria-expanded={isMenuOpen}
             aria-controls="site-navigation"
           >
-            <span />
-            <span />
-            <span />
+            <svg
+              className={styles.menuIcon}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </button>
         </div>
+
+        {/* NAVIGATION DROPDOWN ANCHORED INSIDE CONTAINER */}
+        <nav
+          id="site-navigation"
+          className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}`}
+          aria-hidden={!isMenuOpen}
+        >
+          <div className={styles.menuHeader}>
+            <span>Navigation</span>
+
+            <button
+              className={styles.closeButton}
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <a href="/" data-internal-link onClick={closeMenu}>
+            Home
+          </a>
+
+          <a href="/#lectures" data-internal-link onClick={closeMenu}>
+            Lectures
+          </a>
+
+          <a href="/tutorials" data-internal-link onClick={closeMenu}>
+            Tutorials
+          </a>
+
+          <a href="/tas" data-internal-link onClick={closeMenu}>
+            TAs
+          </a>
+
+          <a href="/#mentors" data-internal-link onClick={closeMenu}>
+            Mentors
+          </a>
+
+          <a href="/materials" data-internal-link onClick={closeMenu}>
+            Course Materials
+          </a>
+        </nav>
       </div>
 
       <button
-        className={`${styles.overlay} ${isMenuOpen ? styles.overlayOpen : ''
-          }`}
+        className={`${styles.overlay} ${isMenuOpen ? styles.overlayOpen : ''}`}
         onClick={closeMenu}
         aria-label="Close navigation menu"
         tabIndex={isMenuOpen ? 0 : -1}
       />
-
-      <nav
-        id="site-navigation"
-        className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''
-          }`}
-        aria-hidden={!isMenuOpen}
-      >
-        <div className={styles.menuHeader}>
-          <span>Navigation</span>
-
-          <button
-            className={styles.closeButton}
-            onClick={closeMenu}
-            aria-label="Close menu"
-          >
-            ×
-          </button>
-        </div>
-
-        <a
-          href="/"
-          data-internal-link
-          onClick={closeMenu}
-        >
-          Home
-        </a>
-
-        <a href="/#lectures" data-internal-link onClick={closeMenu}>
-          Lectures
-        </a>
-
-        <a href="/tutorials" data-internal-link onClick={closeMenu}>
-          Tutorials
-        </a>
-
-        <a
-          href="/tas"
-          data-internal-link
-          onClick={closeMenu}
-        >
-          TAs
-        </a>
-
-        <a href="/#mentors" data-internal-link onClick={closeMenu}>
-          Mentors
-        </a>
-
-        <a
-          href="/materials"
-          data-internal-link
-          onClick={closeMenu}
-        >
-          Course Materials
-        </a>
-      </nav>
     </header>
   );
 }

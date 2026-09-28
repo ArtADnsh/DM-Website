@@ -9,6 +9,7 @@
 }
 
 .container {
+  position: relative;
   width: min(100% - 40px, var(--container-width));
   height: 110px;
   margin: 0 auto;
@@ -16,7 +17,6 @@
   align-items: center;
   justify-content: space-between;
   transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  contain: layout style;
 }
 
 .headerScrolled .container {
@@ -89,27 +89,19 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  transform-origin: right center;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.headerScrolled .actions {
-  transform: scale(0.9);
 }
 
 .menuButton {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
   color: var(--text);
+  cursor: pointer;
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -117,15 +109,14 @@
 }
 
 .menuButton:hover {
-  background: rgba(108, 99, 255, 0.15);
-  border-color: rgba(108, 99, 255, 0.4);
+  background: rgba(108, 99, 255, 0.14);
+  border-color: rgba(108, 99, 255, 0.35);
 }
 
-.menuButton span {
-  width: 19px;
-  height: 2px;
-  border-radius: 10px;
-  background: currentColor;
+.menuIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 .overlay {
@@ -148,29 +139,30 @@
   visibility: visible;
 }
 
+/* DESKTOP NAV DROPDOWN: ANCHORED INSIDE CONTAINER UNDER THE MENU BUTTON */
 .menu {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 280px;
-  padding: 20px;
+  position: absolute;
+  top: calc(100% - 14px);
+  right: 0;
+  width: 250px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background: var(--menu-bg);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 20px 60px var(--shadow);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-12px) scale(0.96);
+  transform: translateY(-8px) scale(0.96);
   transform-origin: top right;
   transition:
-    opacity 0.25s ease,
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    visibility 0.3s ease;
+    opacity 0.22s ease,
+    transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.26s ease;
   z-index: 200;
 }
 
@@ -184,42 +176,64 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  padding: 0 4px;
   color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 750;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
 }
 
+/* MINIMAL PINK-RED GLOW CLOSE BUTTON ON HOVER */
 .closeButton {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
   border: none;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-  font-size: 22px;
-  line-height: 1;
-  transition: background 0.2s ease;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.closeButton svg {
+  width: 14px;
+  height: 14px;
+  display: block;
 }
 
 .closeButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(244, 63, 94, 0.65);
+  color: #ffffff;
 }
 
+/* MENU LINKS WITH TOUCH AND HOVER FEEDBACK FOR MOBILE & DESKTOP */
 .menu a {
-  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
   border-radius: 12px;
   color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(108, 99, 255, 0.2);
   transition:
     background 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.menu a:hover {
-  background: rgba(108, 99, 255, 0.12);
+.menu a:hover,
+.menu a:active,
+.menu a:focus-visible {
+  background: rgba(108, 99, 255, 0.16);
   color: var(--text);
+  transform: translateX(4px);
 }
 
 @media (max-width: 600px) {
@@ -268,10 +282,23 @@
   }
 
   .menu {
-    top: 10px;
-    right: 10px;
-    left: 10px;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    left: 12px;
     width: auto;
+    transform-origin: top center;
+  }
+
+  .menu a {
+    padding: 13px 16px;
+  }
+
+  .menu a:active,
+  .menu a:hover {
+    background: rgba(108, 99, 255, 0.2);
+    color: var(--text);
+    transform: translateX(4px);
   }
 }
 
