@@ -86,7 +86,7 @@
   object-fit: cover;
 }
 
-/* CLEAR & VISIBLE MINIMALIST FLOATING ARROWS (BORDERLESS, CRISP HIGH OPACITY DEFAULT, ENHANCED GLOW & HOVER SCALE) */
+/* CLEAR & VISIBLE MINIMALIST FLOATING ARROWS */
 .carouselArrow {
   position: absolute;
   top: 50%;
@@ -123,8 +123,8 @@
   right: 14px;
 }
 
-/* CENTERED BULLET INDICATORS (LARGER, HIGH VISIBILITY SVG BULLETS) */
-.centeredDotsContainer {
+/* SENIOR UI EXPANDING PILL INDICATORS IN A FROSTED GLASS CAPSULE */
+.seniorPillContainer {
   position: absolute;
   bottom: 18px;
   left: 50%;
@@ -132,25 +132,49 @@
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.dotBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
+.pillBtn {
+  position: relative;
+  width: 6px;
+  height: 6px;
   padding: 0;
   border: none;
-  background: transparent;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.75));
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  outline: none;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, transform 0.2s ease;
 }
 
-.dotBtn:hover {
+.pillBtn:hover:not(.activePill) {
+  background: rgba(255, 255, 255, 0.75);
   transform: scale(1.15);
+}
+
+.activePill {
+  width: 28px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.pillProgressFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  transition: width 0.04s linear;
 }
 
 /* LATEST UPDATES & RECITATIONS WIDGET */

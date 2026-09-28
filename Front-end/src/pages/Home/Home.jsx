@@ -105,7 +105,7 @@ function Home() {
   useEffect(() => {
     if (isPaused || gallery.length <= 1) return;
 
-    const intervalStep = 40; // 40ms updates for smooth progress ring
+    const intervalStep = 40; // 40ms updates for smooth progress fill
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -134,11 +134,6 @@ function Home() {
     setProgress(0);
   };
 
-  // SVG Progress Ring calculations (30x30 viewBox)
-  const ringRadius = 11;
-  const ringCircumference = 2 * Math.PI * ringRadius;
-  const ringOffset = ringCircumference - (progress / 100) * ringCircumference;
-
   return (
     <div className={styles.home}>
       {/* HERO SECTION: SLIDESHOW + LATEST UPDATES WIDGET */}
@@ -154,7 +149,7 @@ function Home() {
         </div>
 
         <div className={styles.heroGrid}>
-          {/* LEFT: MINIMALIST SLIDESHOW CAROUSEL */}
+          {/* LEFT: SLIDESHOW CAROUSEL WITH SENIOR UI EXPANDING PILL INDICATORS */}
           <div
             className={styles.slideshowContainer}
             onMouseEnter={() => setIsPaused(true)}
@@ -173,7 +168,7 @@ function Home() {
               </figure>
             ))}
 
-            {/* Clear, Minimalist Navigation Arrows */}
+            {/* Clear Minimalist Navigation Arrows */}
             {gallery.length > 1 && (
               <>
                 <button
@@ -196,45 +191,23 @@ function Home() {
                   </svg>
                 </button>
 
-                {/* Larger Centered Bullets with Clear Circular Progress Ring */}
-                <div className={styles.centeredDotsContainer}>
+                {/* SENIOR UI EXPANDING PILL INDICATORS IN A FROSTED GLASS CAPSULE */}
+                <div className={styles.seniorPillContainer}>
                   {gallery.map((_, idx) => {
                     const isActive = idx === currentSlide;
                     return (
                       <button
                         key={idx}
-                        className={styles.dotBtn}
+                        className={`${styles.pillBtn} ${isActive ? styles.activePill : ''}`}
                         onClick={() => handleDotClick(idx)}
                         aria-label={`Go to slide ${idx + 1}`}
                       >
-                        <svg width="30" height="30" viewBox="0 0 30 30">
-                          {/* Larger Center Dot with Drop Shadow */}
-                          <circle
-                            cx="15"
-                            cy="15"
-                            r="5"
-                            fill={isActive ? '#FFFFFF' : 'rgba(255, 255, 255, 0.65)'}
+                        {isActive && (
+                          <span
+                            className={styles.pillProgressFill}
+                            style={{ width: `${progress}%` }}
                           />
-                          {/* Outer Circular Timer Progress Ring around active bullet */}
-                          {isActive && (
-                            <circle
-                              cx="15"
-                              cy="15"
-                              r={ringRadius}
-                              fill="none"
-                              stroke="#FFFFFF"
-                              strokeWidth="2.2"
-                              strokeDasharray={ringCircumference}
-                              strokeDashoffset={ringOffset}
-                              strokeLinecap="round"
-                              style={{
-                                transform: 'rotate(-90deg)',
-                                transformOrigin: '50% 50%',
-                                opacity: 0.95,
-                              }}
-                            />
-                          )}
-                        </svg>
+                        )}
                       </button>
                     );
                   })}
