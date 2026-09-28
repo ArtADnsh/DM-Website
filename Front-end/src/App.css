@@ -1,0 +1,18 @@
+.app {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(108, 99, 255, 0.12),
+      transparent 35%
+    ),
+    var(--background);
+}
+
+main {
+  flex: 1;
+}

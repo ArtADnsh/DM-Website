@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #eef1f7;
+  --surface: #ffffff;
+
+  --primary: #6c63ff;
+  --primary-light: #7a72ff;
+
+  --text: #15172a;
+  --text-muted: #5b5d70;
+
+  --border: rgba(23, 24, 42, 0.1);
+
+  --header-bg: rgba(255, 255, 255, 0.75);
+  --menu-bg: rgba(255, 255, 255, 0.9);
+  --footer-bg: rgba(255, 255, 255, 0.6);
+  --overlay-bg: rgba(15, 17, 35, 0.05);
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --shadow: rgba(23, 24, 42, 0.14);
+
+  --container-width: 1200px;
+}
+
+[data-theme="dark"] {
+  --background: #111226;
+  --surface: #181936;
+
+  --primary: #6c63ff;
+  --primary-light: #817aff;
+
+  --text: #f5f5f7;
+  --text-muted: #a8a8bd;
+
+  --border: rgba(255, 255, 255, 0.1);
+
+  --header-bg: rgba(17, 18, 38, 0.72);
+  --menu-bg: rgba(24, 25, 54, 0.9);
+  --footer-bg: rgba(10, 11, 25, 0.5);
+  --overlay-bg: rgba(0, 0, 0, 0.35);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: var(--background);
+  color: var(--text);
+
+  font-family: Arial, sans-serif;
+}
+
+body,
+header,
+footer,
+button,
+a,
+div,
+nav,
+section {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

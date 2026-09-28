@@ -1,0 +1,217 @@
+.card {
+    position: relative;
+
+    width: 100%;
+    max-width: 280px;
+
+    padding: 24px 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    box-shadow: 0 10px 30px var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease,
+        background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px var(--shadow);
+}
+
+/* Top row: avatar + role badge */
+
+.top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+
+.avatar {
+    width: 66px;
+    height: 70px;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.badge {
+    padding: 4px 12px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    background: rgba(108, 99, 255, 0.14);
+    color: var(--primary-light);
+}
+
+.name {
+    margin: 0 0 14px;
+
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.divider {
+    height: 1px;
+    margin-bottom: 14px;
+
+    background: var(--border);
+}
+
+/* Contact info */
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--text-muted);
+
+    transition: color 0.2s ease;
+}
+
+.infoRow:hover {
+    color: var(--text);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.infoText {
+    overflow: hidden;
+
+    color: inherit;
+    font-size: 13.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Role variant: TA (blue tint) */
+
+.ta {
+    border-color: rgba(59, 130, 246, 0.18);
+    background:
+        linear-gradient(160deg, rgba(59, 130, 246, 0.11), transparent 60%),
+        var(--card-bg);
+}
+
+.ta .badge {
+    background: rgba(59, 130, 246, 0.14);
+    color: #3b82f6;
+}
+
+.ta:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Role variant: HTA (teal/green tint) */
+
+.hta {
+    border-color: rgba(20, 184, 166, 0.18);
+    background:
+        linear-gradient(160deg, rgba(20, 184, 166, 0.11), transparent 60%),
+        var(--card-bg);
+}
+
+.hta .badge {
+    background: rgba(20, 184, 166, 0.14);
+    color: #0d9488;
+}
+
+.hta:hover {
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+/* Role variant: Professor (lavender/purple tint, reuses site primary) */
+
+.professor {
+    border-color: rgba(108, 99, 255, 0.2);
+    background:
+        linear-gradient(160deg, rgba(108, 99, 255, 0.11), transparent 60%),
+        var(--card-bg);
+}
+
+.professor .badge {
+    background: rgba(108, 99, 255, 0.16);
+    color: var(--primary-light);
+}
+
+.professor:hover {
+    border-color: rgba(108, 99, 255, 0.45);
+}
+
+/* Dark theme adjustments: slightly stronger alpha so tints stay readable */
+
+:global([data-theme='dark']) .ta {
+    border-color: rgba(59, 130, 246, 0.22);
+    background:
+        linear-gradient(160deg, rgba(59, 130, 246, 0.12), transparent 60%),
+        var(--card-bg);
+}
+
+:global([data-theme='dark']) .ta .badge {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+}
+
+:global([data-theme='dark']) .hta {
+    border-color: rgba(20, 184, 166, 0.22);
+    background:
+        linear-gradient(160deg, rgba(20, 184, 166, 0.12), transparent 60%),
+        var(--card-bg);
+}
+
+:global([data-theme='dark']) .hta .badge {
+    background: rgba(20, 184, 166, 0.2);
+    color: #5eead4;
+}
+
+:global([data-theme='dark']) .professor {
+    border-color: rgba(108, 99, 255, 0.26);
+    background:
+        linear-gradient(160deg, rgba(108, 99, 255, 0.14), transparent 60%),
+        var(--card-bg);
+}
+
+:global([data-theme='dark']) .professor .badge {
+    background: rgba(108, 99, 255, 0.22);
+    color: var(--primary-light);
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px 18px;
+    }
+
+    .avatar {
+        width: 56px;
+        height: 56px;
+    }
+}

@@ -1,0 +1,266 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  background: var(--header-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.container {
+  width: min(100% - 40px, var(--container-width));
+  min-height: 110px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: min-height 0.3s ease;
+  contain: layout style;
+}
+
+.headerScrolled .container {
+  min-height: 82px;
+}
+
+.courseInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: gap 0.3s ease;
+}
+
+.headerScrolled .courseInfo {
+  gap: 14px;
+}
+
+.logo {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+[data-theme="dark"] .logo {
+  content: url('../../assets/logo_dark.webp');
+}
+
+.headerScrolled .logo {
+  width: 48px;
+  height: 48px;
+}
+
+.university {
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 13px;
+  transition: font-size 0.3s ease, margin-bottom 0.3s ease;
+}
+
+.headerScrolled .university {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.courseName {
+  margin-bottom: 7px;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  transition: font-size 0.3s ease, margin-bottom 0.3s ease;
+}
+
+.headerScrolled .courseName {
+  margin-bottom: 4px;
+  font-size: 22px;
+}
+
+.semester {
+  color: var(--primary-light);
+  font-size: 13px;
+  transition: font-size 0.3s ease;
+}
+
+.headerScrolled .semester {
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.headerScrolled .actions {
+  transform: scale(0.9);
+}
+
+.menuButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  transition: 0.2s ease;
+}
+
+.menuButton:hover {
+  background: rgba(108, 99, 255, 0.15);
+  border-color: rgba(108, 99, 255, 0.4);
+}
+
+.menuButton span {
+  width: 19px;
+  height: 2px;
+  border-radius: 10px;
+  background: currentColor;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  z-index: 150;
+}
+
+.overlayOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 280px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--menu-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 60px var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px) scale(0.96);
+  transform-origin: top right;
+  transition:
+    opacity 0.25s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.3s ease;
+  z-index: 200;
+}
+
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.menuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.closeButton {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1;
+  transition: 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu a {
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--text-muted);
+  transition: 0.2s ease;
+}
+
+.menu a:hover {
+  background: rgba(108, 99, 255, 0.12);
+  color: var(--text);
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        width: min(100% - 24px, var(--container-width));
+        min-height: 77px;
+    }
+
+    .headerScrolled .container {
+        min-height: 61px;
+    }
+
+    .logo {
+        width: 46px;
+        height: 46px;
+    }
+
+    .headerScrolled .logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .university {
+        font-size: 9px;
+    }
+
+    .headerScrolled .university {
+        font-size: 8.5px;
+    }
+
+    .courseName {
+        font-size: 17px;
+    }
+
+    .headerScrolled .courseName {
+        font-size: 14px;
+    }
+
+    .semester {
+        font-size: 10px;
+    }
+
+    .headerScrolled .semester {
+        font-size: 9px;
+    }
+
+    .menu {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+}
