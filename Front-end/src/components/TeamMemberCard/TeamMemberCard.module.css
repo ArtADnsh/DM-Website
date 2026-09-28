@@ -1,217 +1,272 @@
 .card {
-    position: relative;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  min-height: 230px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow) 68%, transparent);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.3s ease;
+}
 
-    width: 100%;
-    max-width: 280px;
-
-    padding: 24px 22px;
-
-    border: 1px solid var(--border);
-    border-radius: 20px;
-
-    background: var(--card-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    box-shadow: 0 10px 30px var(--shadow);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease,
-        background-color 0.3s ease;
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 40px var(--shadow);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px color-mix(in srgb, var(--shadow) 82%, transparent);
 }
 
-/* Top row: avatar + role badge */
-
 .top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
 
-    margin-bottom: 16px;
+.avatar,
+.avatarFallback {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
 }
 
 .avatar {
-    width: 66px;
-    height: 70px;
+  object-fit: cover;
+}
 
-    border: 1px solid var(--border);
-    border-radius: 50%;
-
-    object-fit: cover;
+.avatarFallback {
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 70%),
+    color-mix(in srgb, var(--surface) 66%, transparent);
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 .badge {
-    padding: 4px 12px;
+  padding: 5px 11px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: rgba(108, 99, 255, 0.14);
+  color: var(--primary-light);
+}
 
-    border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 600;
-    white-space: nowrap;
-
-    background: rgba(108, 99, 255, 0.14);
-    color: var(--primary-light);
+.identity {
+  min-height: 58px;
 }
 
 .name {
-    margin: 0 0 14px;
+  margin: 0;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
 
-    color: var(--text);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.2px;
+.focus {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
 }
 
 .divider {
-    height: 1px;
-    margin-bottom: 14px;
-
-    background: var(--border);
+  height: 1px;
+  margin: 16px 0;
+  background: var(--border);
 }
 
-/* Contact info */
-
 .info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
 }
 
 .infoRow {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: var(--text-muted);
-
-    transition: color 0.2s ease;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
 }
 
 .infoRow:hover {
-    color: var(--text);
+  color: var(--text);
+}
+
+.placeholderContact {
+  cursor: default;
+  opacity: 0.74;
+}
+
+.placeholderContact:hover {
+  color: var(--text-muted);
 }
 
 .icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .infoText {
-    overflow: hidden;
-
-    color: inherit;
-    font-size: 13.5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Role variant: TA (blue tint) */
-
 .ta {
-    border-color: rgba(59, 130, 246, 0.18);
-    background:
-        linear-gradient(160deg, rgba(59, 130, 246, 0.11), transparent 60%),
-        var(--card-bg);
+  border-color: rgba(59, 130, 246, 0.18);
+  background:
+    linear-gradient(160deg, rgba(59, 130, 246, 0.1), transparent 58%),
+    var(--card-bg);
 }
 
 .ta .badge {
-    background: rgba(59, 130, 246, 0.14);
-    color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.16);
+  background: rgba(59, 130, 246, 0.13);
+  color: #3b82f6;
 }
 
 .ta:hover {
-    border-color: rgba(59, 130, 246, 0.4);
+  border-color: rgba(59, 130, 246, 0.38);
 }
 
-/* Role variant: HTA (teal/green tint) */
-
 .hta {
-    border-color: rgba(20, 184, 166, 0.18);
-    background:
-        linear-gradient(160deg, rgba(20, 184, 166, 0.11), transparent 60%),
-        var(--card-bg);
+  min-height: 242px;
+  border-color: rgba(20, 184, 166, 0.2);
+  background:
+    linear-gradient(155deg, rgba(20, 184, 166, 0.13), transparent 62%),
+    var(--card-bg);
+}
+
+.hta .avatar,
+.hta .avatarFallback {
+  width: 74px;
+  height: 74px;
+  flex-basis: 74px;
 }
 
 .hta .badge {
-    background: rgba(20, 184, 166, 0.14);
-    color: #0d9488;
+  border-color: rgba(20, 184, 166, 0.18);
+  background: rgba(20, 184, 166, 0.14);
+  color: #0d9488;
 }
 
 .hta:hover {
-    border-color: rgba(20, 184, 166, 0.4);
+  border-color: rgba(20, 184, 166, 0.42);
 }
 
-/* Role variant: Professor (lavender/purple tint, reuses site primary) */
-
 .professor {
-    border-color: rgba(108, 99, 255, 0.2);
-    background:
-        linear-gradient(160deg, rgba(108, 99, 255, 0.11), transparent 60%),
-        var(--card-bg);
+  min-height: 258px;
+  padding: 28px;
+  border-color: rgba(108, 99, 255, 0.28);
+  background:
+    linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 64%),
+    var(--card-bg);
+  box-shadow: 0 16px 42px color-mix(in srgb, var(--shadow) 72%, transparent);
+}
+
+.professor .avatar,
+.professor .avatarFallback {
+  width: 86px;
+  height: 86px;
+  flex-basis: 86px;
+  border-radius: 22px;
+}
+
+.professor .avatarFallback {
+  font-size: 22px;
+}
+
+.professor .name {
+  font-size: 22px;
 }
 
 .professor .badge {
-    background: rgba(108, 99, 255, 0.16);
-    color: var(--primary-light);
+  border-color: rgba(108, 99, 255, 0.22);
+  background: rgba(108, 99, 255, 0.16);
+  color: var(--primary-light);
 }
 
 .professor:hover {
-    border-color: rgba(108, 99, 255, 0.45);
-}
-
-/* Dark theme adjustments: slightly stronger alpha so tints stay readable */
-
-:global([data-theme='dark']) .ta {
-    border-color: rgba(59, 130, 246, 0.22);
-    background:
-        linear-gradient(160deg, rgba(59, 130, 246, 0.12), transparent 60%),
-        var(--card-bg);
+  border-color: rgba(108, 99, 255, 0.5);
 }
 
 :global([data-theme='dark']) .ta .badge {
-    background: rgba(59, 130, 246, 0.2);
-    color: #93c5fd;
-}
-
-:global([data-theme='dark']) .hta {
-    border-color: rgba(20, 184, 166, 0.22);
-    background:
-        linear-gradient(160deg, rgba(20, 184, 166, 0.12), transparent 60%),
-        var(--card-bg);
+  background: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
 }
 
 :global([data-theme='dark']) .hta .badge {
-    background: rgba(20, 184, 166, 0.2);
-    color: #5eead4;
-}
-
-:global([data-theme='dark']) .professor {
-    border-color: rgba(108, 99, 255, 0.26);
-    background:
-        linear-gradient(160deg, rgba(108, 99, 255, 0.14), transparent 60%),
-        var(--card-bg);
+  background: rgba(20, 184, 166, 0.2);
+  color: #5eead4;
 }
 
 :global([data-theme='dark']) .professor .badge {
-    background: rgba(108, 99, 255, 0.22);
-    color: var(--primary-light);
+  background: rgba(108, 99, 255, 0.22);
+  color: var(--primary-light);
 }
 
 @media (max-width: 480px) {
-    .card {
-        padding: 20px 18px;
-    }
+  .card,
+  .professor {
+    min-height: auto;
+    padding: 20px;
+  }
 
-    .avatar {
-        width: 56px;
-        height: 56px;
-    }
+  .professor .avatar,
+  .professor .avatarFallback,
+  .hta .avatar,
+  .hta .avatarFallback,
+  .avatar,
+  .avatarFallback {
+    width: 62px;
+    height: 62px;
+    flex-basis: 62px;
+    border-radius: 17px;
+  }
+}
+
+@supports not (background: color-mix(in srgb, white, transparent)) {
+  .card,
+  .professor {
+    box-shadow: 0 14px 34px var(--shadow);
+  }
+
+  .avatarFallback {
+    background: var(--surface);
+  }
 }
