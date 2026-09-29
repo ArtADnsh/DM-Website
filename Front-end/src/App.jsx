@@ -7,6 +7,7 @@ import TAs from './pages/TAs/TAs';
 import CourseMaterials from './pages/CourseMaterials/CourseMaterials';
 import Tutorials from './pages/Tutorials/Tutorials';
 import Mentor from './pages/Mentor/Mentor';
+import Project from './pages/Project/Project';
 
 import './App.css';
 
@@ -74,8 +75,10 @@ function App() {
 
   if (pathname === '/tas') {
     page = <TAs />;
-  } else if (pathname === '/tutorials') {
+  } else if (pathname === '/videos' || pathname === '/tutorials') {
     page = <Tutorials />;
+  } else if (pathname === '/project') {
+    page = <Project />;
   } else if (pathname === '/materials') {
     page = <CourseMaterials />;
   } else if (pathname === '/mentor' || pathname === '/mentors') {

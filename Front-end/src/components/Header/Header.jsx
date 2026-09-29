@@ -153,24 +153,24 @@ function Header() {
             Home
           </a>
 
-          <a href="/#lectures" data-internal-link onClick={closeMenu}>
-            Lectures
+          <a href="/materials" data-internal-link onClick={closeMenu}>
+            Course Materials
           </a>
 
-          <a href="/tutorials" data-internal-link onClick={closeMenu}>
-            Tutorials
+          <a href="/project" data-internal-link onClick={closeMenu}>
+            Project
+          </a>
+
+          <a href="/videos" data-internal-link onClick={closeMenu}>
+            Course Videos
           </a>
 
           <a href="/tas" data-internal-link onClick={closeMenu}>
-            TAs
+            Teaching Team
           </a>
 
           <a href="/mentors" data-internal-link onClick={closeMenu}>
             Mentors
-          </a>
-
-          <a href="/materials" data-internal-link onClick={closeMenu}>
-            Course Materials
           </a>
         </nav>
       </div>
