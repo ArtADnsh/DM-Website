@@ -1,0 +1,244 @@
+.page {
+  width: 100%;
+  padding: clamp(56px, 7vw, 92px) 0 clamp(72px, 9vw, 120px);
+}
+
+.panel {
+  width: min(100% - 40px, var(--container-width));
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 48px);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: color-mix(in srgb, var(--surface) 44%, transparent);
+  box-shadow: 0 24px 70px color-mix(in srgb, var(--shadow) 45%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+.headingCopy {
+  max-width: 700px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--primary-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.description {
+  max-width: 620px;
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.count {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-bg);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.count strong {
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.count span {
+  font-size: 13px;
+}
+
+.tableShell {
+  margin-top: 34px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: var(--card-bg);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.indexColumn {
+  width: 74px;
+}
+
+.table th,
+.table td {
+  padding: 17px 20px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table thead {
+  background: color-mix(in srgb, var(--primary) 9%, var(--surface));
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.table tbody tr {
+  border-top: 1px solid var(--border);
+  transition: background 0.18s ease;
+}
+
+.table tbody tr:hover {
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
+}
+
+.table td {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.rowNumber {
+  color: var(--text-muted) !important;
+  font-size: 12px !important;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.personName,
+.mentorName {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+}
+
+.personName {
+  font-weight: 680;
+}
+
+.mentorName {
+  padding: 6px 11px;
+  border: 1px solid rgba(108, 99, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(108, 99, 255, 0.09);
+  color: var(--primary-light);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding: 42px 0 72px;
+  }
+
+  .panel {
+    width: min(100% - 28px, var(--container-width));
+    padding: 26px 18px;
+    border-radius: 22px;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 24px;
+  }
+
+  .tableShell {
+    margin-top: 26px;
+    border-radius: 18px;
+  }
+
+  .indexColumn {
+    width: 54px;
+  }
+
+  .table th,
+  .table td {
+    padding: 14px 12px;
+  }
+
+  .table th {
+    font-size: 11px;
+  }
+
+  .table td {
+    font-size: 13px;
+  }
+
+  .mentorName {
+    padding: 5px 9px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  .panel {
+    width: min(100% - 24px, var(--container-width));
+    padding: 22px 14px;
+  }
+
+  .indexColumn {
+    width: 42px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 8px;
+  }
+
+  .mentorName {
+    border-radius: 12px;
+    white-space: normal;
+  }
+}
+
+@supports not (background: color-mix(in srgb, white, transparent)) {
+  .panel,
+  .tableShell {
+    background: var(--card-bg);
+  }
+}

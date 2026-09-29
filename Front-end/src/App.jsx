@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import TAs from './pages/TAs/TAs';
 import CourseMaterials from './pages/CourseMaterials/CourseMaterials';
 import Tutorials from './pages/Tutorials/Tutorials';
+import Mentor from './pages/Mentor/Mentor';
 
 import './App.css';
 
@@ -77,6 +78,8 @@ function App() {
     page = <Tutorials />;
   } else if (pathname === '/materials') {
     page = <CourseMaterials />;
+  } else if (pathname === '/mentor' || pathname === '/mentors') {
+    page = <Mentor />;
   } else {
     page = <Home />;
   }

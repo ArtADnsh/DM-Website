@@ -279,7 +279,8 @@ function Home() {
                   rel="noreferrer"
                   className={styles.recitationLink}
                 >
-                  Join Meeting / Watch Video →
+                  Join Meeting / Watch Video
+                  <span aria-hidden="true">→</span>
                 </a>
               )}
             </div>

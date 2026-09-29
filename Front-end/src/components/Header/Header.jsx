@@ -165,7 +165,7 @@ function Header() {
             TAs
           </a>
 
-          <a href="/#mentors" data-internal-link onClick={closeMenu}>
+          <a href="/mentors" data-internal-link onClick={closeMenu}>
             Mentors
           </a>
 
