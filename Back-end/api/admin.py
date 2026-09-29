@@ -3,11 +3,13 @@ from .models import RecitationClass, CourseFile
 
 @admin.register(RecitationClass)
 class RecitationClassAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_time', 'location_or_link', 'created_at')
-    search_fields = ('title', 'date_time', 'location_or_link')
+    list_display = ('number', 'title', 'instructor', 'duration', 'date_time', 'created_at')
+    list_filter = ('instructor', 'created_at')
+    search_fields = ('number', 'title', 'instructor', 'description')
 
 @admin.register(CourseFile)
 class CourseFileAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'description', 'created_at')
-    list_filter = ('category', 'created_at')
+    list_display = ('title', 'category', 'file_type', 'file_size', 'description', 'created_at')
+    list_filter = ('category', 'file_type', 'created_at')
     search_fields = ('title', 'description')
+
