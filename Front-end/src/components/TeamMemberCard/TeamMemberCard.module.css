@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   min-width: 0;
-  min-height: 230px;
-  padding: 24px;
+  min-height: 200px;
+  padding: 22px;
   border: 1px solid var(--border);
   border-radius: 20px;
   background: var(--card-bg);
@@ -38,14 +38,14 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .avatar,
 .avatarFallback {
-  width: 68px;
-  height: 68px;
-  flex: 0 0 68px;
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
   border: 1px solid var(--border);
   border-radius: 18px;
 }
@@ -61,7 +61,7 @@
     linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 70%),
     color-mix(in srgb, var(--surface) 66%, transparent);
   color: var(--text);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: 0.02em;
 }
@@ -79,7 +79,7 @@
 }
 
 .identity {
-  min-height: 58px;
+  min-height: 44px;
 }
 
 .name {
@@ -100,14 +100,14 @@
 
 .divider {
   height: 1px;
-  margin: 16px 0;
+  margin: 14px 0;
   background: var(--border);
 }
 
 .info {
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 16px;
 }
 
 .infoRow {
@@ -133,8 +133,8 @@
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
 }
 
@@ -142,7 +142,7 @@
   min-width: 0;
   overflow: hidden;
   color: inherit;
-  font-size: 13px;
+  font-size: 14.5px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -165,7 +165,7 @@
 }
 
 .hta {
-  min-height: 242px;
+  min-height: 212px;
   border-color: rgba(20, 184, 166, 0.2);
   background:
     linear-gradient(155deg, rgba(20, 184, 166, 0.13), transparent 62%),
@@ -174,9 +174,9 @@
 
 .hta .avatar,
 .hta .avatarFallback {
-  width: 74px;
-  height: 74px;
-  flex-basis: 74px;
+  width: 108px;
+  height: 108px;
+  flex-basis: 108px;
 }
 
 .hta .badge {
@@ -190,8 +190,8 @@
 }
 
 .professor {
-  min-height: 258px;
-  padding: 28px;
+  min-height: 230px;
+  padding: 26px;
   border-color: rgba(108, 99, 255, 0.28);
   background:
     linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 64%),
@@ -201,14 +201,14 @@
 
 .professor .avatar,
 .professor .avatarFallback {
-  width: 86px;
-  height: 86px;
-  flex-basis: 86px;
+  width: 124px;
+  height: 124px;
+  flex-basis: 124px;
   border-radius: 22px;
 }
 
 .professor .avatarFallback {
-  font-size: 22px;
+  font-size: 26px;
 }
 
 .professor .name {
@@ -253,9 +253,9 @@
   .hta .avatarFallback,
   .avatar,
   .avatarFallback {
-    width: 62px;
-    height: 62px;
-    flex-basis: 62px;
+    width: 84px;
+    height: 84px;
+    flex-basis: 84px;
     border-radius: 17px;
   }
 }

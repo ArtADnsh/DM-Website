@@ -8,26 +8,31 @@ const ROLE_VARIANTS = {
 
 function getInitials(name = '') {
   return name
+    .replace(/^(dr|prof)\.?\s+/i, '')
     .split(/\s+/)
     .filter(Boolean)
-    .slice(0, 2)
+    .filter((_, i, arr) => i === 0 || i === arr.length - 1)
     .map((part) => part[0])
     .join('')
     .toUpperCase();
 }
 
-function TeamMemberCard({ name, role, focus, image, email, telegram, gender = 'male' }) {
+function TeamMemberCard({ name, role, focus, image, email, telegram }) {
   const roleVariant = ROLE_VARIANTS[role] || '';
   const telegramHandle = telegram?.replace(/^@/, '');
   const isPlaceholderTelegram = telegramHandle?.startsWith('replace_me_');
 
-  const defaultAvatar = gender === 'female' ? '/images/anonymous_female.svg' : '/images/anonymous_male.svg';
-  const avatarSrc = image || defaultAvatar;
 
   return (
     <article className={`${styles.card} ${roleVariant}`}>
       <div className={styles.top}>
-        <img src={avatarSrc} alt={name} className={styles.avatar} />
+        {image ? (
+          <img src={image} alt={name} className={styles.avatar} />
+        ) : (
+          <div className={styles.avatarFallback} role="img" aria-label={name}>
+            {getInitials(name)}
+          </div>
+        )}
         <span className={styles.badge}>{role}</span>
       </div>
 

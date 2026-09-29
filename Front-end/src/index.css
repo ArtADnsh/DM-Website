@@ -16,7 +16,7 @@
 
   --border: rgba(23, 24, 42, 0.1);
 
-  --header-bg: rgba(255, 255, 255, 0.75);
+  --header-bg: rgba(255, 255, 255, 0.88);
   --menu-bg: rgba(255, 255, 255, 0.9);
   --footer-bg: rgba(255, 255, 255, 0.6);
   --overlay-bg: rgba(15, 17, 35, 0.05);
@@ -38,7 +38,7 @@
 
   --border: rgba(255, 255, 255, 0.1);
 
-  --header-bg: rgba(17, 18, 38, 0.72);
+  --header-bg: rgba(17, 18, 38, 0.86);
   --menu-bg: rgba(24, 25, 54, 0.9);
   --footer-bg: rgba(10, 11, 25, 0.5);
   --overlay-bg: rgba(0, 0, 0, 0.35);

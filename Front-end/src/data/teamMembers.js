@@ -8,7 +8,6 @@ export const teamMembers = [
     email: 'tahaei@univ.ac.ir',
     telegram: '@dr_tahaei',
     gender: 'male',
-    image: '/images/anonymous_male.svg',
   },
 
   // HEAD TAs
@@ -45,6 +44,7 @@ export const teamMembers = [
     id: 'ta-02',
     name: 'Koosha Majlesi',
     role: 'TA',
+    email: 'koosha.mj@gmail.com',
     telegram: '@kmajl84',
     gender: 'male',
     image: '/images/tas/Koosha Majlesi.jpg',
@@ -109,7 +109,6 @@ export const teamMembers = [
     email: 'aidashahriari65@gmail.com',
     telegram: '@Ida3141',
     gender: 'female',
-    image: '/images/anonymous_female.svg',
   },
   {
     id: 'ta-10',
@@ -153,7 +152,6 @@ export const teamMembers = [
     email: 'al.asgariasl@gmail.com',
     telegram: '@AylinAsg',
     gender: 'female',
-    image: '/images/anonymous_female.svg',
   },
   {
     id: 'ta-15',

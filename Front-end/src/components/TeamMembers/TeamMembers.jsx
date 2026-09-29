@@ -104,7 +104,6 @@ function TeamMembers({
                     image={member.image}
                     email={member.email}
                     telegram={member.telegram}
-                    gender={member.gender}
                   />
                 ))}
               </div>
