@@ -388,8 +388,16 @@ function Home() {
             <strong>{course.university}</strong>
           </div>
           <div>
+            <span>Department</span>
+            <strong>{course.department}</strong>
+          </div>
+          <div>
             <span>Semester</span>
             <strong>{course.semester}</strong>
+          </div>
+          <div>
+            <span>Lecture Schedule</span>
+            <strong>{course.schedule}</strong>
           </div>
           <a href="/tas" data-internal-link>
             Meet the teaching team
