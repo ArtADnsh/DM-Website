@@ -40,36 +40,4 @@ export const homeContent = {
       'TA team support',
     ],
   },
-
-  links: [
-    {
-      id: 'telegram-channel',
-      title: 'Telegram Channel',
-      description: 'Official course announcements and updates.',
-      url: 'https://t.me/dm_tahaei_channel',
-      icon: 'telegram',
-    },
-    {
-      id: 'telegram-discussion',
-      title: 'Discussion Group',
-      description:
-        'Q&A and student discussion group.',
-      url: 'https://t.me/dm_tahaei_group',
-      icon: 'chat',
-    },
-    {
-      id: 'bale-group',
-      title: 'Bale Channel',
-      description: 'Alternative course channel on Bale.',
-      url: 'https://bale.ai/dm_tahaei',
-      icon: 'chat',
-    },
-    {
-      id: 'lms',
-      title: 'University LMS',
-      description: 'Recorded recitation videos and official submissions.',
-      url: 'https://lms.univ.ac.ir',
-      icon: 'code',
-    },
-  ],
 };

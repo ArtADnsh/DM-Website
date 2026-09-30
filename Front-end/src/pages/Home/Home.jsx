@@ -70,7 +70,9 @@ const FALLBACK_FILES = [
 const SLIDE_DURATION = 4000; // 4 seconds per slide
 
 function Home() {
-  const { gallery, course, links } = homeContent;
+  const { gallery, course } = homeContent;
+
+
 
   // Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -359,44 +361,6 @@ function Home() {
             <span aria-hidden="true">→</span>
           </a>
         </aside>
-      </section>
-
-      {/* USEFUL LINKS SECTION */}
-      <section id="links" className={styles.resourcesSection} aria-labelledby="resources-title">
-        <div className={styles.sectionHeading}>
-          <div>
-            <p className={styles.eyebrow}>Course community</p>
-            <h2 id="resources-title">Useful links</h2>
-          </div>
-          <p>
-            Quick access to the platforms used for announcements, discussion, and submissions.
-          </p>
-        </div>
-
-        <div className={styles.resourceGrid}>
-          {links.map((link) => (
-            <a
-              className={styles.resourceCard}
-              href={link.url}
-              key={link.id}
-              target={link.url !== '#' ? '_blank' : undefined}
-              rel={link.url !== '#' ? 'noreferrer' : undefined}
-              aria-disabled={link.url === '#' ? 'true' : undefined}
-              onClick={link.url === '#' ? (e) => e.preventDefault() : undefined}
-            >
-              <span className={styles.resourceIcon}>
-                <ResourceIcon type={link.icon} />
-              </span>
-              <span className={styles.resourceCopy}>
-                <strong>{link.title}</strong>
-                <small>{link.description}</small>
-              </span>
-              <span className={styles.resourceArrow} aria-hidden="true">
-                ↗
-              </span>
-            </a>
-          ))}
-        </div>
       </section>
     </div>
   );

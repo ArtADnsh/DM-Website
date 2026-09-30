@@ -163,4 +163,12 @@ export const teamMembers = [
     gender: 'female',
     image: '/images/tas/Ghazal dehghananzadeh.jpg',
   },
+  {
+    id: 'ta-16',
+    name: 'Shamim Yadegari',
+    role: 'TA',
+    email: 'shamimyd782@gmail.com',
+    telegram: '@shamimyd',
+    gender: 'female',
+  },
 ];
