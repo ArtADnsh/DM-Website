@@ -13,6 +13,16 @@
     var(--background);
 }
 
+[data-theme='dark'] .app {
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(102, 94, 255, 0.12),
+      transparent 34%
+    ),
+    var(--background);
+}
+
 main {
   flex: 1;
 }
