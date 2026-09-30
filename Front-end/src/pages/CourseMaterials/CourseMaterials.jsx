@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
+
+
+
 import FileCard from '../../components/FileCard/FileCard';
 import { courseMaterials as fallbackMaterials } from '../../data/courseMaterials';
 import { fetchCourseFiles } from '../../api';
 import styles from './CourseMaterials.module.css';
+
 
 const MATERIAL_TABS = [
   {
@@ -23,6 +27,12 @@ const MATERIAL_TABS = [
     shortLabel: 'Quizzes',
     emptyMessage: 'No quizzes have been published yet.',
   },
+  {
+    id: 'sample-exams',
+    label: 'Sample Exams',
+    shortLabel: 'Exams',
+    emptyMessage: 'No sample exams have been published yet.',
+  },
 ];
 
 function normalizeText(value) {
@@ -32,47 +42,30 @@ function normalizeText(value) {
     .replace(/[_-]+/g, ' ');
 }
 
-/**
- * Keep filtering entirely on the frontend so the existing backend/API contract
- * stays untouched. The function accepts the most common category field names
- * and falls back to the title/description when a display label is not present.
- */
 function getMaterialCategory(material) {
-  const categoryText = [
+  const cat = material.category ? String(material.category).toLowerCase() : '';
+
+  if (cat === 'assignment' || cat === 'assignments' || cat === 'homework') return 'assignments';
+  if (cat === 'quiz' || cat === 'quizzes') return 'quizzes';
+  if (cat === 'sample_exam' || cat === 'sample-exams' || cat === 'exam' || cat === 'exams') return 'sample-exams';
+  if (cat === 'lecture_note' || cat === 'lecture-notes' || cat === 'note' || cat === 'notes') return 'lecture-notes';
+
+  const searchableText = [
     material.category_display,
     material.categoryDisplay,
-    material.category_name,
-    material.category,
-    material.kind,
-    material.material_type,
-    material.resource_type,
+    material.title,
+    material.description,
   ]
     .map(normalizeText)
     .filter(Boolean)
     .join(' ');
 
-  const searchableText = [
-    categoryText,
-    normalizeText(material.title),
-    normalizeText(material.description),
-  ].join(' ');
-
-  if (/\bquiz(zes)?\b/.test(searchableText)) {
-    return 'quizzes';
-  }
-
-  if (/\b(assignment|homework|problem set|exercise|worksheet)s?\b/.test(searchableText)) {
-    return 'assignments';
-  }
-
-  if (/\b(lecture|note|slides?|chapter)s?\b/.test(searchableText)) {
-    return 'lecture-notes';
-  }
-
-  // Existing uncategorized course files are treated as lecture notes so no
-  // current backend item disappears from the page after introducing the tabs.
+  if (/\b(exam|sample exam|past paper)s?\b/.test(searchableText)) return 'sample-exams';
+  if (/\bquiz(zes)?\b/.test(searchableText)) return 'quizzes';
+  if (/\b(assignment|homework|problem set|exercise|worksheet)s?\b/.test(searchableText)) return 'assignments';
   return 'lecture-notes';
 }
+
 
 function normalizeMaterial(material, index) {
   return {
@@ -80,7 +73,8 @@ function normalizeMaterial(material, index) {
     id: material.id ?? `${getMaterialCategory(material)}-${index}`,
     number: material.number ?? String(index + 1).padStart(2, '0'),
     url: material.url ?? material.file_url ?? material.file ?? '#',
-    type: material.type ?? material.file_type ?? material.extension ?? 'File',
+    type: material.type ?? material.file_type ?? 'PDF',
+    size: material.size ?? material.file_size ?? '',
   };
 }
 
@@ -137,10 +131,16 @@ function CourseMaterials() {
       'lecture-notes': [],
       assignments: [],
       quizzes: [],
+      'sample-exams': [],
     };
 
     normalizedMaterials.forEach((material) => {
-      groups[getMaterialCategory(material)].push(material);
+      const catKey = getMaterialCategory(material);
+      if (groups[catKey]) {
+        groups[catKey].push(material);
+      } else {
+        groups['lecture-notes'].push(material);
+      }
     });
 
     return groups;
@@ -157,7 +157,7 @@ function CourseMaterials() {
           <p className={styles.eyebrow}>Discrete Mathematics</p>
           <h1 className={styles.title}>Course Materials</h1>
           <p className={styles.subtitle}>
-            Lecture notes, assignments, and quizzes — organized in one place.
+            Lecture notes, assignments, quizzes, and sample exams — directly from the backend API.
           </p>
         </div>
 
@@ -168,10 +168,14 @@ function CourseMaterials() {
       </header>
 
       <section className={styles.browser} aria-label="Course material categories">
-        <div className={styles.tabs} role="tablist" aria-label="Filter course materials">
+        <div
+          className={styles.tabs}
+          role="tablist"
+          aria-label="Filter course materials"
+        >
           {MATERIAL_TABS.map((tab) => {
             const isActive = tab.id === activeTab;
-            const count = groupedMaterials[tab.id].length;
+            const count = (groupedMaterials[tab.id] || []).length;
 
             return (
               <button
@@ -192,7 +196,9 @@ function CourseMaterials() {
         </div>
 
         <div className={styles.resultBar}>
+
           <div className={styles.resultTitle}>
+
             <span className={styles.folderIcon}><FolderIcon /></span>
             <div>
               <strong>{activeTabConfig?.label}</strong>
@@ -200,7 +206,6 @@ function CourseMaterials() {
             </div>
           </div>
 
-          <span className={styles.filterHint}>Filtered automatically from your existing course files</span>
         </div>
 
         <div
@@ -223,7 +228,7 @@ function CourseMaterials() {
             </section>
           ) : (
             <div className={styles.empty}>
-              {loading ? 'Loading course materials...' : activeTabConfig?.emptyMessage}
+              {loading ? 'Loading course materials from backend...' : activeTabConfig?.emptyMessage}
             </div>
           )}
         </div>

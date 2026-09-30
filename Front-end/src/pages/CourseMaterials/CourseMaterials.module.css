@@ -76,56 +76,64 @@
 }
 
 .tabs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 42%, transparent);
+  background: color-mix(in srgb, var(--surface) 35%, transparent);
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
-  min-width: 0;
-  min-height: 52px;
-  padding: 0 14px;
-  display: flex;
+  flex: 0 0 auto;
+  height: 42px;
+  padding: 0 16px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  border: 1px solid transparent;
-  border-radius: 15px;
-  background: transparent;
+  gap: 8px;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card-bg) 50%, transparent);
   color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 650;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tab:hover {
   color: var(--text);
-  background: color-mix(in srgb, var(--text) 5%, transparent);
+  border-color: color-mix(in srgb, var(--primary-light) 40%, var(--border));
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+  transform: translateY(-1px);
 }
 
 .activeTab {
-  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
-  background: color-mix(in srgb, var(--primary) 11%, var(--surface));
+  border-color: color-mix(in srgb, var(--primary) 70%, var(--primary-light));
+  background: color-mix(in srgb, var(--primary) 18%, var(--surface));
   color: var(--primary-light);
-  box-shadow: 0 5px 16px color-mix(in srgb, var(--primary) 12%, transparent);
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--primary) 22%, transparent);
+  font-weight: 700;
 }
 
 .tabCount {
-  min-width: 24px;
-  height: 22px;
-  padding: 0 7px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
   display: inline-grid;
   place-items: center;
   border-radius: 999px;
-  background: color-mix(in srgb, currentColor 10%, transparent);
+  background: color-mix(in srgb, currentColor 14%, transparent);
   color: currentColor;
   font-size: 11px;
   font-weight: 800;
@@ -135,6 +143,7 @@
 .tabShortLabel {
   display: none;
 }
+
 
 .resultBar {
   min-height: 72px;
@@ -243,31 +252,31 @@
   }
 
   .tabs {
-    gap: 4px;
-    padding: 6px;
+    gap: 6px;
+    padding: 8px 10px;
   }
 
   .tab {
-    min-height: 48px;
-    padding: 0 8px;
-    gap: 6px;
-    font-size: 12px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 12.5px;
   }
 
   .tabLabel {
-    display: none;
-  }
-
-  .tabShortLabel {
     display: inline;
   }
 
+  .tabShortLabel {
+    display: none;
+  }
+
   .tabCount {
-    min-width: 21px;
-    height: 20px;
+    min-width: 18px;
+    height: 18px;
     padding: 0 5px;
     font-size: 10px;
   }
+
 
   .resultBar {
     min-height: 66px;
@@ -282,3 +291,6 @@
     padding: 12px;
   }
 }
+
+
+

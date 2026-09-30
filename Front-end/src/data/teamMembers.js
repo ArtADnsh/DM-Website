@@ -6,7 +6,7 @@ export const teamMembers = [
     name: 'Dr. Tahaei',
     role: 'Professor',
     email: 'tahaei@univ.ac.ir',
-    telegram: '@dr_tahaei',
+    telegram: '@tahaei14',
     gender: 'male',
   },
 
@@ -71,6 +71,7 @@ export const teamMembers = [
     id: 'ta-05',
     name: 'Erfan Moradi',
     role: 'TA',
+    email: 'erfanmoradi922@gmail.com',
     telegram: '@Er_NotFun',
     gender: 'male',
     image: '/images/tas/Erfan Moradi.png',
