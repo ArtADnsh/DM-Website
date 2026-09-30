@@ -56,14 +56,14 @@
   transform: scale(0.78);
 }
 
-.courseInfo > div {
+.courseText {
   min-width: 0;
   transform-origin: left center;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
-.headerScrolled .courseInfo > div {
+.headerScrolled .courseText {
   transform: scale(0.84);
 }
 
@@ -236,6 +236,21 @@
   transform: translateX(4px);
 }
 
+.menu a.activeLink {
+  background: color-mix(in srgb, var(--primary) 13%, transparent);
+  color: var(--text);
+}
+
+.menu a.activeLink::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--primary-light);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
 @media (max-width: 600px) {
   .header {
     backdrop-filter: blur(8px);
@@ -260,11 +275,11 @@
     transform: scale(0.78);
   }
 
-  .courseInfo > div {
+  .courseText {
     transform-origin: left center;
   }
 
-  .headerScrolled .courseInfo > div {
+  .headerScrolled .courseText {
     transform: scale(0.84);
   }
 
@@ -305,7 +320,7 @@
 @media (prefers-reduced-motion: reduce) {
   .container,
   .logo,
-  .courseInfo > div,
+  .courseText,
   .actions {
     transition: none;
   }

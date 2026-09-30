@@ -5,7 +5,8 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import TAs from './pages/TAs/TAs';
 import CourseMaterials from './pages/CourseMaterials/CourseMaterials';
-import Tutorials from './pages/Tutorials/Tutorials';
+import RecitationClasses from './pages/RecitationClasses/RecitationClasses';
+import RecitationClass from './pages/RecitationClass/RecitationClass';
 import Mentor from './pages/Mentor/Mentor';
 import Project from './pages/Project/Project';
 
@@ -60,7 +61,6 @@ function App() {
     return () => document.removeEventListener('click', handleInternalNavigation);
   }, []);
 
-  // Scroll to the hash target (once the page has rendered) or to the top.
   useEffect(() => {
     const target = hash ? document.getElementById(hash.slice(1)) : null;
 
@@ -71,12 +71,19 @@ function App() {
     }
   }, [pathname, hash]);
 
+  const recitationMatch = pathname.match(/^\/recitations\/(\d+)$/);
   let page;
 
   if (pathname === '/tas') {
     page = <TAs />;
-  } else if (pathname === '/videos' || pathname === '/tutorials') {
-    page = <Tutorials />;
+  } else if (recitationMatch) {
+    page = <RecitationClass id={recitationMatch[1]} />;
+  } else if (
+    pathname === '/recitations' ||
+    pathname === '/videos' ||
+    pathname === '/tutorials'
+  ) {
+    page = <RecitationClasses />;
   } else if (pathname === '/project') {
     page = <Project />;
   } else if (pathname === '/materials') {

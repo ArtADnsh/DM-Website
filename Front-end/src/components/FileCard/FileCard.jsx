@@ -47,6 +47,24 @@ function PlayIcon() {
   );
 }
 
+function ClassIcon() {
+  return (
+    <svg {...iconProps()}>
+      <path d="M5 4.5h10.5A2.5 2.5 0 0 1 18 7v12H7.5A2.5 2.5 0 0 1 5 16.5z" />
+      <path d="M8 8h7M8 12h7" />
+      <path d="M18 8.5h1A1.5 1.5 0 0 1 20.5 10v7.5A1.5 1.5 0 0 1 19 19h-1" />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg {...iconProps()} strokeWidth={2}>
+      <path d="M5 12h14M14 7l5 5-5 5" />
+    </svg>
+  );
+}
+
 const VARIANTS = {
   document: {
     className: styles.document,
@@ -66,14 +84,26 @@ const VARIANTS = {
     unavailableLabel: 'Coming soon',
     unavailableTitle: 'This recording has not been published yet',
     isExternal: true,
+    isInternal: false,
     getMeta: ({ duration, instructor }) => ['Video', duration, instructor],
+  },
+  recitation: {
+    className: styles.recitation,
+    Icon: ClassIcon,
+    ActionIcon: ArrowIcon,
+    actionLabel: 'Open class',
+    unavailableLabel: 'Coming soon',
+    unavailableTitle: 'This class is not available yet',
+    isExternal: false,
+    isInternal: true,
+    getMeta: ({ date, instructor }) => [date, instructor],
   },
 };
 
 /**
  * A resource row: icon tile, title/description/meta and a call-to-action.
  *
- * @param {'document' | 'video'} variant - controls icon, accent colour, meta and action.
+ * @param {'document' | 'video' | 'recitation'} variant - controls icon, accent colour, meta and action.
  * @param {object} file - resource data (see src/data/*).
  */
 function FileCard({ file, variant = 'document' }) {
@@ -86,7 +116,9 @@ function FileCard({ file, variant = 'document' }) {
 
   const linkProps = config.isExternal
     ? { target: '_blank', rel: 'noopener noreferrer' }
-    : { download: true };
+    : config.isInternal
+      ? { 'data-internal-link': true }
+      : { download: true };
 
   return (
     <article className={`${styles.card} ${config.className}`}>

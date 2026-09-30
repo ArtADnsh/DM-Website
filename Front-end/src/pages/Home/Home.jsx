@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { homeContent } from '../../data/homeContent';
+import { fetchCourseFiles, fetchRecitations } from '../../api';
 import styles from './Home.module.css';
 
 function PhotoPlaceholder({ label }) {
@@ -80,25 +81,32 @@ function Home() {
   const [latestRecitation, setLatestRecitation] = useState(FALLBACK_RECITATION);
   const [latestFiles, setLatestFiles] = useState(FALLBACK_FILES);
 
-  // Fetch API updates on mount
+  // Fetch API updates on mount. The shared API client keeps deploy URLs configurable.
   useEffect(() => {
-    fetch('http://localhost:8000/api/recitations/')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data && data.length > 0) {
-          setLatestRecitation(data[0]);
-        }
-      })
-      .catch(() => {});
+    let isMounted = true;
 
-    fetch('http://localhost:8000/api/files/')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data && data.length > 0) {
-          setLatestFiles(data.slice(0, 2));
-        }
-      })
-      .catch(() => {});
+    async function loadUpdates() {
+      const [recitations, files] = await Promise.all([
+        fetchRecitations(),
+        fetchCourseFiles(),
+      ]);
+
+      if (!isMounted) return;
+
+      if (Array.isArray(recitations) && recitations.length > 0) {
+        setLatestRecitation(recitations[0]);
+      }
+
+      if (Array.isArray(files) && files.length > 0) {
+        setLatestFiles(files.slice(0, 2));
+      }
+    }
+
+    loadUpdates();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Timer & progress animation loop

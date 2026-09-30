@@ -149,29 +149,42 @@ function Header() {
             </button>
           </div>
 
-          <a href="/" data-internal-link onClick={closeMenu}>
-            Home
-          </a>
+          {[
+            { href: '/', label: 'Home', isActive: (path) => path === '/' },
+            { href: '/materials', label: 'Course Materials', isActive: (path) => path === '/materials' },
+            { href: '/project', label: 'Project', isActive: (path) => path === '/project' },
+            {
+              href: '/recitations',
+              label: 'Recitation Classes',
+              isActive: (path) =>
+                path === '/recitations' ||
+                path.startsWith('/recitations/') ||
+                path === '/videos' ||
+                path === '/tutorials',
+            },
+            { href: '/tas', label: 'Teaching Team', isActive: (path) => path === '/tas' },
+            {
+              href: '/mentors',
+              label: 'Mentors',
+              isActive: (path) => path === '/mentor' || path === '/mentors',
+            },
+          ].map((item) => {
+            const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+            const isActive = item.isActive(currentPath);
 
-          <a href="/materials" data-internal-link onClick={closeMenu}>
-            Course Materials
-          </a>
-
-          <a href="/project" data-internal-link onClick={closeMenu}>
-            Project
-          </a>
-
-          <a href="/videos" data-internal-link onClick={closeMenu}>
-            Course Videos
-          </a>
-
-          <a href="/tas" data-internal-link onClick={closeMenu}>
-            Teaching Team
-          </a>
-
-          <a href="/mentors" data-internal-link onClick={closeMenu}>
-            Mentors
-          </a>
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                data-internal-link
+                onClick={closeMenu}
+                className={isActive ? styles.activeLink : undefined}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
       </div>
 

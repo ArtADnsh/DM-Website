@@ -296,12 +296,12 @@ function CourseMaterials() {
         const progress =
           maxScroll > 0
             ? Math.min(
-                1,
-                Math.max(
-                  0,
-                  scrollLeft / maxScroll,
-                ),
-              )
+              1,
+              Math.max(
+                0,
+                scrollLeft / maxScroll,
+              ),
+            )
             : 0;
 
         const maxThumbLeft =
@@ -427,7 +427,7 @@ function CourseMaterials() {
       tab.offsetLeft -
       (tabs.clientWidth -
         tab.offsetWidth) /
-        2;
+      2;
 
     tabs.scrollTo({
       left: Math.max(0, targetLeft),
@@ -449,8 +449,7 @@ function CourseMaterials() {
 
           <p className={styles.subtitle}>
             Lecture notes, assignments,
-            quizzes, and sample exams —
-            directly from the backend API.
+            quizzes, and sample exams
           </p>
         </div>
 
@@ -496,11 +495,10 @@ function CourseMaterials() {
                     isActive
                   }
                   aria-controls="course-materials-panel"
-                  className={`${styles.tab} ${
-                    isActive
+                  className={`${styles.tab} ${isActive
                       ? styles.activeTab
                       : ''
-                  }`}
+                    }`}
                   onClick={(event) =>
                     handleTabClick(
                       event,

@@ -30,21 +30,33 @@
   box-shadow: 0 18px 42px color-mix(in srgb, var(--shadow) 32%, transparent);
 }
 
-/* Variants (colours match the TA / HTA palette used on the TAs page) */
+/* File — light purple */
 .document {
   --accent: var(--primary);
   --accent-strong: var(--primary);
   --accent-text: var(--primary-light);
 }
 
+/* Video — green */
 .video {
   --accent: #14b8a6;
   --accent-strong: #0d9488;
   --accent-text: #0d9488;
 }
 
+/* Recitation class — TA blue */
+.recitation {
+  --accent: #3b82f6;
+  --accent-strong: #2563eb;
+  --accent-text: #3b82f6;
+}
+
 :global([data-theme='dark']) .video {
   --accent-text: #5eead4;
+}
+
+:global([data-theme='dark']) .recitation {
+  --accent-text: #93c5fd;
 }
 
 /* Icon tile */
