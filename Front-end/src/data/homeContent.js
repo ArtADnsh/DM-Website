@@ -38,7 +38,7 @@ export const homeContent = {
     features: [
       'Lecture notes & materials',
       'Assignments & quizzes',
-      'Recitation class schedules',
+      'Recitation classes',
       'TA team support',
     ],
   },
