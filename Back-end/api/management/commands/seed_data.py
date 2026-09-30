@@ -484,7 +484,7 @@ class Command(BaseCommand):
         ]
 
         for f in files:
-            CourseFile.objects.update_or_create(
+            CourseFile.objects.get_or_create(
                 title=f['title'],
                 defaults=f
             )
@@ -492,7 +492,7 @@ class Command(BaseCommand):
 
         # Seed Course Announcement (Singleton)
         from api.models import CourseAnnouncement
-        CourseAnnouncement.objects.update_or_create(
+        CourseAnnouncement.objects.get_or_create(
             pk=1,
             defaults={
                 'title': '📌 Next Recitation Class',

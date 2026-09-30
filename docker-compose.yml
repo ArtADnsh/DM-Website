@@ -26,6 +26,7 @@ services:
       - "8000:8000"
     volumes:
       - media_data:/app/media
+      - db_data:/app/data
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/health/"]
@@ -35,3 +36,4 @@ services:
 
 volumes:
   media_data:
+  db_data:
