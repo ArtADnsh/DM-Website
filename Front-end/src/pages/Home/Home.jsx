@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { homeContent } from '../../data/homeContent';
 import { courseSyllabus } from '../../data/courseSyllabus';
-import { fetchCourseFiles, fetchRecitations } from '../../api';
+import { fetchCourseFiles, fetchRecitations, fetchAnnouncement } from '../../api';
 import styles from './Home.module.css';
 
 
@@ -83,6 +83,8 @@ function Home() {
   const [progress, setProgress] = useState(0);
 
   // API Data State
+  const [isLoading, setIsLoading] = useState(true);
+  const [announcement, setAnnouncement] = useState(null);
   const [latestRecitation, setLatestRecitation] = useState(FALLBACK_RECITATION);
   const [latestFiles, setLatestFiles] = useState(FALLBACK_FILES);
 
@@ -91,19 +93,34 @@ function Home() {
     let isMounted = true;
 
     async function loadUpdates() {
-      const [recitations, files] = await Promise.all([
-        fetchRecitations(),
-        fetchCourseFiles(),
-      ]);
+      try {
+        const [recitations, files, ann] = await Promise.all([
+          fetchRecitations(),
+          fetchCourseFiles(),
+          fetchAnnouncement(),
+        ]);
 
-      if (!isMounted) return;
+        if (!isMounted) return;
 
-      if (Array.isArray(recitations) && recitations.length > 0) {
-        setLatestRecitation(recitations[0]);
-      }
+        if (ann && ann.is_active) {
+          setAnnouncement(ann);
+        } else {
+          setAnnouncement(null);
+        }
 
-      if (Array.isArray(files) && files.length > 0) {
-        setLatestFiles(files.slice(0, 2));
+        if (Array.isArray(recitations) && recitations.length > 0) {
+          setLatestRecitation(recitations[0]);
+        }
+
+        if (Array.isArray(files) && files.length > 0) {
+          setLatestFiles(files.slice(0, 2));
+        }
+      } catch (err) {
+        console.error('Failed to load home updates:', err);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
@@ -277,26 +294,41 @@ function Home() {
               <h3>Upcoming & Recent</h3>
             </div>
 
-            {/* Recitation Schedule Card */}
-            <div className={styles.recitationCard}>
-              <div className={styles.recitationHeader}>
-                <span className={styles.recitationTag}>📌 Next Recitation Class</span>
-                <span className={styles.recitationTime}>{latestRecitation.date_time}</span>
+            {/* Recitation Schedule Card or Course Announcement */}
+            {isLoading ? (
+              <div className={`${styles.recitationCard} ${styles.skeletonCard}`}>
+                <div className={styles.skeletonTag} />
+                <div className={styles.skeletonTitle} />
+                <div className={styles.skeletonText} />
               </div>
-              <h4 className={styles.recitationTitle}>{latestRecitation.title}</h4>
-              <p className={styles.recitationLocation}>📍 {latestRecitation.location_or_link}</p>
-              {latestRecitation.video_url && (
-                <a
-                  href={latestRecitation.video_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.recitationLink}
-                >
-                  Join Meeting / Watch Video
-                  <span aria-hidden="true">→</span>
-                </a>
-              )}
-            </div>
+            ) : announcement && announcement.is_active ? (
+              <div className={`${styles.recitationCard} ${styles.fadeIn}`}>
+                <div className={styles.recitationHeader}>
+                  <span className={styles.recitationTag}>{announcement.title || '📢 Course Announcement'}</span>
+                </div>
+                <p className={styles.announcementMessage}>{announcement.message}</p>
+                {announcement.link ? (
+                  <a
+                    href={announcement.link}
+                    className={styles.recitationLink}
+                    {...(announcement.link.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : { 'data-internal-link': true })}
+                  >
+                    {announcement.link_text || 'View Details'}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                ) : null}
+              </div>
+            ) : (
+              <div className={`${styles.recitationCard} ${styles.noAnnouncementCard} ${styles.fadeIn}`}>
+                <div className={styles.recitationHeader}>
+                  <span className={styles.noAnnouncementTag}>✨ ALL CAUGHT UP</span>
+                </div>
+                <h4 className={styles.noAnnouncementTitle}>No Active Announcements!</h4>
+                <p className={styles.noAnnouncementSubtext}>
+                  You're all set. Check back later for class updates, exam notices, or assignment announcements.
+                </p>
+              </div>
+            )}
 
             {/* Recent Files Download Box */}
             <div className={styles.recentFilesBox}>

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import RecitationClass, RecitationFile, RecitationVideo, CourseFile
+from .models import RecitationClass, RecitationFile, RecitationVideo, CourseFile, CourseAnnouncement
 
 class RecitationFileSerializer(serializers.ModelSerializer):
     url = serializers.CharField(source='get_url', read_only=True)
@@ -37,3 +37,10 @@ class CourseFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseFile
         fields = ['id', 'title', 'category', 'category_display', 'description', 'file', 'file_type', 'type', 'file_size', 'size', 'file_url', 'url', 'created_at']
+
+
+class CourseAnnouncementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseAnnouncement
+        fields = ['id', 'title', 'message', 'link', 'link_text', 'is_active', 'updated_at']
+

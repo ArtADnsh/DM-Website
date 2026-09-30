@@ -131,3 +131,24 @@ class CourseFile(models.Model):
         if self.file:
             return self.file.url
         return self.file_url or '#'
+
+
+class CourseAnnouncement(models.Model):
+    title = models.CharField(max_length=200, default="📢 Course Announcement", help_text="Header tag/title e.g. 📌 Notice, 📢 Update")
+    message = models.TextField(help_text="Write any active announcement or notice for the Home page")
+    link = models.CharField(max_length=500, blank=True, help_text="Optional button link (URL or internal path e.g. /materials)")
+    link_text = models.CharField(max_length=100, default="View Details", blank=True, help_text="Button label")
+    is_active = models.BooleanField(default=True, help_text="Uncheck to hide announcement on Home page")
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Home Page Announcement (Single Record)"
+        verbose_name_plural = "Home Page Announcement (Single Record)"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1  # Singleton pattern: strictly only 1 row in database
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"Announcement: {self.message[:60]}"
+

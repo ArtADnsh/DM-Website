@@ -2,12 +2,21 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 
-from .models import RecitationClass, CourseFile
-from .serializers import RecitationClassSerializer, CourseFileSerializer
+from .models import RecitationClass, CourseFile, CourseAnnouncement
+from .serializers import RecitationClassSerializer, CourseFileSerializer, CourseAnnouncementSerializer
 
 @api_view(['GET'])
 def health_check(request):
     return Response({"status": "ok", "message": "Discrete Mathematics Backend API is healthy."})
+
+
+@api_view(['GET'])
+def get_announcement(request):
+    announcement = CourseAnnouncement.objects.filter(pk=1, is_active=True).first()
+    if announcement:
+        serializer = CourseAnnouncementSerializer(announcement)
+        return Response(serializer.data)
+    return Response(None)
 
 
 class RecitationClassListView(ListAPIView):

@@ -266,6 +266,44 @@
   border-color: rgba(108, 99, 255, 0.35);
 }
 
+/* NO ANNOUNCEMENTS COOL STATE */
+.noAnnouncementCard {
+  background: color-mix(in srgb, var(--surface) 35%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--primary) 30%, var(--border));
+}
+
+.noAnnouncementTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #10b981;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.noAnnouncementTitle {
+  margin: 0 0 6px 0;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 750;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.noAnnouncementSubtext {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
 .recitationHeader {
   display: flex;
   align-items: center;
@@ -346,6 +384,23 @@
   transform: translateY(0);
   box-shadow: none;
 }
+
+.comingSoonBadge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 6px 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 65%, transparent);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
 
 /* RECENT FILES BOX IN WIDGET */
 .recentFilesBox {
@@ -989,4 +1044,66 @@
 .moduleCta:hover span {
   transform: translateX(4px);
 }
+
+/* SKELETON & FADE-IN ANIMATIONS FOR HERO WIDGET */
+.fadeIn {
+  animation: fadeInWidget 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeInWidget {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 120px;
+}
+
+.skeletonTag,
+.skeletonTitle,
+.skeletonText {
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--surface) 80%, transparent) 25%,
+    color-mix(in srgb, var(--surface) 40%, rgba(255, 255, 255, 0.15)) 50%,
+    color-mix(in srgb, var(--surface) 80%, transparent) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.skeletonTag {
+  width: 45%;
+  height: 16px;
+}
+
+.skeletonTitle {
+  width: 80%;
+  height: 20px;
+}
+
+.skeletonText {
+  width: 60%;
+  height: 14px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 

@@ -5,6 +5,20 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
+export async function fetchAnnouncement() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/announcement/`);
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.warn('Backend API announcement offline/error:', err.message);
+    return null;
+  }
+}
+
 export async function fetchRecitations() {
   try {
     const res = await fetch(`${API_BASE_URL}/recitations/`);

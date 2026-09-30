@@ -490,4 +490,19 @@ class Command(BaseCommand):
             )
         self.stdout.write(self.style.SUCCESS(f"Seeded {len(files)} CourseFiles"))
 
+        # Seed Course Announcement (Singleton)
+        from api.models import CourseAnnouncement
+        CourseAnnouncement.objects.update_or_create(
+            pk=1,
+            defaults={
+                'title': '📌 Next Recitation Class',
+                'message': 'Propositional Logic & Truth Tables\nMondays, 14:00 - 16:00 | Classroom 102 & Skyroom',
+                'link': '/recitations/1',
+                'link_text': 'Join Meeting / Watch Video',
+                'is_active': True
+            }
+        )
+        self.stdout.write(self.style.SUCCESS("Seeded CourseAnnouncement Singleton"))
+
         self.stdout.write(self.style.SUCCESS("Database seeding completed successfully!"))
+
