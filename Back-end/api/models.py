@@ -8,8 +8,6 @@ class RecitationClass(models.Model):
     date_time = models.CharField(max_length=150, blank=True, help_text="e.g. Mondays, 14:00 - 16:00")
     location_or_link = models.CharField(max_length=300, blank=True, help_text="Classroom number or online meeting link")
     description = models.TextField(blank=True, help_text="Session details or topics covered")
-    video_file = models.FileField(upload_to='recitation_videos/', blank=True, null=True, help_text="Upload video file directly from your computer")
-    video_url = models.URLField(blank=True, null=True, help_text="External video link (YouTube, Aparat, Skyroom)")
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -18,7 +16,66 @@ class RecitationClass(models.Model):
         verbose_name_plural = "Recitation Classes"
 
     def __str__(self):
-        return f"{self.title} ({self.instructor or 'TA'})"
+        return f"Recitation {self.number}: {self.title} ({self.instructor or 'TA'})"
+
+
+class RecitationFile(models.Model):
+    recitation = models.ForeignKey(RecitationClass, on_delete=models.CASCADE, related_name='files')
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=300, blank=True, help_text="e.g. Worksheet & Solution Key")
+    file = models.FileField(upload_to='recitation_files/', blank=True, null=True, help_text="Upload file directly")
+    file_type = models.CharField(max_length=20, default='PDF', blank=True, help_text="e.g. PDF, ZIP")
+    file_size = models.CharField(max_length=20, blank=True, help_text="Auto-calculated if file is uploaded")
+    file_url = models.CharField(max_length=500, blank=True, help_text="External link or static fallback path")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = "Recitation File"
+        verbose_name_plural = "Recitation Files"
+
+    def __str__(self):
+        return f"[{self.recitation.number}] {self.title}"
+
+    def save(self, *args, **kwargs):
+        if self.file:
+            import os
+            ext = os.path.splitext(self.file.name)[1].lstrip('.').upper()
+            if ext:
+                self.file_type = ext
+            try:
+                size_bytes = self.file.size
+                if size_bytes < 1024 * 1024:
+                    self.file_size = f"{round(size_bytes / 1024, 1)} KB"
+                else:
+                    self.file_size = f"{round(size_bytes / (1024 * 1024), 1)} MB"
+            except Exception:
+                pass
+        super().save(*args, **kwargs)
+
+    @property
+    def get_url(self):
+        if self.file:
+            return self.file.url
+        return self.file_url or '#'
+
+
+class RecitationVideo(models.Model):
+    recitation = models.ForeignKey(RecitationClass, on_delete=models.CASCADE, related_name='videos')
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=300, blank=True, help_text="e.g. Full Session Live Recording")
+    video_file = models.FileField(upload_to='recitation_videos/', blank=True, null=True, help_text="Upload MP4 video file")
+    video_url = models.URLField(blank=True, null=True, help_text="External video link (YouTube, Aparat, Skyroom)")
+    duration = models.CharField(max_length=50, blank=True, help_text="e.g. 52 min")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = "Recitation Video"
+        verbose_name_plural = "Recitation Videos"
+
+    def __str__(self):
+        return f"[{self.recitation.number}] {self.title}"
 
     @property
     def get_url(self):
@@ -74,5 +131,3 @@ class CourseFile(models.Model):
         if self.file:
             return self.file.url
         return self.file_url or '#'
-
-

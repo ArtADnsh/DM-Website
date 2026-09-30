@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from api.models import RecitationClass, CourseFile
+from api.models import RecitationClass, RecitationFile, RecitationVideo, CourseFile
 
 class Command(BaseCommand):
     help = "Seed database with initial sample course data and superuser"
@@ -21,7 +21,30 @@ class Command(BaseCommand):
                 'date_time': 'Mondays, 14:00 - 16:00',
                 'location_or_link': 'Classroom 102 & Skyroom',
                 'description': 'Comprehensive problem-solving session covering truth tables, logical equivalences, and compound propositions.',
-                'video_url': 'https://www.youtube.com/watch?v=1xNsm_0s3x4',
+                'files': [
+                    {
+                        'title': 'Recitation 01 Worksheet & Problems',
+                        'description': 'Practice problems on truth tables & logical equivalences',
+                        'file_type': 'PDF',
+                        'file_size': '1.2 MB',
+                        'file_url': '/materials/notes/Propositional_Logic.pdf'
+                    },
+                    {
+                        'title': 'Recitation 01 Solved Answer Key',
+                        'description': 'Step-by-step solutions by Amir Jebbeli',
+                        'file_type': 'PDF',
+                        'file_size': '1.5 MB',
+                        'file_url': '/materials/notes/Propositional_Logic.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 01 Live Recording (Full Session)',
+                        'description': 'Skyroom recording of Amir Jebbeli recitation',
+                        'video_url': 'https://www.youtube.com/watch?v=1xNsm_0s3x4',
+                        'duration': '52 min'
+                    }
+                ]
             },
             {
                 'number': '02',
@@ -31,7 +54,23 @@ class Command(BaseCommand):
                 'date_time': 'Mondays, 14:00 - 16:00',
                 'location_or_link': 'Classroom 102 & Skyroom',
                 'description': 'Direct proofs, proof by contradiction, contrapositive, and nested quantifiers.',
-                'video_url': 'https://www.youtube.com/watch?v=wX-bK0l2t7E',
+                'files': [
+                    {
+                        'title': 'Recitation 02 Worksheet & Solution Sheet',
+                        'description': 'Predicate logic & proof techniques exercises',
+                        'file_type': 'PDF',
+                        'file_size': '1.8 MB',
+                        'file_url': '/materials/notes/Predicate_Logic.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 02 Live Class Video',
+                        'description': 'Full video tutorial by Kasra Nouri',
+                        'video_url': 'https://www.youtube.com/watch?v=wX-bK0l2t7E',
+                        'duration': '1 h 08 min'
+                    }
+                ]
             },
             {
                 'number': '03',
@@ -41,7 +80,30 @@ class Command(BaseCommand):
                 'date_time': 'Mondays, 14:00 - 16:00',
                 'location_or_link': 'Classroom 102 & Skyroom',
                 'description': 'Weak induction, strong induction, structural induction, and well-ordering principle exercises.',
-                'video_url': 'https://www.youtube.com/watch?v=d_kXz9vEwS0',
+                'files': [
+                    {
+                        'title': 'Recitation 03 Problem Set',
+                        'description': 'Inductive proofs & well-ordering exercises',
+                        'file_type': 'PDF',
+                        'file_size': '1.4 MB',
+                        'file_url': '/materials/notes/Mathematical_Induction.pdf'
+                    },
+                    {
+                        'title': 'Recitation 03 Handwritten Solutions',
+                        'description': 'Arta Danesh live whiteboard solution key',
+                        'file_type': 'PDF',
+                        'file_size': '2.1 MB',
+                        'file_url': '/materials/notes/Mathematical_Induction.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 03 Live Video Recording',
+                        'description': 'Complete induction tutorial recording by Arta Danesh',
+                        'video_url': 'https://www.youtube.com/watch?v=d_kXz9vEwS0',
+                        'duration': '58 min'
+                    }
+                ]
             },
             {
                 'number': '04',
@@ -51,7 +113,23 @@ class Command(BaseCommand):
                 'date_time': 'Wednesdays, 16:00 - 18:00',
                 'location_or_link': 'Skyroom Room #2',
                 'description': 'Set operations, bijections, cardinality of infinite sets, and pigeonhole principle proofs.',
-                'video_url': 'https://www.youtube.com/watch?v=ROd4o4eZ-g8',
+                'files': [
+                    {
+                        'title': 'Recitation 04 Sets & Functions Worksheet',
+                        'description': 'Bijective proofs & Pigeonhole Principle sheet',
+                        'file_type': 'PDF',
+                        'file_size': '1.6 MB',
+                        'file_url': '/materials/notes/Sets_Functions_Sequences.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 04 Skyroom Recording',
+                        'description': 'Koosha Majlesi recitation tutorial',
+                        'video_url': 'https://www.youtube.com/watch?v=ROd4o4eZ-g8',
+                        'duration': '47 min'
+                    }
+                ]
             },
             {
                 'number': '05',
@@ -61,7 +139,23 @@ class Command(BaseCommand):
                 'date_time': 'Wednesdays, 16:00 - 18:00',
                 'location_or_link': 'Skyroom Room #2',
                 'description': 'Euclidean algorithm, extended GCD, modular inverses, and Chinese Remainder Theorem.',
-                'video_url': 'https://www.youtube.com/watch?v=33Lz-7gKjJg',
+                'files': [
+                    {
+                        'title': 'Recitation 05 Number Theory Worksheet',
+                        'description': 'Euclidean GCD & Modular Arithmetic problems',
+                        'file_type': 'PDF',
+                        'file_size': '1.3 MB',
+                        'file_url': '/materials/notes/Elementary_Number_Theory.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 05 Recording',
+                        'description': 'Arash Amiri video session',
+                        'video_url': 'https://www.youtube.com/watch?v=33Lz-7gKjJg',
+                        'duration': '1 h 02 min'
+                    }
+                ]
             },
             {
                 'number': '06',
@@ -71,7 +165,23 @@ class Command(BaseCommand):
                 'date_time': 'Mondays, 14:00 - 16:00',
                 'location_or_link': 'Classroom 102',
                 'description': 'Permutations, combinations, inclusion-exclusion principle, and binomial identities.',
-                'video_url': 'https://www.youtube.com/watch?v=s80Eshd3R5g',
+                'files': [
+                    {
+                        'title': 'Recitation 06 Combinatorics Exercises',
+                        'description': 'Permutations & Inclusion-Exclusion problems',
+                        'file_type': 'PDF',
+                        'file_size': '1.7 MB',
+                        'file_url': '/materials/notes/Combinatorics_Counting.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 06 Class Video',
+                        'description': 'Erfan Taghizadeh recitation session',
+                        'video_url': 'https://www.youtube.com/watch?v=s80Eshd3R5g',
+                        'duration': '1 h 15 min'
+                    }
+                ]
             },
             {
                 'number': '07',
@@ -81,7 +191,23 @@ class Command(BaseCommand):
                 'date_time': 'Mondays, 14:00 - 16:00',
                 'location_or_link': 'Classroom 102',
                 'description': 'Solving linear homogeneous and non-homogeneous recurrence relations with generating functions.',
-                'video_url': 'https://www.youtube.com/watch?v=2K7X9_4zYtY',
+                'files': [
+                    {
+                        'title': 'Recitation 07 Recurrence Relations Sheet',
+                        'description': 'Solving characteristic equations & power series',
+                        'file_type': 'PDF',
+                        'file_size': '1.5 MB',
+                        'file_url': '/materials/notes/Combinatorics_Counting.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 07 Session Recording',
+                        'description': 'Iliya Ebrahimi tutorial recording',
+                        'video_url': 'https://www.youtube.com/watch?v=2K7X9_4zYtY',
+                        'duration': '55 min'
+                    }
+                ]
             },
             {
                 'number': '08',
@@ -91,7 +217,23 @@ class Command(BaseCommand):
                 'date_time': 'Wednesdays, 16:00 - 18:00',
                 'location_or_link': 'Skyroom Room #3',
                 'description': 'Eulerian paths, Hamiltonian cycles, graph colorings, and planar graph theorems.',
-                'video_url': 'https://www.youtube.com/watch?v=tBVzp_H797o',
+                'files': [
+                    {
+                        'title': 'Recitation 08 Graph Theory Worksheet',
+                        'description': 'Eulerian circuits & graph coloring exercises',
+                        'file_type': 'PDF',
+                        'file_size': '1.9 MB',
+                        'file_url': '/materials/notes/Graph_Theory.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 08 Live Video',
+                        'description': 'Mahdi Alighardashi graph tutorial recording',
+                        'video_url': 'https://www.youtube.com/watch?v=tBVzp_H797o',
+                        'duration': '1 h 10 min'
+                    }
+                ]
             },
             {
                 'number': '09',
@@ -101,7 +243,23 @@ class Command(BaseCommand):
                 'date_time': 'Wednesdays, 16:00 - 18:00',
                 'location_or_link': 'Skyroom Room #3',
                 'description': 'Tree traversal, minimum spanning trees (Kruskal & Prim), and testing graph isomorphism.',
-                'video_url': 'https://www.youtube.com/watch?v=wU6D8z3WwS0',
+                'files': [
+                    {
+                        'title': 'Recitation 09 Trees & MST Worksheet',
+                        'description': 'Spanning trees & Kruskal algorithm problems',
+                        'file_type': 'PDF',
+                        'file_size': '1.4 MB',
+                        'file_url': '/materials/notes/Graph_Theory.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 09 Video Recording',
+                        'description': 'Elmira Bekiasai tutorial session',
+                        'video_url': 'https://www.youtube.com/watch?v=wU6D8z3WwS0',
+                        'duration': '49 min'
+                    }
+                ]
             },
             {
                 'number': '10',
@@ -111,16 +269,47 @@ class Command(BaseCommand):
                 'date_time': 'Mondays, 14:00 - 16:00',
                 'location_or_link': 'Classroom 102',
                 'description': 'Boolean expressions, digital logic gates, Karnaugh maps, and circuit optimization.',
-                'video_url': 'https://www.youtube.com/watch?v=0kP0a1z_S00',
-            },
+                'files': [
+                    {
+                        'title': 'Recitation 10 Boolean Logic Worksheet',
+                        'description': 'Karnaugh maps & gate optimization exercises',
+                        'file_type': 'PDF',
+                        'file_size': '1.3 MB',
+                        'file_url': '/materials/notes/Propositional_Logic.pdf'
+                    }
+                ],
+                'videos': [
+                    {
+                        'title': 'Recitation 10 Live Recording',
+                        'description': 'Ramin Buzarpur video recording',
+                        'video_url': 'https://www.youtube.com/watch?v=0kP0a1z_S00',
+                        'duration': '50 min'
+                    }
+                ]
+            }
         ]
 
-        for r in recitations:
-            RecitationClass.objects.update_or_create(
-                number=r['number'],
-                defaults=r
+        for r_data in recitations:
+            files_data = r_data.pop('files', [])
+            videos_data = r_data.pop('videos', [])
+            rec, _ = RecitationClass.objects.update_or_create(
+                number=r_data['number'],
+                defaults=r_data
             )
-        self.stdout.write(self.style.SUCCESS(f"Seeded {len(recitations)} RecitationClasses"))
+            for f in files_data:
+                RecitationFile.objects.update_or_create(
+                    recitation=rec,
+                    title=f['title'],
+                    defaults=f
+                )
+            for v in videos_data:
+                RecitationVideo.objects.update_or_create(
+                    recitation=rec,
+                    title=v['title'],
+                    defaults=v
+                )
+
+        self.stdout.write(self.style.SUCCESS(f"Seeded {len(recitations)} RecitationClasses with nested files & videos"))
 
         # Seed Course Files
         files = [

@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import FileCard from '../../components/FileCard/FileCard';
 import { getRecitationClass } from '../../data/recitationClasses';
+import { fetchRecitations } from '../../api';
 import styles from './RecitationClass.module.css';
 
 const TABS = [
@@ -40,8 +41,25 @@ function VideoIcon() {
 }
 
 function RecitationClass({ id }) {
-  const recitation = useMemo(() => getRecitationClass(id), [id]);
+  const [recitation, setRecitation] = useState(() => getRecitationClass(id));
   const [activeTab, setActiveTab] = useState('files');
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadData() {
+      const data = await fetchRecitations();
+      if (isMounted && Array.isArray(data) && data.length > 0) {
+        const found = data.find((item) => String(item.id) === String(id) || String(item.number) === String(id));
+        if (found) {
+          setRecitation(found);
+        }
+      }
+    }
+    loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
 
   if (!recitation) {
     return (
@@ -59,9 +77,11 @@ function RecitationClass({ id }) {
     );
   }
 
+  const files = recitation.files || [];
+  const videos = recitation.videos || [];
   const activeConfig = TABS.find((tab) => tab.id === activeTab) ?? TABS[0];
-  const activeItems = recitation[activeTab] ?? [];
-  const totalResources = recitation.files.length + recitation.videos.length;
+  const activeItems = activeTab === 'files' ? files : videos;
+  const totalResources = files.length + videos.length;
   const activeUnit = activeItems.length === 1 ? activeConfig.singular : activeConfig.plural;
 
   return (
@@ -75,7 +95,7 @@ function RecitationClass({ id }) {
         <div className={styles.headingCopy}>
           <div className={styles.kickerRow}>
             <p className={styles.eyebrow}>Recitation Class {recitation.number}</p>
-            <span className={styles.date}>{recitation.date}</span>
+            <span className={styles.date}>{recitation.date || recitation.date_time}</span>
           </div>
 
           <h1 className={styles.title}>{recitation.title}</h1>
@@ -93,7 +113,7 @@ function RecitationClass({ id }) {
         <div className={styles.tabs} role="tablist" aria-label="Recitation resource type">
           {TABS.map((tab) => {
             const isActive = tab.id === activeTab;
-            const count = recitation[tab.id]?.length ?? 0;
+            const count = (tab.id === 'files' ? files : videos).length;
 
             return (
               <button

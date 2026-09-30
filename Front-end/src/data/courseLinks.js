@@ -16,7 +16,7 @@ export const courseLinks = [
   {
     id: 'bale-channel',
     title: 'Bale Channel',
-    subtitle: 'Bale Updates',
+    subtitle: '@Dm4051',
     url: 'https://web.bale.ai/chat?uid=4697832809',
     type: 'bale',
   },
