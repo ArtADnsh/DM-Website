@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+
 import { homeContent } from '../../data/homeContent';
+import { courseSyllabus } from '../../data/courseSyllabus';
 import { fetchCourseFiles, fetchRecitations } from '../../api';
 import styles from './Home.module.css';
+
 
 function PhotoPlaceholder({ label }) {
   return (
@@ -52,18 +55,18 @@ const FALLBACK_RECITATION = {
 
 const FALLBACK_FILES = [
   {
-    id: 1,
-    title: 'Homework #1: Propositional Logic & Quantifiers',
-    description: 'Due Oct 15th at 23:59',
-    file_url: '/materials/hw1_logic.pdf',
-    category_display: 'Assignment',
+    id: 40,
+    title: 'Discrete Mathematics and Its Applications (8th Edition)',
+    description: 'Kenneth H. Rosen Textbook',
+    file_url: '/materials/notes/Discrete_Mathematics_and_Its_Applications.pdf',
+    category_display: 'Reference',
   },
   {
-    id: 2,
-    title: 'Quiz #1: Logic & Truth Tables Solutions',
-    description: 'Solved questions key',
-    file_url: '/materials/chapter1_logic.pdf',
-    category_display: 'Quiz',
+    id: 41,
+    title: 'Slide 00: Course Introduction & Overview',
+    description: 'Course Logistics & Grading Policy',
+    file_url: '/materials/notes/Introduction.pdf',
+    category_display: 'Lecture Notes',
   },
 ];
 
@@ -361,6 +364,53 @@ function Home() {
             <span aria-hidden="true">→</span>
           </a>
         </aside>
+      </section>
+
+      {/* INTERACTIVE COURSE SYLLABUS & TOPIC ROADMAP */}
+      <section id="syllabus" className={styles.syllabusSection} aria-labelledby="syllabus-title">
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.eyebrow}>Curriculum Roadmap</p>
+            <h2 id="syllabus-title">Course Topics &amp; Core Modules</h2>
+          </div>
+          <p>
+            The 6 core mathematical pillars covered in Discrete Mathematics (CS-201) under Dr. Tahaei.
+          </p>
+        </div>
+
+        <div className={styles.syllabusGrid}>
+          {courseSyllabus.map((module) => (
+            <article
+              key={module.id}
+              className={styles.syllabusCard}
+              style={{ '--module-accent': module.color }}
+            >
+              <div className={styles.cardHeader}>
+                <span className={styles.moduleBadge}>Module {module.number}</span>
+                <span className={styles.moduleAccentDot} />
+              </div>
+
+              <h3 className={styles.moduleTitle}>{module.title}</h3>
+              <p className={styles.moduleSubtitle}>{module.subtitle}</p>
+              <p className={styles.moduleDesc}>{module.description}</p>
+
+              <div className={styles.topicChips}>
+                {module.topics.map((topic) => (
+                  <span key={topic} className={styles.chip}>
+                    {topic}
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.cardFooter}>
+                <a href="/materials" data-internal-link className={styles.moduleCta}>
+                  View Materials &amp; Notes
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </div>
   );

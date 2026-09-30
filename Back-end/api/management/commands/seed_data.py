@@ -181,14 +181,6 @@ class Command(BaseCommand):
                 'file_url': '/materials/quizzes/quiz2_solutions.pdf'
             },
             {
-                'title': 'Programming Project Phase 1: Automated Graph Algorithms Solver',
-                'category': 'project',
-                'description': 'Implementation specs for BFS, DFS, Dijkstra, and Kruskal algorithms in Python',
-                'file_type': 'ZIP',
-                'file_size': '3.2 MB',
-                'file_url': '/materials/projects/project_phase1_spec.zip'
-            },
-            {
                 'title': 'Midterm Exam Past Papers (2022 - 2025) with Solutions',
                 'category': 'sample_exam',
                 'description': 'Collection of past 3 years midterm exams and detailed step-by-step solutions',
@@ -205,44 +197,100 @@ class Command(BaseCommand):
                 'file_url': '/materials/exams/final_past_papers.pdf'
             },
             {
-                'title': 'Lecture Notes Chapter 1: Mathematical Logic & Proof Methods',
+                'title': 'Discrete Mathematics and Its Applications (8th Edition - Kenneth H. Rosen)',
                 'category': 'lecture_note',
-                'description': 'Dr. Tahaei lecture slides for Chapter 1',
+                'description': 'Main Textbook Reference for CS-201',
                 'file_type': 'PDF',
-                'file_size': '3.8 MB',
-                'file_url': '/materials/notes/chapter1_logic.pdf'
+                'file_size': '35.2 MB',
+                'file_url': '/materials/notes/Discrete_Mathematics_and_Its_Applications.pdf'
             },
             {
-                'title': 'Lecture Notes Chapter 2: Sets, Functions & Relations',
+                'title': 'Slide 00: Course Introduction & Overview',
                 'category': 'lecture_note',
-                'description': 'Dr. Tahaei lecture slides for Chapter 2',
+                'description': 'Introduction, Course Logistics & Grading Policy',
+                'file_type': 'PDF',
+                'file_size': '841.1 KB',
+                'file_url': '/materials/notes/Introduction.pdf'
+            },
+            {
+                'title': 'Slide 01: Propositional Logic',
+                'category': 'lecture_note',
+                'description': 'Propositions, Logical Operators, Truth Tables & Equivalences',
+                'file_type': 'PDF',
+                'file_size': '26.7 MB',
+                'file_url': '/materials/notes/Propositional_Logic.pdf'
+            },
+            {
+                'title': 'Slide 02: Predicate Logic & Quantifiers',
+                'category': 'lecture_note',
+                'description': 'Predicates, Universal & Existential Quantifiers, Nested Quantifiers',
+                'file_type': 'PDF',
+                'file_size': '22.3 MB',
+                'file_url': '/materials/notes/Predicate_Logic.pdf'
+            },
+            {
+                'title': 'Slide 03: Proof Techniques & Methods',
+                'category': 'lecture_note',
+                'description': 'Direct Proofs, Proof by Contraposition, Contradiction & Cases',
+                'file_type': 'PDF',
+                'file_size': '43.6 MB',
+                'file_url': '/materials/notes/Proof_Techniques.pdf'
+            },
+            {
+                'title': 'Slide 04: Mathematical Induction',
+                'category': 'lecture_note',
+                'description': 'Mathematical Induction, Strong Induction & Well-Ordering Principle',
+                'file_type': 'PDF',
+                'file_size': '12.1 MB',
+                'file_url': '/materials/notes/Mathematical_Induction.pdf'
+            },
+            {
+                'title': 'Slide 05: Sets, Functions & Sequences',
+                'category': 'lecture_note',
+                'description': 'Set Operations, Functions, Sequences & Summations',
+                'file_type': 'PDF',
+                'file_size': '45.5 MB',
+                'file_url': '/materials/notes/Sets_Functions_Sequences.pdf'
+            },
+            {
+                'title': 'Slide 06: Countable & Uncountable Sets',
+                'category': 'lecture_note',
+                'description': "Cardinality of Sets, Countability & Cantor's Diagonalization",
+                'file_type': 'PDF',
+                'file_size': '1.6 MB',
+                'file_url': '/materials/notes/Countable_Sets.pdf'
+            },
+            {
+                'title': 'Slide 07: Pigeonhole Principle',
+                'category': 'lecture_note',
+                'description': 'Basic & Generalized Pigeonhole Principle with Proof Applications',
+                'file_type': 'PDF',
+                'file_size': '1.1 MB',
+                'file_url': '/materials/notes/Pigeonhole_Principle.pdf'
+            },
+            {
+                'title': 'Slide 08: Elementary Number Theory',
+                'category': 'lecture_note',
+                'description': 'Divisibility, Primes, Modular Arithmetic, GCD & Cryptography',
                 'file_type': 'PDF',
                 'file_size': '4.1 MB',
-                'file_url': '/materials/notes/chapter2_sets.pdf'
+                'file_url': '/materials/notes/Elementary_Number_Theory.pdf'
             },
             {
-                'title': 'Lecture Notes Chapter 3: Elementary Number Theory',
+                'title': 'Slide 09: Combinatorics & Counting',
                 'category': 'lecture_note',
-                'description': 'Dr. Tahaei lecture slides for Chapter 3',
+                'description': 'Permutations, Combinations, Binomial Coefficients & Inclusion-Exclusion',
                 'file_type': 'PDF',
-                'file_size': '3.5 MB',
-                'file_url': '/materials/notes/chapter3_number_theory.pdf'
+                'file_size': '2.7 MB',
+                'file_url': '/materials/notes/Combinatorics_Counting.pdf'
             },
             {
-                'title': 'Lecture Notes Chapter 4: Advanced Counting & Generating Functions',
+                'title': 'Slide 10: Graph Theory',
                 'category': 'lecture_note',
-                'description': 'Dr. Tahaei lecture slides for Chapter 4',
+                'description': 'Graph Terminology, Paths, Circuits, Trees & Connectivity',
                 'file_type': 'PDF',
-                'file_size': '4.8 MB',
-                'file_url': '/materials/notes/chapter4_counting.pdf'
-            },
-            {
-                'title': 'Lecture Notes Chapter 5: Graph Theory & Tree Algorithms',
-                'category': 'lecture_note',
-                'description': 'Dr. Tahaei lecture slides for Chapter 5',
-                'file_type': 'PDF',
-                'file_size': '5.5 MB',
-                'file_url': '/materials/notes/chapter5_graphs.pdf'
+                'file_size': '2.1 MB',
+                'file_url': '/materials/notes/Graph_Theory.pdf'
             },
         ]
 

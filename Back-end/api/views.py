@@ -27,7 +27,7 @@ class CourseFileListView(ListAPIView):
     serializer_class = CourseFileSerializer
 
     def get_queryset(self):
-        queryset = CourseFile.objects.all()
+        queryset = CourseFile.objects.all().order_by('id')
         category = self.request.query_params.get('category', None)
         if category:
             queryset = queryset.filter(category=category)
