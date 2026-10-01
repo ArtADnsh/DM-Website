@@ -7,7 +7,6 @@ import {
 } from 'react';
 
 import FileCard from '../../components/FileCard/FileCard';
-import { courseMaterials as fallbackMaterials } from '../../data/courseMaterials';
 import { fetchCourseFiles } from '../../api';
 import styles from './CourseMaterials.module.css';
 
@@ -159,7 +158,7 @@ function FolderIcon() {
 }
 
 function CourseMaterials() {
-  const [materials, setMaterials] = useState(fallbackMaterials);
+  const [materials, setMaterials] = useState([]);
 
   const [activeTab, setActiveTab] =
     useState('lecture-notes');
@@ -183,8 +182,7 @@ function CourseMaterials() {
 
         if (
           isMounted &&
-          Array.isArray(data) &&
-          data.length > 0
+          Array.isArray(data)
         ) {
           setMaterials(data);
         }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import FileCard from '../../components/FileCard/FileCard';
-import { getRecitationClass } from '../../data/recitationClasses';
 import { fetchRecitations } from '../../api';
 import styles from './RecitationClass.module.css';
 
@@ -50,17 +49,26 @@ function TelegramIcon() {
 }
 
 function RecitationClass({ id }) {
-  const [recitation, setRecitation] = useState(() => getRecitationClass(id));
+  const [recitation, setRecitation] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('files');
 
   useEffect(() => {
     let isMounted = true;
     async function loadData() {
-      const data = await fetchRecitations();
-      if (isMounted && Array.isArray(data) && data.length > 0) {
-        const found = data.find((item) => String(item.id) === String(id) || String(item.number) === String(id));
-        if (found) {
-          setRecitation(found);
+      try {
+        const data = await fetchRecitations();
+        if (isMounted && Array.isArray(data)) {
+          const found = data.find((item) => String(item.id) === String(id) || String(item.number) === String(id));
+          if (found) {
+            setRecitation(found);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load recitation detail:', err);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
         }
       }
     }
@@ -69,6 +77,21 @@ function RecitationClass({ id }) {
       isMounted = false;
     };
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <a className={styles.backLink} href="/recitations" data-internal-link>
+          <span aria-hidden="true">←</span>
+          Recitation Classes
+        </a>
+        <div className={styles.notFound}>
+          <span>Loading session...</span>
+          <p>Fetching recitation details from backend...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!recitation) {
     return (

@@ -45,37 +45,10 @@ function ResourceIcon({ type }) {
   );
 }
 
-// Default fallback data if API server is offline
-const FALLBACK_RECITATION = {
-  title: 'Recitation Session 1: Mathematical Logic & Induction',
-  date_time: 'Mondays, 14:00 - 16:00',
-  location_or_link: 'Classroom 102 (Live & Skyroom)',
-  video_url: 'https://lms.univ.ac.ir/recitations/session1',
-};
-
-const FALLBACK_FILES = [
-  {
-    id: 40,
-    title: 'Discrete Mathematics and Its Applications (8th Edition)',
-    description: 'Kenneth H. Rosen Textbook',
-    file_url: '/materials/notes/Discrete_Mathematics_and_Its_Applications.pdf',
-    category_display: 'Reference',
-  },
-  {
-    id: 41,
-    title: 'Slide 00: Course Introduction & Overview',
-    description: 'Course Logistics & Grading Policy',
-    file_url: '/materials/notes/Introduction.pdf',
-    category_display: 'Lecture Notes',
-  },
-];
-
 const SLIDE_DURATION = 4000; // 4 seconds per slide
 
 function Home() {
   const { gallery, course } = homeContent;
-
-
 
   // Carousel State
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -85,8 +58,8 @@ function Home() {
   // API Data State
   const [isLoading, setIsLoading] = useState(true);
   const [announcement, setAnnouncement] = useState(null);
-  const [latestRecitation, setLatestRecitation] = useState(FALLBACK_RECITATION);
-  const [latestFiles, setLatestFiles] = useState(FALLBACK_FILES);
+  const [latestRecitation, setLatestRecitation] = useState(null);
+  const [latestFiles, setLatestFiles] = useState([]);
 
   // Fetch API updates on mount. The shared API client keeps deploy URLs configurable.
   useEffect(() => {
@@ -108,11 +81,11 @@ function Home() {
           setAnnouncement(null);
         }
 
-        if (Array.isArray(recitations) && recitations.length > 0) {
-          setLatestRecitation(recitations[0]);
+        if (Array.isArray(recitations)) {
+          setLatestRecitation(recitations[0] || null);
         }
 
-        if (Array.isArray(files) && files.length > 0) {
+        if (Array.isArray(files)) {
           setLatestFiles(files.slice(0, 2));
         }
       } catch (err) {
@@ -331,27 +304,29 @@ function Home() {
             )}
 
             {/* Recent Files Download Box */}
-            <div className={styles.recentFilesBox}>
-              <span className={styles.filesBoxTitle}>📥 Recent Course Material Downloads</span>
-              <div className={styles.fileList}>
-                {latestFiles.map((file) => (
-                  <div className={styles.fileItem} key={file.id}>
-                    <div className={styles.fileMeta}>
-                      <strong>{file.title}</strong>
-                      <small>{file.description || file.category_display}</small>
+            {latestFiles.length > 0 && (
+              <div className={styles.recentFilesBox}>
+                <span className={styles.filesBoxTitle}>📥 Recent Course Material Downloads</span>
+                <div className={styles.fileList}>
+                  {latestFiles.map((file) => (
+                    <div className={styles.fileItem} key={file.id}>
+                      <div className={styles.fileMeta}>
+                        <strong>{file.title}</strong>
+                        <small>{file.description || file.category_display}</small>
+                      </div>
+                      <a
+                        href={file.file_url || file.url}
+                        download
+                        className={styles.downloadBtn}
+                        title="Download PDF"
+                      >
+                        Download PDF
+                      </a>
                     </div>
-                    <a
-                      href={file.file_url}
-                      download
-                      className={styles.downloadBtn}
-                      title="Download PDF"
-                    >
-                      Download PDF
-                    </a>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
