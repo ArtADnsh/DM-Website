@@ -32,7 +32,7 @@ export const recitationClasses = [
         description: 'Problems solved during the session.',
         type: 'PDF',
         size: '640 KB',
-        url: '/materials/hw1_logic.pdf',
+        url: '#',
       },
       {
         id: 'r1-f3',

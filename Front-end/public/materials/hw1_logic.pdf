@@ -1,7 +1,0 @@
-Discrete Mathematics (CS-201) - Fall 2026
-Assignment #1: Propositional Logic & Quantifiers
-Due Date: October 15th, 2026 at 23:59
-
-Problem 1: Show that (p -> q) ^ (p -> r) is logically equivalent to p -> (q ^ r).
-Problem 2: Express the statement using quantifiers and predicate logic.
-Problem 3: Prove by mathematical induction that 1 + 2 + ... + n = n(n+1)/2.
