@@ -81,16 +81,52 @@
   line-height: 1.7;
 }
 
+.instructorContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 14px;
+}
+
 .instructor {
-  margin-top: 13px;
+  margin-top: 0;
   color: var(--text-muted);
-  font-size: 13px;
+  font-size: 13.5px;
 }
 
 .instructor strong {
   margin-left: 5px;
   color: var(--text);
   font-weight: 650;
+}
+
+.telegramButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border: 1px solid rgba(42, 171, 238, 0.35);
+  border-radius: 999px;
+  background: color-mix(in srgb, #2aabee 12%, var(--surface));
+  color: #2aabee;
+  font-size: 12.5px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.telegramButton svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.telegramButton:hover {
+  background: color-mix(in srgb, #2aabee 22%, var(--surface));
+  border-color: #2aabee;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px rgba(42, 171, 238, 0.2);
 }
 
 .totalCount {

@@ -40,6 +40,15 @@ function VideoIcon() {
   );
 }
 
+function TelegramIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m21 3-7.2 18-4.1-7.1L3 10.6 21 3Z" />
+      <path d="m9.7 13.9 4.2-3.8" />
+    </svg>
+  );
+}
+
 function RecitationClass({ id }) {
   const [recitation, setRecitation] = useState(() => getRecitationClass(id));
   const [activeTab, setActiveTab] = useState('files');
@@ -84,6 +93,18 @@ function RecitationClass({ id }) {
   const totalResources = files.length + videos.length;
   const activeUnit = activeItems.length === 1 ? activeConfig.singular : activeConfig.plural;
 
+  const telegramHandle = recitation.instructor_telegram || recitation.instructorTelegram;
+  const telegramUrl = telegramHandle
+    ? telegramHandle.startsWith('http')
+      ? telegramHandle
+      : `https://t.me/${telegramHandle.replace('@', '')}`
+    : null;
+  const telegramLabel = telegramHandle
+    ? telegramHandle.startsWith('@')
+      ? telegramHandle
+      : `@${telegramHandle.split('/').pop()}`
+    : '';
+
   return (
     <div className={styles.page}>
       <a className={styles.backLink} href="/recitations" data-internal-link>
@@ -100,7 +121,22 @@ function RecitationClass({ id }) {
 
           <h1 className={styles.title}>{recitation.title}</h1>
           <p className={styles.subtitle}>{recitation.description}</p>
-          <p className={styles.instructor}>Instructor <strong>{recitation.instructor}</strong></p>
+          
+          <div className={styles.instructorContainer}>
+            <p className={styles.instructor}>Instructor <strong>{recitation.instructor}</strong></p>
+            {telegramUrl && (
+              <a
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.telegramButton}
+                title={`Ask ${recitation.instructor} a question on Telegram`}
+              >
+                <TelegramIcon />
+                <span>Ask TA on Telegram ({telegramLabel})</span>
+              </a>
+            )}
+          </div>
         </div>
 
         <div className={styles.totalCount} aria-label={`${totalResources} resources total`}>

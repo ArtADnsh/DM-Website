@@ -15,6 +15,7 @@ export const recitationClasses = [
     description:
       'Truth tables, logical equivalences, and translating compound propositions.',
     instructor: 'Amir Jebbeli',
+    instructor_telegram: '@amir_jebbeli',
     date: 'Oct 3, 2026',
     files: [
       {
@@ -61,6 +62,7 @@ export const recitationClasses = [
     description:
       'Direct proofs, contradiction, contrapositive, and nested quantifiers.',
     instructor: 'Kasra Nouri',
+    instructor_telegram: '@kasranouri',
     date: 'Oct 10, 2026',
     files: [
       {
@@ -106,6 +108,7 @@ export const recitationClasses = [
     description:
       'Weak and strong induction, structural induction, and well-ordering.',
     instructor: 'Arta Danesh',
+    instructor_telegram: '@artadanesh',
     date: 'Oct 17, 2026',
     files: [
       {
@@ -151,6 +154,7 @@ export const recitationClasses = [
     description:
       'Set operations, bijections, cardinality, and pigeonhole arguments.',
     instructor: 'Koosha Majlesi',
+    instructor_telegram: '@kooshama',
     date: 'Oct 24, 2026',
     files: [
       {
@@ -180,6 +184,7 @@ export const recitationClasses = [
     description:
       'Euclidean algorithm, modular inverses, and the Chinese Remainder Theorem.',
     instructor: 'Arash Amiri',
+    instructor_telegram: '@arashamiri',
     date: 'Oct 31, 2026',
     files: [],
     videos: [],
@@ -191,6 +196,7 @@ export const recitationClasses = [
     description:
       'Inclusion-exclusion, permutations, combinations, and binomial identities.',
     instructor: 'Erfan Taghizadeh',
+    instructor_telegram: '@erfantaghizadeh',
     date: 'Nov 7, 2026',
     files: [],
     videos: [],

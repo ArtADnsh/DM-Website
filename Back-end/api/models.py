@@ -4,6 +4,7 @@ class RecitationClass(models.Model):
     number = models.CharField(max_length=10, blank=True, help_text="e.g. 01, 02")
     title = models.CharField(max_length=200, help_text="e.g. Recitation 1: Logic & Induction")
     instructor = models.CharField(max_length=150, blank=True, help_text="e.g. Amir Jebbeli")
+    instructor_telegram = models.CharField(max_length=100, blank=True, help_text="Telegram username or link for student Q&A e.g. @username")
     duration = models.CharField(max_length=50, blank=True, help_text="e.g. 52 min")
     date_time = models.CharField(max_length=150, blank=True, help_text="e.g. Mondays, 14:00 - 16:00")
     location_or_link = models.CharField(max_length=300, blank=True, help_text="Classroom number or online meeting link")

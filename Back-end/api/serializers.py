@@ -25,7 +25,7 @@ class RecitationClassSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RecitationClass
-        fields = ['id', 'number', 'title', 'instructor', 'duration', 'date_time', 'location_or_link', 'description', 'files', 'videos', 'created_at']
+        fields = ['id', 'number', 'title', 'instructor', 'instructor_telegram', 'duration', 'date_time', 'location_or_link', 'description', 'files', 'videos', 'created_at']
 
 
 class CourseFileSerializer(serializers.ModelSerializer):
