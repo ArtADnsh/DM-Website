@@ -27,7 +27,7 @@ export const homeContent = {
     university: 'Iran University of Science and Technology',
     department: 'Department of Computer Engineering',
     semester: 'Fall 2026',
-    schedule: 'Sundays & Tuesdays, 10:30 - 12:00',
+    schedule: 'Saturdays & Mondays, 07:30 - 09:00',
 
     description:
       'This portal is the central hub for Discrete Mathematics. Access lecture notes, download assignment problem sets, view quiz solutions, check weekly recitation schedules, and stay updated with official announcements.',

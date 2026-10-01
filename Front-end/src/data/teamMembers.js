@@ -50,7 +50,7 @@ export const teamCategories = [
     description: 'Conducting weekly problem-solving tutorial sessions.',
     members: [
       {
-        id: 'ta-kian',
+        id: 'ta-17',
         name: 'Kian Sharifian',
         role: 'TA',
         badge: 'Recitation Head',
@@ -186,6 +186,16 @@ export const teamCategories = [
         email: 'matinaparsaeeniam@gmail.com',
         gender: 'female',
         image: '/images/tas/Matina ParsaeiNia.jpg',
+      },
+      {
+        id: 'ta-18',
+        name: 'Sadra Bakhshi',
+        role: 'TA',
+        badge: 'Project TA',
+        email: 'bakhshisadra24@gmail.com',
+        telegram: '@sadraast',
+        gender: 'male',
+        image: '/images/tas/Sadra Bakhshi.jpg',
       },
     ],
   },
