@@ -17,8 +17,9 @@ function getInitials(name = '') {
     .toUpperCase();
 }
 
-function TeamMemberCard({ name, role, focus, image, email, telegram }) {
-  const roleVariant = ROLE_VARIANTS[role] || '';
+function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
+  const isHead = (badge || role)?.toLowerCase().includes('head');
+  const roleVariant = isHead ? styles.head : (ROLE_VARIANTS[role] || '');
   const telegramHandle = telegram?.replace(/^@/, '');
   const isPlaceholderTelegram = telegramHandle?.startsWith('replace_me_');
 
@@ -33,7 +34,7 @@ function TeamMemberCard({ name, role, focus, image, email, telegram }) {
             {getInitials(name)}
           </div>
         )}
-        <span className={styles.badge}>{role}</span>
+        <span className={styles.badge}>{badge || role}</span>
       </div>
 
       <div className={styles.identity}>

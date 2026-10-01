@@ -50,6 +50,7 @@ function groupMembersByRole(members, roleOrder, roleConfig) {
 }
 
 function TeamMembers({
+  categories = [],
   members = [],
   eyebrow = 'Course team',
   title = 'Teaching Team',
@@ -57,8 +58,14 @@ function TeamMembers({
   roleOrder = DEFAULT_ROLE_ORDER,
   roleConfig = DEFAULT_ROLE_CONFIG,
 }) {
-  const groups = groupMembersByRole(members, roleOrder, roleConfig);
-  const memberCount = members.length;
+  const groups = categories.length > 0
+    ? categories
+    : groupMembersByRole(members, roleOrder, roleConfig);
+
+  const allMembers = categories.length > 0
+    ? categories.flatMap((cat) => cat.members)
+    : members;
+  const memberCount = allMembers.length;
 
   if (!memberCount) {
     return null;
@@ -84,7 +91,7 @@ function TeamMembers({
 
         <div className={styles.groups}>
           {groups.map((group) => (
-            <section className={styles.group} key={group.role}>
+            <section className={styles.group} key={group.id || group.role}>
               <div className={styles.groupHeader}>
                 <div className={styles.groupHeading}>
                   <h2 className={styles.groupTitle}>{group.label}</h2>
@@ -94,12 +101,13 @@ function TeamMembers({
                 </div>
               </div>
 
-              <div className={`${styles.grid} ${GRID_VARIANTS[group.role] || styles.taGrid}`}>
-                {group.members.map((member) => (
+              <div className={`${styles.grid} ${GRID_VARIANTS[group.id || group.role] || styles.taGrid}`}>
+                {group.members.map((member, index) => (
                   <TeamMemberCard
-                    key={member.id || member.email || member.name}
+                    key={`${group.id || group.role}-${member.id || member.name}-${index}`}
                     name={member.name}
                     role={member.role}
+                    badge={member.badge || member.role}
                     focus={member.focus}
                     image={member.image}
                     email={member.email}

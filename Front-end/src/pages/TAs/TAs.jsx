@@ -1,5 +1,5 @@
 import TeamMembers from '../../components/TeamMembers/TeamMembers';
-import { teamMembers } from '../../data/teamMembers';
+import { teamCategories } from '../../data/teamMembers';
 import styles from './TAs.module.css';
 
 function TAs() {
@@ -8,8 +8,8 @@ function TAs() {
       <TeamMembers
         eyebrow="Discrete Mathematics"
         title="Teaching Team"
-        description="Meet the instructor and teaching assistants supporting lectures, tutorials, assignments, and student questions throughout the semester."
-        members={teamMembers}
+        description="Meet the professor, head TAs, and specialized teaching teams supporting Discrete Mathematics throughout the semester."
+        categories={teamCategories}
       />
     </div>
   );

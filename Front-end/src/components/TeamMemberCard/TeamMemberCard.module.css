@@ -189,6 +189,23 @@
   border-color: rgba(20, 184, 166, 0.42);
 }
 
+.head {
+  border-color: rgba(245, 158, 11, 0.28);
+  background:
+    linear-gradient(155deg, rgba(245, 158, 11, 0.12), transparent 62%),
+    var(--card-bg);
+}
+
+.head .badge {
+  border-color: rgba(245, 158, 11, 0.25);
+  background: rgba(245, 158, 11, 0.18);
+  color: #f59e0b;
+}
+
+.head:hover {
+  border-color: rgba(245, 158, 11, 0.48);
+}
+
 .professor {
   min-height: 230px;
   padding: 26px;
