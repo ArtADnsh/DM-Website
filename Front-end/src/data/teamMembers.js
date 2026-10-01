@@ -61,7 +61,7 @@ export const teamCategories = [
         id: 'ta-09',
         name: 'Aida Shahriari',
         role: 'TA',
-        badge: 'Homework TA',
+        badge: 'Recitation TA',
         email: 'aidashahriari65@gmail.com',
         telegram: '@Ida3141',
         gender: 'female',

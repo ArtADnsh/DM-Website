@@ -9,6 +9,7 @@ import RecitationClasses from './pages/RecitationClasses/RecitationClasses';
 import RecitationClass from './pages/RecitationClass/RecitationClass';
 import Mentor from './pages/Mentor/Mentor';
 import Project from './pages/Project/Project';
+import Contact from './pages/Contact/Contact';
 
 import './App.css';
 
@@ -88,6 +89,8 @@ function App() {
     page = <Project />;
   } else if (pathname === '/materials') {
     page = <CourseMaterials />;
+  } else if (pathname === '/contact') {
+    page = <Contact />;
   } else if (pathname === '/mentor' || pathname === '/mentors') {
     page = <Mentor />;
   } else {

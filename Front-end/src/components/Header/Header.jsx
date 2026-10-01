@@ -168,6 +168,7 @@ function Header() {
               label: 'Mentors',
               isActive: (path) => path === '/mentor' || path === '/mentors',
             },
+            { href: '/contact', label: 'Contact Us', isActive: (path) => path === '/contact' },
           ].map((item) => {
             const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
             const isActive = item.isActive(currentPath);

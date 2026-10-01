@@ -71,6 +71,9 @@ function Footer() {
               <li>
                 <a href="/tas" data-internal-link>Meet the Teaching Team</a>
               </li>
+              <li>
+                <a href="/contact" data-internal-link>Contact Us</a>
+              </li>
             </ul>
           </div>
 
