@@ -27,6 +27,9 @@ services:
     volumes:
       - media_data:/app/media
       - db_data:/app/data
+    environment:
+      - DEBUG=${DEBUG:-True}
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-prod-key-change-in-production}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/health/"]

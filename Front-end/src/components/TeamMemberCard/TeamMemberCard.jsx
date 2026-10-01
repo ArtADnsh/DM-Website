@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { EmailIcon, SendIcon } from "../icons";
 import { getInitials } from "../../utils/people";
 import styles from "./TeamMemberCard.module.css";
@@ -9,6 +10,7 @@ const ROLE_VARIANTS = {
 };
 
 function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
+  const [imgError, setImgError] = useState(false);
   const isHead = (badge || role)?.toLowerCase().includes("head");
   const roleVariant = isHead ? styles.head : ROLE_VARIANTS[role] || "";
   const telegramHandle = telegram?.replace(/^@/, "");
@@ -17,8 +19,13 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
   return (
     <article className={`${styles.card} ${roleVariant}`}>
       <div className={styles.top}>
-        {image ? (
-          <img src={image} alt={name} className={styles.avatar} />
+        {image && !imgError ? (
+          <img
+            src={image}
+            alt={name}
+            className={styles.avatar}
+            onError={() => setImgError(true)}
+          />
         ) : (
           <div className={styles.avatarFallback} role="img" aria-label={name}>
             {getInitials(name, { stripTitle: true })}
