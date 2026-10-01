@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { navigationLinks } from "../../data/navigation";
+import { MenuIcon, CloseIcon } from "../icons";
+import { useEffect, useState } from "react";
 
-import logoLight from '../../assets/logo_light.webp';
-import logoDark from '../../assets/logo_dark.webp';
-import styles from './Header.module.css';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import logoLight from "../../assets/logo_light.webp";
+import logoDark from "../../assets/logo_dark.webp";
+import styles from "./Header.module.css";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,9 +28,7 @@ function Header() {
     const evaluateScroll = () => {
       const scrollY = window.scrollY;
 
-      const nextCompact = compact
-        ? scrollY > 20
-        : scrollY > 40;
+      const nextCompact = compact ? scrollY > 20 : scrollY > 40;
 
       if (nextCompact !== compact) {
         compact = nextCompact;
@@ -45,33 +45,30 @@ function Header() {
       requestAnimationFrame(evaluateScroll);
     };
 
-    window.addEventListener('scroll', handleScroll, {
+    window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
-    return () =>
-      window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     if (!isMenuOpen) return undefined;
 
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         setIsMenuOpen(false);
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
-    return () =>
-      document.removeEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isMenuOpen]);
 
   return (
     <header
-      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''
-        }`}
+      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}
     >
       <div className={styles.container}>
         <a
@@ -96,13 +93,9 @@ function Header() {
               Iran University of Science and Technology
             </p>
 
-            <p className={styles.courseName}>
-              Discrete Mathematics
-            </p>
+            <p className={styles.courseName}>Discrete Mathematics</p>
 
-            <p className={styles.semester}>
-              Semester 4051
-            </p>
+            <p className={styles.semester}>Semester 4051</p>
           </div>
         </a>
 
@@ -116,23 +109,14 @@ function Header() {
             aria-expanded={isMenuOpen}
             aria-controls="site-navigation"
           >
-            <svg
-              className={styles.menuIcon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <MenuIcon className={styles.menuIcon} />
           </button>
         </div>
 
         {/* NAVIGATION DROPDOWN ANCHORED INSIDE CONTAINER */}
         <nav
           id="site-navigation"
-          className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}`}
+          className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ""}`}
           aria-hidden={!isMenuOpen}
         >
           <div className={styles.menuHeader}>
@@ -143,34 +127,13 @@ function Header() {
               onClick={closeMenu}
               aria-label="Close menu"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
+              <CloseIcon />
             </button>
           </div>
 
-          {[
-            { href: '/', label: 'Home', isActive: (path) => path === '/' },
-            { href: '/materials', label: 'Course Materials', isActive: (path) => path === '/materials' },
-            { href: '/project', label: 'Project', isActive: (path) => path === '/project' },
-            {
-              href: '/recitations',
-              label: 'Recitation Classes',
-              isActive: (path) =>
-                path === '/recitations' ||
-                path.startsWith('/recitations/') ||
-                path === '/videos' ||
-                path === '/tutorials',
-            },
-            { href: '/tas', label: 'Teaching Team', isActive: (path) => path === '/tas' },
-            {
-              href: '/mentors',
-              label: 'Mentors',
-              isActive: (path) => path === '/mentor' || path === '/mentors',
-            },
-            { href: '/contact', label: 'Contact Us', isActive: (path) => path === '/contact' },
-          ].map((item) => {
-            const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+          {navigationLinks.map((item) => {
+            const currentPath =
+              window.location.pathname.replace(/\/+$/, "") || "/";
             const isActive = item.isActive(currentPath);
 
             return (
@@ -180,7 +143,7 @@ function Header() {
                 data-internal-link
                 onClick={closeMenu}
                 className={isActive ? styles.activeLink : undefined}
-                aria-current={isActive ? 'page' : undefined}
+                aria-current={isActive ? "page" : undefined}
               >
                 {item.label}
               </a>
@@ -190,7 +153,7 @@ function Header() {
       </div>
 
       <button
-        className={`${styles.overlay} ${isMenuOpen ? styles.overlayOpen : ''}`}
+        className={`${styles.overlay} ${isMenuOpen ? styles.overlayOpen : ""}`}
         onClick={closeMenu}
         aria-label="Close navigation menu"
         tabIndex={isMenuOpen ? 0 : -1}

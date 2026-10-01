@@ -1,4 +1,6 @@
-import styles from './TeamMemberCard.module.css';
+import { EmailIcon, SendIcon } from "../icons";
+import { getInitials } from "../../utils/people";
+import styles from "./TeamMemberCard.module.css";
 
 const ROLE_VARIANTS = {
   TA: styles.ta,
@@ -6,23 +8,11 @@ const ROLE_VARIANTS = {
   Professor: styles.professor,
 };
 
-function getInitials(name = '') {
-  return name
-    .replace(/^(dr|prof)\.?\s+/i, '')
-    .split(/\s+/)
-    .filter(Boolean)
-    .filter((_, i, arr) => i === 0 || i === arr.length - 1)
-    .map((part) => part[0])
-    .join('')
-    .toUpperCase();
-}
-
 function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
-  const isHead = (badge || role)?.toLowerCase().includes('head');
-  const roleVariant = isHead ? styles.head : (ROLE_VARIANTS[role] || '');
-  const telegramHandle = telegram?.replace(/^@/, '');
-  const isPlaceholderTelegram = telegramHandle?.startsWith('replace_me_');
-
+  const isHead = (badge || role)?.toLowerCase().includes("head");
+  const roleVariant = isHead ? styles.head : ROLE_VARIANTS[role] || "";
+  const telegramHandle = telegram?.replace(/^@/, "");
+  const isPlaceholderTelegram = telegramHandle?.startsWith("replace_me_");
 
   return (
     <article className={`${styles.card} ${roleVariant}`}>
@@ -31,7 +21,7 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
           <img src={image} alt={name} className={styles.avatar} />
         ) : (
           <div className={styles.avatarFallback} role="img" aria-label={name}>
-            {getInitials(name)}
+            {getInitials(name, { stripTitle: true })}
           </div>
         )}
         <span className={styles.badge}>{badge || role}</span>
@@ -47,39 +37,18 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
       <div className={styles.info}>
         {email && (
           <a href={`mailto:${email}`} className={styles.infoRow} title={email}>
-            <svg
-              className={styles.icon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m22 6-10 7L2 6" />
-            </svg>
+            <EmailIcon className={styles.icon} />
             <span className={styles.infoText}>{email}</span>
           </a>
         )}
 
-        {telegram && (
-          isPlaceholderTelegram ? (
-            <div className={`${styles.infoRow} ${styles.placeholderContact}`} title="Replace this placeholder in src/data/teamMembers.js">
-              <svg
-                className={styles.icon}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m22 2-7 20-4-9-9-4Z" />
-                <path d="M22 2 11 13" />
-              </svg>
+        {telegram &&
+          (isPlaceholderTelegram ? (
+            <div
+              className={`${styles.infoRow} ${styles.placeholderContact}`}
+              title="Replace this placeholder in src/data/teamMembers.js"
+            >
+              <SendIcon className={styles.icon} />
               <span className={styles.infoText}>{telegram}</span>
             </div>
           ) : (
@@ -90,23 +59,10 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
               className={styles.infoRow}
               title={telegram}
             >
-              <svg
-                className={styles.icon}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m22 2-7 20-4-9-9-4Z" />
-                <path d="M22 2 11 13" />
-              </svg>
+              <SendIcon className={styles.icon} />
               <span className={styles.infoText}>{telegram}</span>
             </a>
-          )
-        )}
+          ))}
       </div>
     </article>
   );
