@@ -57,9 +57,9 @@ function ClassIcon() {
   );
 }
 
-function ArrowIcon() {
+function ArrowIcon({ className }) {
   return (
-    <svg {...iconProps()} strokeWidth={2}>
+    <svg {...iconProps()} strokeWidth={2} className={className}>
       <path d="M5 12h14M14 7l5 5-5 5" />
     </svg>
   );
@@ -91,7 +91,7 @@ const VARIANTS = {
     className: styles.recitation,
     Icon: ClassIcon,
     ActionIcon: ArrowIcon,
-    actionLabel: 'Open class',
+    actionLabel: 'View Class',
     unavailableLabel: 'Coming soon',
     unavailableTitle: 'This class is not available yet',
     isExternal: false,
@@ -140,7 +140,9 @@ function FileCard({ file, variant = 'document' }) {
           aria-label={`${config.actionLabel} ${title}`}
           {...linkProps}
         >
-          <ActionIcon />
+          <ActionIcon
+            className={ActionIcon === ArrowIcon ? styles.arrowIcon : undefined}
+          />
           {config.actionLabel}
         </a>
       ) : (

@@ -158,6 +158,14 @@
   flex-shrink: 0;
 }
 
+.recitation .action {
+  direction: ltr;
+}
+
+.action svg.arrowIcon {
+  order: 1;
+}
+
 a.action:hover {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 55%, var(--border));

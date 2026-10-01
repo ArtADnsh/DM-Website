@@ -156,7 +156,7 @@ function RecitationClass({ id }) {
                 title={`Ask ${recitation.instructor} a question on Telegram`}
               >
                 <TelegramIcon />
-                <span>Ask TA on Telegram ({telegramLabel})</span>
+                <span>Ask TA on Telegram</span>
               </a>
             )}
           </div>
