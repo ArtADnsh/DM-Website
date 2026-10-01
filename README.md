@@ -1,11 +1,12 @@
-# DM-Website Frontend
+# DM-Website
 
-React Single Page Application (SPA) powered by Vite, prepared for seamless deployment with Docker, Docker Compose, Virtual Machines (VM), and Git.
+Full-stack portal for **Discrete Mathematics & Data Fundamentals (CS-201)**, featuring a React SPA frontend and a Django API backend, containerized for production deployment with Docker and Nginx.
 
 ---
 
-## 🚀 Quick Start (Local Development without Docker)
+## 🚀 Quick Start (Local Development)
 
+### Frontend
 ```bash
 cd Front-end
 npm install
@@ -13,36 +14,37 @@ npm run dev
 ```
 Access dev server at: `http://localhost:5173`
 
+### Backend
+```bash
+cd Back-end
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py runserver
+```
+Access API server at: `http://localhost:8000`
+
 ---
 
-## 🐳 Running with Docker
+## 🐳 Production Deployment with Docker
 
-### 1. Production Mode (Multi-stage Build with Nginx)
-To run the optimized production build using Nginx web server:
+To build and run the production environment (Frontend Nginx container + Backend Django container):
 
 ```bash
-# Build and start container in detached mode
+# Build and start services in detached mode
 docker compose up -d --build
 
-# View logs
+# View container logs
 docker compose logs -f
 
-# Stop container
+# Stop containers
 docker compose down
 ```
-Access app at: `http://localhost` (Port 80)
-
-### 2. Development Mode with Docker (Hot-Reloading)
-To run inside a Docker container with hot reloading:
-
-```bash
-docker compose -f docker-compose.dev.yml up --build
-```
-Access dev app at: `http://localhost:5173`
+Access app at: `http://localhost` (Port 80) and API at `http://localhost:8000`.
 
 ---
 
-## ☁️ VM Deployment Instructions (Ubuntu / Debian / CentOS Linux)
+## ☁️ VM Deployment Instructions (Ubuntu / Debian / Linux)
 
 ### Step 1: Install Docker & Docker Compose on VM
 ```bash
@@ -56,7 +58,7 @@ sudo systemctl enable --now docker
 git clone <YOUR_GIT_REPOSITORY_URL> dm-website
 cd dm-website
 
-# Run Production Container
+# Run Production Containers
 docker compose up -d --build
 ```
 
@@ -75,16 +77,19 @@ sudo ufw enable
 ```
 .
 ├── docker-compose.yml       # Production Docker Compose setup
-├── docker-compose.dev.yml   # Development Docker Compose setup
-├── Dockerfile               # Production multi-stage Nginx Docker build
-├── Dockerfile.dev           # Development Node container build
+├── Dockerfile               # Production Nginx Dockerfile for Frontend
 ├── nginx.conf               # Custom Nginx config (SPA routing & Gzip)
 ├── .gitignore               # Root git ignore rules
 ├── .dockerignore            # Docker context ignore rules
+├── Back-end/                # Django REST API directory
+│   ├── api/                 # Django application app
+│   ├── config/              # Django settings & URL configuration
+│   ├── Dockerfile           # Backend container build instructions
+│   └── requirements.txt     # Python dependencies
 └── Front-end/               # React + Vite source directory
     ├── src/                 # Components, Pages, Assets
     ├── public/              # Static assets
-    ├── package.json         # Project dependencies
+    ├── package.json         # Frontend dependencies
     └── vite.config.js       # Vite configuration
 ```
 
@@ -96,9 +101,9 @@ sudo ufw enable
 # Check repository status
 git status
 
-# Stage initialization files
-git add .gitignore .dockerignore Dockerfile Dockerfile.dev docker-compose.yml docker-compose.dev.yml nginx.conf README.md
+# Stage production configuration files
+git add .gitignore .dockerignore Dockerfile docker-compose.yml nginx.conf README.md
 
-# Commit setup
-git commit -m "chore: initialize Docker, VM deployment config, and Git setup"
+# Commit changes
+git commit -m "chore: configure production Docker deployment setup"
 ```
