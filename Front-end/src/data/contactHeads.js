@@ -6,7 +6,7 @@ export const contactHeads = [
     scope: "Overall Course Logistics & Head TA Support",
     email: "Amirjebbeli75@outlook.com",
     telegram: "@Amir_Jebbeli",
-    image: "/images/tas/Amir Jebbeli.jpg",
+    image: "/images/tas/Amir Jebbeli.webp",
   },
   {
     id: "head-02",
@@ -15,7 +15,7 @@ export const contactHeads = [
     scope: "Overall Course Logistics & Head TA Support",
     email: "kasra.nouri85@gmail.com",
     telegram: "@UnicornKN",
-    image: "/images/tas/Kasra Nouri.jpg",
+    image: "/images/tas/Kasra Nouri.webp",
   },
   {
     id: "head-recitation",
@@ -31,7 +31,7 @@ export const contactHeads = [
     scope: "Homework Assignments & Problem Sets",
     email: "elmirabekiasai220@gmail.com",
     telegram: "@elmira85b",
-    image: "/images/tas/Elmira Bekiasai.jpg",
+    image: "/images/tas/Elmira Bekiasai.webp",
   },
   {
     id: "head-project",
@@ -40,7 +40,7 @@ export const contactHeads = [
     scope: "Course Programming & Research Project",
     email: "ma.hoshiar@gmail.com",
     telegram: "@mobinahhh",
-    image: "/images/tas/Mobina Hoshiaripour.jpg",
+    image: "/images/tas/Mobina Hoshiaripour.webp",
   },
   {
     id: "head-quiz",
@@ -49,6 +49,6 @@ export const contactHeads = [
     scope: "Weekly Quizzes & Exam Grading",
     email: "iliyaebrahimiwork1000@gmail.com",
     telegram: "@Iliya_Ebrahimi",
-    image: "/images/tas/Iliya Ebrahimi.jpg",
+    image: "/images/tas/Iliya Ebrahimi.webp",
   },
 ];

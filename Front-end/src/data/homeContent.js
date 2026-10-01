@@ -2,19 +2,19 @@ export const homeContent = {
   gallery: [
     {
       id: 1,
-      src: '/images/classroom1.jpg',
+      src: '/images/classroom1.webp',
       alt: 'Discrete Mathematics Lecture Hall with Dr. Tahaei',
       label: 'Lecture Hall',
     },
     {
       id: 2,
-      src: '/images/classroom2.jpg',
+      src: '/images/classroom2.webp',
       alt: 'Problem Solving Workshop and Recitation Session',
       label: 'Problem Solving Workshop',
     },
     {
       id: 3,
-      src: '/images/classroom3.jpg',
+      src: '/images/classroom3.webp',
       alt: 'Computer Science Lab Session',
       label: 'Computer Science Lab',
     },

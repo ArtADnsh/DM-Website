@@ -15,7 +15,7 @@ export const recitationClasses = [
     description:
       'Truth tables, logical equivalences, and translating compound propositions.',
     instructor: 'Amir Jebbeli',
-    instructor_telegram: '@amir_jebbeli',
+    instructor_telegram: '@Amir_Jebbeli',
     date: 'Oct 3, 2026',
     files: [
       {
@@ -62,7 +62,7 @@ export const recitationClasses = [
     description:
       'Direct proofs, contradiction, contrapositive, and nested quantifiers.',
     instructor: 'Kasra Nouri',
-    instructor_telegram: '@kasranouri',
+    instructor_telegram: '@UnicornKN',
     date: 'Oct 10, 2026',
     files: [
       {
@@ -108,7 +108,7 @@ export const recitationClasses = [
     description:
       'Weak and strong induction, structural induction, and well-ordering.',
     instructor: 'Arta Danesh',
-    instructor_telegram: '@artadanesh',
+    instructor_telegram: '@ArtA_Dnsh',
     date: 'Oct 17, 2026',
     files: [
       {
@@ -154,7 +154,7 @@ export const recitationClasses = [
     description:
       'Set operations, bijections, cardinality, and pigeonhole arguments.',
     instructor: 'Koosha Majlesi',
-    instructor_telegram: '@kooshama',
+    instructor_telegram: '@kmajl84',
     date: 'Oct 24, 2026',
     files: [
       {
@@ -184,7 +184,7 @@ export const recitationClasses = [
     description:
       'Euclidean algorithm, modular inverses, and the Chinese Remainder Theorem.',
     instructor: 'Arash Amiri',
-    instructor_telegram: '@arashamiri',
+    instructor_telegram: '@ArashNamNam',
     date: 'Oct 31, 2026',
     files: [],
     videos: [],

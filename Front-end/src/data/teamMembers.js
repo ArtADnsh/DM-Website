@@ -30,7 +30,7 @@ export const teamCategories = [
         email: 'Amirjebbeli75@outlook.com',
         telegram: '@Amir_Jebbeli',
         gender: 'male',
-        image: '/images/tas/Amir Jebbeli.jpg',
+        image: '/images/tas/Amir Jebbeli.webp',
       },
       {
         id: 'hta-02',
@@ -40,7 +40,7 @@ export const teamCategories = [
         email: 'kasra.nouri85@gmail.com',
         telegram: '@UnicornKN',
         gender: 'male',
-        image: '/images/tas/Kasra Nouri.jpg',
+        image: '/images/tas/Kasra Nouri.webp',
       },
     ],
   },
@@ -81,7 +81,7 @@ export const teamCategories = [
         email: 'elmirabekiasai220@gmail.com',
         telegram: '@elmira85b',
         gender: 'female',
-        image: '/images/tas/Elmira Bekiasai.jpg',
+        image: '/images/tas/Elmira Bekiasai.webp',
       },
       {
         id: 'ta-03',
@@ -91,7 +91,7 @@ export const teamCategories = [
         email: 'arash.amiri1385@gmail.com',
         telegram: '@ArashNamNam',
         gender: 'male',
-        image: '/images/tas/Arash Amiri.jpg',
+        image: '/images/tas/Arash Amiri.webp',
       },
       {
         id: 'ta-04',
@@ -101,7 +101,7 @@ export const teamCategories = [
         email: 'a.taghizadeh84.et@gmail.com',
         telegram: '@erfantaghizadeh',
         gender: 'male',
-        image: '/images/tas/Erfan Taghizadeh.jpg',
+        image: '/images/tas/Erfan Taghizadeh.webp',
       },
       {
         id: 'ta-07',
@@ -111,7 +111,7 @@ export const teamCategories = [
         email: 'mahdialighardashi82@gmail.com',
         telegram: '@Mahdial82',
         gender: 'male',
-        image: '/images/tas/Mahdi Alighardashi.JPG',
+        image: '/images/tas/Mahdi Alighardashi.webp',
       },
       {
         id: 'ta-15',
@@ -121,7 +121,7 @@ export const teamCategories = [
         email: 'Ghazaldehghananzadeh@gmail.com',
         telegram: '@ghazal2119',
         gender: 'female',
-        image: '/images/tas/Ghazal dehghananzadeh.jpg',
+        image: '/images/tas/Ghazal dehghananzadeh.webp',
       },
       {
         id: 'ta-16',
@@ -156,7 +156,7 @@ export const teamCategories = [
         email: 'ma.hoshiar@gmail.com',
         telegram: '@mobinahhh',
         gender: 'female',
-        image: '/images/tas/Mobina Hoshiaripour.jpg',
+        image: '/images/tas/Mobina Hoshiaripour.webp',
       },
       {
         id: 'ta-01',
@@ -166,7 +166,7 @@ export const teamCategories = [
         email: 'artadnsh@gmail.com',
         telegram: '@ArtA_Dnsh',
         gender: 'male',
-        image: '/images/tas/Arta Danesh.jpg',
+        image: '/images/tas/Arta Danesh.webp',
       },
       {
         id: 'ta-02',
@@ -176,7 +176,7 @@ export const teamCategories = [
         email: 'koosha.mj@gmail.com',
         telegram: '@kmajl84',
         gender: 'male',
-        image: '/images/tas/Koosha Majlesi.jpg',
+        image: '/images/tas/Koosha Majlesi.webp',
       },
       {
         id: 'ta-10',
@@ -185,7 +185,7 @@ export const teamCategories = [
         badge: 'Project TA',
         email: 'matinaparsaeeniam@gmail.com',
         gender: 'female',
-        image: '/images/tas/Matina ParsaeiNia.jpg',
+        image: '/images/tas/Matina ParsaeiNia.webp',
       },
       {
         id: 'ta-18',
@@ -195,7 +195,7 @@ export const teamCategories = [
         email: 'bakhshisadra24@gmail.com',
         telegram: '@sadraast',
         gender: 'male',
-        image: '/images/tas/Sadra Bakhshi.jpg',
+        image: '/images/tas/Sadra Bakhshi.webp',
       },
     ],
   },
@@ -212,7 +212,7 @@ export const teamCategories = [
         email: 'iliyaebrahimiwork1000@gmail.com',
         telegram: '@Iliya_Ebrahimi',
         gender: 'male',
-        image: '/images/tas/Iliya Ebrahimi.jpg',
+        image: '/images/tas/Iliya Ebrahimi.webp',
       },
       {
         id: 'ta-05',
@@ -222,7 +222,7 @@ export const teamCategories = [
         email: 'erfanmoradi922@gmail.com',
         telegram: '@Er_NotFun',
         gender: 'male',
-        image: '/images/tas/Erfan Moradi.png',
+        image: '/images/tas/Erfan Moradi.webp',
       },
       {
         id: 'ta-12',
@@ -232,7 +232,7 @@ export const teamCategories = [
         email: 'amir06mgh@gmail.com',
         telegram: '@amiirs2',
         gender: 'male',
-        image: '/images/tas/Amirreza Moghimi.jpg',
+        image: '/images/tas/Amirreza Moghimi.webp',
       },
       {
         id: 'ta-11',
@@ -242,7 +242,7 @@ export const teamCategories = [
         email: 'raminbuzarpur@gmail.com',
         telegram: '@alien_hawk',
         gender: 'male',
-        image: '/images/tas/Ramin Buzarpur.jpg',
+        image: '/images/tas/Ramin Buzarpur.webp',
       },
     ],
   },
