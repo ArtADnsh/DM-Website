@@ -13,8 +13,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr 1.3fr 1fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, .9fr) minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 32px;
   padding-bottom: 48px;
   border-bottom: 1px solid var(--border);
 }
@@ -79,6 +79,7 @@
 .col {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .colTitle {
@@ -115,15 +116,16 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  width: min(100%, 248px);
 }
 
 .portalLink {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 10px;
-  margin: 0 -10px;
+  padding: 7px 8px;
+  margin: 0 0 0 -3px;
   border-radius: 10px;
   color: var(--text);
   transition: background 0.2s ease;
@@ -147,6 +149,12 @@
 .portalIcon svg {
   width: 16px;
   height: 16px;
+  transform: translate(0, 0);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portalLink:hover .portalIcon svg {
+  transform: translate(2px, -2px);
 }
 
 .portalCopy {
@@ -165,17 +173,20 @@
 .portalCopy small {
   color: var(--text-muted);
   font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
-.portalLink svg:last-child {
+.portalLink > svg:last-child {
   width: 14px;
   height: 14px;
   color: var(--text-muted);
   opacity: 0.6;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translate(0, 0);
+  transition: opacity 0.32s ease, color 0.32s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.portalLink:hover svg:last-child {
+.portalLink:hover > svg:last-child {
   opacity: 1;
   color: var(--primary-light);
   transform: translate(2px, -2px);

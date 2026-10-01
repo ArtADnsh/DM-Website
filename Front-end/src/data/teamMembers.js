@@ -1,4 +1,4 @@
-// Course staff information for Discrete Mathematics (CS-201)
+// Course staff information for Discrete Mathematics
 
 export const teamMembers = [
   {

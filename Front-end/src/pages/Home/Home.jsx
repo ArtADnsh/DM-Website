@@ -414,7 +414,7 @@ function Home() {
             <h2 id="syllabus-title">Course Topics &amp; Core Modules</h2>
           </div>
           <p>
-            The 6 core mathematical pillars covered in Discrete Mathematics (CS-201) under Dr. Tahaei.
+            The 6 core mathematical pillars covered in Discrete Mathematics under Dr. Tahaei.
           </p>
         </div>
 
@@ -423,7 +423,7 @@ function Home() {
             <article
               key={module.id}
               className={styles.syllabusCard}
-              style={{ '--module-accent': module.color }}
+              style={{ '--module-color-light': module.color, '--module-color-dark': module.darkColor }}
             >
               <div className={styles.cardHeader}>
                 <span className={styles.moduleBadge}>Module {module.number}</span>

@@ -7,7 +7,8 @@ export const courseSyllabus = [
     description: 'Propositional connectives, truth tables, tautologies, predicate calculus, universal (∀) and existential (∃) quantifiers, and variable binding in AI & DB systems.',
     topics: ['Propositional Logic', 'Truth Tables', 'Predicate Calculus', 'Quantifiers (∀, ∃)', 'Variable Binding'],
     icon: 'logic',
-    color: '#3b82f6',
+    color: '#2859b8',
+    darkColor: '#8bb5ff',
   },
   {
     id: 'module-02',
@@ -17,7 +18,8 @@ export const courseSyllabus = [
     description: 'Rules of inference (Modus Ponens / Tollens), direct & indirect proofs, proof by contradiction, mathematical induction basis & inductive step, strong induction, and well-ordering.',
     topics: ['Inference Rules', 'Direct & Indirect Proofs', 'Contradiction Proofs', 'Mathematical Induction', 'Well-Ordering Property'],
     icon: 'proofs',
-    color: '#8b5cf6',
+    color: '#7042b4',
+    darkColor: '#bc9cf5',
   },
   {
     id: 'module-03',
@@ -27,7 +29,8 @@ export const courseSyllabus = [
     description: 'Set notation, power sets, Cartesian products, injective/surjective/bijective functions, sequences, infinite set cardinality |A|, Schröder–Bernstein theorem, and Cantor diagonal argument for ℝ.',
     topics: ['Set Operations', 'Power Sets', 'Bijective Functions', 'Set Cardinality |A|', 'Cantor Uncountability'],
     icon: 'sets',
-    color: '#10b981',
+    color: '#167454',
+    darkColor: '#77cfaa',
   },
   {
     id: 'module-04',
@@ -37,7 +40,8 @@ export const courseSyllabus = [
     description: 'Properties of divisibility (a | b), prime numbers, greatest common divisor (GCD), least common multiple (LCM), the Euclidean Algorithm, integer representations, and modular congruences.',
     topics: ['Divisibility Properties', 'Prime Factorization', 'Euclidean GCD Algorithm', 'Modular Congruence', 'Integer Representations'],
     icon: 'number-theory',
-    color: '#ec4899',
+    color: '#a63868',
+    darkColor: '#ee9bbb',
   },
   {
     id: 'module-05',
@@ -47,7 +51,8 @@ export const courseSyllabus = [
     description: 'Product and sum rules, tree diagrams, linear & cyclic permutations, combinations, Binomial Theorem & Pascal identities, and simple/generalized Pigeonhole Principle proofs.',
     topics: ['Product & Sum Rules', 'Permutations & Combinations', 'Binomial Theorem', 'Pigeonhole Principle', 'Double Counting'],
     icon: 'counting',
-    color: '#f59e0b',
+    color: '#936018',
+    darkColor: '#e9bd75',
   },
   {
     id: 'module-06',
@@ -57,6 +62,7 @@ export const courseSyllabus = [
     description: 'Simple graphs, digraphs, Handshaking Theorem, bipartite graphs, subgraphs & complements, matrix representations, graph isomorphisms, connectivity, and Euler circuits/paths.',
     topics: ['Handshaking Theorem', 'Bipartite Graphs', 'Graph Isomorphism', 'Adjacency Matrices', 'Euler Circuits & Paths'],
     icon: 'graphs',
-    color: '#06b6d4',
+    color: '#187080',
+    darkColor: '#78cddc',
   },
 ];

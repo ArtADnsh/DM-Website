@@ -8,8 +8,8 @@
   --background: #eef1f7;
   --surface: #ffffff;
 
-  --primary: #6c63ff;
-  --primary-light: #7a72ff;
+  --primary: #5948d7;
+  --primary-light: #5846bd;
 
   --text: #15172a;
   --text-muted: #5b5d70;
@@ -30,7 +30,7 @@
   --background: #151923;
   --surface: #1c2230;
 
-  --primary: #6c63ff;
+  --primary: #5948d7;
   --primary-light: #918aff;
 
   --text: #f3f4f6;
@@ -94,7 +94,7 @@ img {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid rgba(108, 99, 255, 0.35);
+  outline: 3px solid var(--primary-light);
   outline-offset: 3px;
 }
 

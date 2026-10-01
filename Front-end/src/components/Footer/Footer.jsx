@@ -46,7 +46,7 @@ function Footer() {
               <span className={styles.badgeDot} />
               Discrete Mathematics
             </div>
-            <h3 className={styles.courseTitle}>CS-201 · Fall 2026</h3>
+            <h3 className={styles.courseTitle}>Fall 2026 · Semester 4051</h3>
             <p className={styles.courseDesc}>
               Official course portal for Discrete Mathematics, Department of Computer Engineering at Iran University of Science and Technology.
             </p>
@@ -132,7 +132,7 @@ function Footer() {
         {/* BOTTOM COPYRIGHT & CREDITS */}
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>
-            © 2026 Discrete Mathematics (CS-201). All rights reserved.
+            © 2026 Discrete Mathematics. All rights reserved.
           </p>
 
           <p className={styles.credits}>

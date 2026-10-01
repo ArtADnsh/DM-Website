@@ -325,3 +325,11 @@
     transition: none;
   }
 }
+
+@media (max-width: 380px) {
+  .courseInfo { gap: 8px; }
+  .logo { width: 36px; height: 36px; }
+  .courseName { font-size: 14px; }
+  .university { max-width: 160px; font-size: 8px; }
+  .actions { gap: 6px; }
+}

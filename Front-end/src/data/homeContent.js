@@ -21,7 +21,7 @@ export const homeContent = {
   ],
 
   course: {
-    eyebrow: 'Discrete Mathematics (CS-201) · Fall 2026',
+    eyebrow: 'Discrete Mathematics · Fall 2026',
     title: 'Discrete Mathematics & Data Fundamentals',
     professor: 'Dr. Tahaei',
     university: 'Iran University of Science and Technology',
@@ -30,7 +30,7 @@ export const homeContent = {
     schedule: 'Sundays & Tuesdays, 10:30 - 12:00',
 
     description:
-      'This portal is the central hub for Discrete Mathematics (CS-201). Access lecture notes, download assignment problem sets, view quiz solutions, check weekly recitation schedules, and stay updated with official announcements.',
+      'This portal is the central hub for Discrete Mathematics. Access lecture notes, download assignment problem sets, view quiz solutions, check weekly recitation schedules, and stay updated with official announcements.',
 
     secondaryDescription:
       'The course focuses on mathematical logic, set theory, graph theory, combinatorics, recurrence relations, and discrete algorithms forming the bedrock of computer science.',
