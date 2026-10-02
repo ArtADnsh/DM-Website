@@ -4,8 +4,7 @@
   padding: clamp(48px, 6vw, 80px) 0 clamp(76px, 9vw, 120px);
 }
 
-.heroSection,
-.resourcesSection {
+.heroSection {
   scroll-margin-top: 110px;
 }
 
@@ -56,157 +55,10 @@
 }
 
 /* SLIDESHOW CONTAINER */
-.slideshowContainer {
-  position: relative;
-  width: 100%;
-  min-width: 0;
-  min-height: 380px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 28px;
-  background: var(--card-bg);
-  box-shadow: 0 20px 60px color-mix(in srgb, var(--shadow) 36%, transparent);
-  isolation: isolate;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.65s ease;
-}
-
-.activeSlide {
-  opacity: 1;
-  visibility: visible;
-  z-index: 1;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.photoPlaceholder {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 10px;
-  background:
-    linear-gradient(145deg, color-mix(in srgb, var(--primary) 16%, var(--surface)), var(--surface));
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.photoPlaceholder svg {
-  width: 44px;
-  height: 44px;
-  color: var(--primary-light);
-}
-
-.photoPlaceholder span {
-  font-size: 13px;
-  font-weight: 650;
-}
 
 /* CLEAR & VISIBLE MINIMALIST FLOATING ARROWS */
-.carouselArrow {
-  position: absolute;
-  top: 50%;
-  z-index: 4;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  border: none;
-  background: transparent;
-  color: #ffffff;
-  opacity: 0.75;
-  cursor: pointer;
-  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.85));
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.carouselArrow svg {
-  width: 36px;
-  height: 36px;
-}
-
-.carouselArrow:hover {
-  opacity: 1;
-  transform: translateY(-50%) scale(1.2);
-}
-
-.prevArrow {
-  left: 14px;
-}
-
-.nextArrow {
-  right: 14px;
-}
 
 /* ULTRA-CLEAN ELEGANT CIRCULAR TIMER BULLETS IN A FROSTED GLASS CAPSULE */
-.seniorPillContainer {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-}
-
-.circleBulletBtn {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.bulletSvg {
-  width: 22px;
-  height: 22px;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.centerDot {
-  fill: rgba(255, 255, 255, 0.4);
-  transition: fill 0.2s ease;
-}
-
-.circleBulletBtn:hover .centerDot {
-  fill: rgba(255, 255, 255, 0.9);
-}
-
-.circleBulletBtn:hover {
-  transform: scale(1.15);
-}
-
-.activeCircleBullet {
-  cursor: default;
-}
 
 /* LATEST UPDATES & RECITATIONS WIDGET */
 .updatesWidget {
@@ -317,26 +169,6 @@
   font-weight: 750;
 }
 
-.recitationTime {
-  color: var(--text-muted);
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.recitationTitle {
-  margin: 0 0 6px 0;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.recitationLocation {
-  margin: 0 0 12px 0;
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
 .recitationLink {
   align-self: flex-start;
   display: inline-flex;
@@ -382,23 +214,6 @@
   transform: translateY(0);
   box-shadow: none;
 }
-
-.comingSoonBadge {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 4px;
-  padding: 6px 14px;
-  border: 1px dashed rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--surface) 65%, transparent);
-  color: var(--text-muted);
-  font-size: 11.5px;
-  font-weight: 650;
-  letter-spacing: 0.02em;
-}
-
 
 /* RECENT FILES BOX IN WIDGET */
 .recentFilesBox {
@@ -620,93 +435,10 @@
   background: rgba(108, 99, 255, 0.16);
 }
 
-.resourcesSection {
-  margin-top: clamp(64px, 8vw, 104px);
-}
-
-.resourceGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.resourceCard {
-  min-width: 0;
-  min-height: 112px;
-  display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 16px;
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--card-bg);
-  box-shadow: 0 14px 36px color-mix(in srgb, var(--shadow) 25%, transparent);
-  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-}
-
-.resourceCard:hover {
-  transform: translateY(-3px);
-  border-color: rgba(108, 99, 255, 0.3);
-  background: color-mix(in srgb, var(--card-bg) 86%, var(--primary) 14%);
-}
-
-.resourceIcon {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(108, 99, 255, 0.22);
-  border-radius: 14px;
-  background: rgba(108, 99, 255, 0.1);
-  color: var(--primary-light);
-}
-
-.resourceIcon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.resourceCopy {
-  min-width: 0;
-}
-
-.resourceCopy strong,
-.resourceCopy small {
-  display: block;
-}
-
-.resourceCopy strong {
-  margin-bottom: 5px;
-  color: var(--text);
-  font-size: 14px;
-}
-
-.resourceCopy small {
-  color: var(--text-muted);
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-.resourceArrow {
-  color: var(--text-muted);
-  font-size: 18px;
-  transition: transform 0.22s ease, color 0.22s ease;
-}
-
-.resourceCard:hover .resourceArrow {
-  transform: translate(2px, -2px);
-  color: var(--primary-light);
-}
-
 /* RESPONSIVE LAYOUT FOR TABLETS AND MOBILE PHONES */
 @media (max-width: 960px) {
   .heroGrid {
     grid-template-columns: 1fr;
-  }
-
-  .slideshowContainer {
-    min-height: 320px;
   }
 }
 
@@ -751,47 +483,6 @@
     gap: 16px;
   }
 
-  .slideshowContainer {
-    min-height: 0;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 18px;
-  }
-
-  .carouselArrow {
-    width: 36px;
-    height: 36px;
-  }
-
-  .carouselArrow svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .prevArrow {
-    left: 6px;
-  }
-
-  .nextArrow {
-    right: 6px;
-  }
-
-  .seniorPillContainer {
-    bottom: 10px;
-    padding: 3px 8px;
-    gap: 4px;
-  }
-
-  .circleBulletBtn {
-    width: 26px;
-    height: 26px;
-  }
-
-  .bulletSvg {
-    width: 20px;
-    height: 20px;
-  }
-
   .updatesWidget {
     padding: 16px;
     border-radius: 18px;
@@ -817,16 +508,6 @@
     border-right: 0;
     border-bottom: 1px solid var(--border);
   }
-
-  .resourceGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .resourceCard {
-    padding: 14px 16px;
-    border-radius: 16px;
-    min-height: auto;
-  }
 }
 
 @media (max-width: 520px) {
@@ -846,13 +527,6 @@
 @media (max-width: 440px) {
   .home {
     width: min(100% - 24px, var(--container-width));
-  }
-
-  .slideshowContainer {
-    min-height: 0;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 14px;
   }
 
   .recitationHeader {
@@ -1013,8 +687,6 @@
   border-color: color-mix(in srgb, var(--module-accent, var(--primary)) 25%, var(--border));
 }
 
-
-
 .cardFooter {
   margin-top: auto;
   padding-top: 16px;
@@ -1106,8 +778,6 @@
   }
 }
 
-
-
 [data-theme='dark'] .syllabusCard {
   --module-accent: var(--module-color-dark);
 }
@@ -1127,18 +797,6 @@
 .syllabusCard:focus-within {
   border-color: var(--module-accent);
 }
-.pauseButton {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: #fff;
-  font-size: 13px;
-}
-.pauseButton:hover { background: rgba(255,255,255,.15); }
 @media (max-width: 680px) {
   .syllabusGrid { gap: 16px; }
   .syllabusCard { padding: 22px; border-radius: 18px; }

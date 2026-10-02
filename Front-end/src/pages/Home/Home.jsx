@@ -1,13 +1,9 @@
 import {
-  ImageIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  BulletIcon,
   AnnouncementIcon,
-  ResourceIcon,
 } from "../../components/icons";
 import { useState, useEffect } from "react";
 
+import ClassroomGallery from "../../components/ClassroomGallery/ClassroomGallery";
 import { homeContent } from "../../data/homeContent";
 import { courseSyllabus } from "../../data/courseSyllabus";
 import {
@@ -17,24 +13,8 @@ import {
 } from "../../api";
 import styles from "./Home.module.css";
 
-function PhotoPlaceholder({ label }) {
-  return (
-    <div className={styles.photoPlaceholder} aria-hidden="true">
-      <ImageIcon />
-      <span>{label}</span>
-    </div>
-  );
-}
-
-const SLIDE_DURATION = 4000; // 4 seconds per slide
-
 function Home() {
   const { gallery, course } = homeContent;
-
-  // Carousel State
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   // API Data State
   const [isLoading, setIsLoading] = useState(true);
@@ -45,13 +25,14 @@ function Home() {
   // Fetch API updates on mount. The shared API client keeps deploy URLs configurable.
   useEffect(() => {
     let isMounted = true;
+    const controller = new AbortController();
 
     async function loadUpdates() {
       try {
         const [recitations, files, ann] = await Promise.all([
-          fetchRecitations(),
-          fetchCourseFiles(),
-          fetchAnnouncement(),
+          fetchRecitations({ signal: controller.signal }),
+          fetchCourseFiles(null, { signal: controller.signal }),
+          fetchAnnouncement({ signal: controller.signal }),
         ]);
 
         if (!isMounted) return;
@@ -82,41 +63,9 @@ function Home() {
 
     return () => {
       isMounted = false;
+      controller.abort();
     };
   }, []);
-
-  // Timer & progress animation loop
-  useEffect(() => {
-    if (isPaused || gallery.length <= 1) return;
-
-    const intervalStep = 40; // 40ms updates for smooth progress fill
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          setCurrentSlide((slide) => (slide + 1) % gallery.length);
-          return 0;
-        }
-        return prev + (intervalStep / SLIDE_DURATION) * 100;
-      });
-    }, intervalStep);
-
-    return () => clearInterval(timer);
-  }, [isPaused, gallery.length]);
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % gallery.length);
-    setProgress(0);
-  };
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + gallery.length) % gallery.length);
-    setProgress(0);
-  };
-
-  const handleDotClick = (idx) => {
-    setCurrentSlide(idx);
-    setProgress(0);
-  };
 
   return (
     <div className={styles.home}>
@@ -138,74 +87,7 @@ function Home() {
 
         <div className={styles.heroGrid}>
           {/* LEFT: SLIDESHOW CAROUSEL WITH SENIOR UI EXPANDING PILL INDICATORS */}
-          <div
-            className={styles.slideshowContainer}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {gallery.map((photo, index) => (
-              <figure
-                key={photo.id}
-                className={`${styles.slide} ${index === currentSlide ? styles.activeSlide : ""}`}
-              >
-                {photo.src ? (
-                  <img src={photo.src} alt={photo.alt} />
-                ) : (
-                  <PhotoPlaceholder label={photo.label} />
-                )}
-              </figure>
-            ))}
-
-            {/* Clear Minimalist Navigation Arrows */}
-            {gallery.length > 1 && (
-              <>
-                <button
-                  className={`${styles.carouselArrow} ${styles.prevArrow}`}
-                  onClick={handlePrevSlide}
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeftIcon />
-                </button>
-
-                <button
-                  className={`${styles.carouselArrow} ${styles.nextArrow}`}
-                  onClick={handleNextSlide}
-                  aria-label="Next slide"
-                >
-                  <ChevronRightIcon />
-                </button>
-
-                {/* ULTRA-CLEAN ELEGANT CIRCULAR TIMER BULLETS IN A FROSTED GLASS CAPSULE */}
-                <div className={styles.seniorPillContainer}>
-                  {gallery.map((_, idx) => {
-                    const isActive = idx === currentSlide;
-                    const ringRadius = 8;
-                    const circumference = 2 * Math.PI * ringRadius; // ~50.265
-                    const strokeDashoffset =
-                      circumference - (circumference * progress) / 100;
-
-                    return (
-                      <button
-                        key={idx}
-                        className={`${styles.circleBulletBtn} ${isActive ? styles.activeCircleBullet : ""}`}
-                        onClick={() => handleDotClick(idx)}
-                        aria-label={`Go to slide ${idx + 1}`}
-                      >
-                        <BulletIcon
-                          className={styles.bulletSvg}
-                          isActive={isActive}
-                          ringRadius={ringRadius}
-                          circumference={circumference}
-                          strokeDashoffset={strokeDashoffset}
-                          centerDotClassName={styles.centerDot}
-                        />
-                      </button>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-          </div>
+          <ClassroomGallery gallery={gallery} />
 
           {/* RIGHT: LATEST UPDATES & RECITATIONS WIDGET */}
           <div className={styles.updatesWidget}>
