@@ -1,6 +1,6 @@
 import { navigationLinks } from "../../data/navigation";
 import { MenuIcon, CloseIcon } from "../icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import logoLight from "../../assets/logo_light.webp";
 import logoDark from "../../assets/logo_dark.webp";
@@ -8,6 +8,8 @@ import styles from "./Header.module.css";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 function Header() {
+  const menuButtonRef = useRef(null);
+  const menuRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -57,17 +59,37 @@ function Header() {
   }, []);
 
   useEffect(() => {
+    const menu = menuRef.current;
+    if (menu) menu.inert = !isMenuOpen;
     if (!isMenuOpen) return undefined;
+    menu?.querySelector('a')?.focus();
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
+        event.preventDefault();
         setIsMenuOpen(false);
+      }
+      if (event.key === "Tab") {
+        const controls = menu?.querySelectorAll('button, a[href]');
+        if (!controls?.length) return;
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
 
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      menuButtonRef.current?.focus();
+    };
   }, [isMenuOpen]);
 
   return (
@@ -107,6 +129,7 @@ function Header() {
           <ThemeToggle />
 
           <button
+            ref={menuButtonRef}
             className={styles.menuButton}
             onClick={toggleMenu}
             aria-label="Toggle navigation menu"
@@ -119,8 +142,10 @@ function Header() {
 
         {/* NAVIGATION DROPDOWN ANCHORED INSIDE CONTAINER */}
         <nav
+          ref={menuRef}
           id="site-navigation"
           className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ""}`}
+          aria-label="Main navigation"
           aria-hidden={!isMenuOpen}
         >
           <div className={styles.menuHeader}>
@@ -160,7 +185,7 @@ function Header() {
         className={`${styles.overlay} ${isMenuOpen ? styles.overlayOpen : ""}`}
         onClick={closeMenu}
         aria-label="Close navigation menu"
-        tabIndex={isMenuOpen ? 0 : -1}
+        tabIndex={-1}
       />
     </header>
   );

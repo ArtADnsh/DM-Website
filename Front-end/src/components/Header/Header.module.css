@@ -157,6 +157,8 @@
   box-shadow: 0 20px 60px var(--shadow);
   opacity: 0;
   visibility: hidden;
+  max-height: calc(100dvh - 120px);
+  overflow-y: auto;
   transform: translateY(-8px) scale(0.96);
   transform-origin: top right;
   transition:
@@ -206,8 +208,8 @@
 }
 
 .closeButton:hover {
-  background: rgba(244, 63, 94, 0.65);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--text);
 }
 
 /* MENU LINKS WITH TOUCH AND HOVER FEEDBACK FOR MOBILE & DESKTOP */
@@ -313,7 +315,7 @@
   .menu a:hover {
     background: rgba(108, 99, 255, 0.2);
     color: var(--text);
-    transform: translateX(4px);
+    transform: translateX(3px);
   }
 }
 

@@ -14,6 +14,7 @@ function CourseMaterials() {
   const [activeTab, setActiveTab] = useState("lecture-notes");
 
   const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
 
   const tabsRef = useRef(null);
 
@@ -25,10 +26,12 @@ function CourseMaterials() {
       try {
         const data = await fetchCourseFiles(null, { signal: controller.signal });
 
-        if (isMounted && Array.isArray(data)) {
-          setMaterials(data);
+        if (isMounted) {
+          setLoadFailed(!Array.isArray(data));
+          if (Array.isArray(data)) setMaterials(data);
         }
       } catch (error) {
+        if (isMounted) setLoadFailed(true);
         console.error("Failed to fetch course materials:", error);
       } finally {
         if (isMounted) {
@@ -98,8 +101,21 @@ function CourseMaterials() {
 
     tabs.scrollTo({
       left: Math.max(0, targetLeft),
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
+  };
+
+  const handleTabKeyDown = (event, index) => {
+    let nextIndex;
+    if (event.key === "ArrowRight") nextIndex = (index + 1) % materialTabs.length;
+    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + materialTabs.length) % materialTabs.length;
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = materialTabs.length - 1;
+    else return;
+    event.preventDefault();
+    const tab = tabsRef.current?.querySelectorAll('[role="tab"]')[nextIndex];
+    tab?.focus();
+    tab?.click();
   };
 
   return (
@@ -136,7 +152,7 @@ function CourseMaterials() {
             role="tablist"
             aria-label="Filter course materials"
           >
-            {materialTabs.map((tab) => {
+            {materialTabs.map((tab, index) => {
               const isActive = tab.id === activeTab;
 
               const count = groupedMaterials[tab.id]?.length ?? 0;
@@ -145,7 +161,10 @@ function CourseMaterials() {
                 <button
                   key={tab.id}
                   type="button"
+                  id={`materials-tab-${tab.id}`}
                   role="tab"
+                  tabIndex={isActive ? 0 : -1}
+                  onKeyDown={(event) => handleTabKeyDown(event, index)}
                   aria-selected={isActive}
                   aria-controls="course-materials-panel"
                   className={`${styles.tab} ${
@@ -199,6 +218,9 @@ function CourseMaterials() {
         <div
           id="course-materials-panel"
           role="tabpanel"
+          tabIndex={0}
+          aria-labelledby={`materials-tab-${activeTab}`}
+          aria-busy={loading}
           className={styles.panel}
         >
           {activeItems.length > 0 ? (
@@ -218,10 +240,12 @@ function CourseMaterials() {
               ))}
             </section>
           ) : (
-            <div className={styles.empty}>
+            <div className={styles.empty} role="status">
               {loading
-                ? "Loading course materials from backend..."
-                : activeTabConfig?.emptyMessage}
+                ? "Loading course materials…"
+                : loadFailed
+                  ? "Course materials could not be loaded. Please refresh the page to try again."
+                  : activeTabConfig?.emptyMessage}
             </div>
           )}
         </div>

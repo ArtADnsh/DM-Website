@@ -80,8 +80,7 @@ function Home() {
             <h2>Classroom and updates</h2>
           </div>
           <p>
-            Explore live class lectures, practice workshops, and stay updated
-            with the latest assignments and recitation schedules.
+            Class photos, course announcements, and recently added materials.
           </p>
         </div>
 
@@ -99,6 +98,8 @@ function Home() {
             {/* Recitation Schedule Card or Course Announcement */}
             {isLoading ? (
               <div
+                role="status"
+                aria-label="Loading course updates"
                 className={`${styles.recitationCard} ${styles.skeletonCard}`}
               >
                 <div className={styles.skeletonTag} />
@@ -109,7 +110,7 @@ function Home() {
               <div className={`${styles.recitationCard} ${styles.fadeIn}`}>
                 <div className={styles.recitationHeader}>
                   <span className={styles.recitationTag}>
-                    {announcement.title || "📢 Course Announcement"}
+                    {announcement.title || "📢 Course announcement"}
                   </span>
                 </div>
                 <p className={styles.announcementMessage}>
@@ -141,8 +142,7 @@ function Home() {
                   No announcements right now
                 </h4>
                 <p className={styles.noAnnouncementSubtext}>
-                  You're all set. Check back later for class updates, exam
-                  notices, or assignment announcements.
+                  New course announcements will appear here.
                 </p>
               </div>
             )}
@@ -241,8 +241,8 @@ function Home() {
       >
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.eyebrow}>Curriculum Roadmap</p>
-            <h2 id="syllabus-title">Course Topics &amp; Core Modules</h2>
+            <p className={styles.eyebrow}>Syllabus</p>
+            <h2 id="syllabus-title">Course topics</h2>
           </div>
           <p>
             The modules covered this semester, with the topics in each.
@@ -263,7 +263,6 @@ function Home() {
                 <span className={styles.moduleBadge}>
                   Module {module.number}
                 </span>
-                <span className={styles.moduleAccentDot} />
               </div>
 
               <h3 className={styles.moduleTitle}>{module.title}</h3>
@@ -284,7 +283,7 @@ function Home() {
                   data-internal-link
                   className={styles.moduleCta}
                 >
-                  View Materials &amp; Notes
+                  View materials
                   <span aria-hidden="true">→</span>
                 </a>
               </div>
