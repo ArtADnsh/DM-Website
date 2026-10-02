@@ -31,7 +31,8 @@
       // Apply the saved theme before first paint to avoid a light-mode flash.
       (function () {
         try {
-          var saved = localStorage.getItem('dm-theme');
+          var saved;
+          try { saved = localStorage.getItem('dm-theme'); } catch (e) {}
           var theme =
             saved === 'dark' || saved === 'light'
               ? saved
