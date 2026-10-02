@@ -77,7 +77,7 @@ function Home() {
         <div className={styles.sectionHeading}>
           <div>
             <p className={styles.eyebrow}>Inside the classroom</p>
-            <h2>Classroom Moments & Updates</h2>
+            <h2>Classroom and updates</h2>
           </div>
           <p>
             Explore live class lectures, practice workshops, and stay updated
@@ -123,7 +123,7 @@ function Home() {
                       ? { target: "_blank", rel: "noreferrer" }
                       : { "data-internal-link": true })}
                   >
-                    {announcement.link_text || "View Details"}
+                    {announcement.link_text || "View details"}
                     <span aria-hidden="true">→</span>
                   </a>
                 ) : null}
@@ -138,7 +138,7 @@ function Home() {
                   </span>
                 </div>
                 <h4 className={styles.noAnnouncementTitle}>
-                  No Active Announcements!
+                  No announcements right now
                 </h4>
                 <p className={styles.noAnnouncementSubtext}>
                   You're all set. Check back later for class updates, exam
@@ -151,7 +151,7 @@ function Home() {
             {latestFiles.length > 0 && (
               <div className={styles.recentFilesBox}>
                 <span className={styles.filesBoxTitle}>
-                  📥 Recent Course Material Downloads
+                  📥 Recent materials
                 </span>
                 <div className={styles.fileList}>
                   {latestFiles.map((file) => (
@@ -166,9 +166,9 @@ function Home() {
                         href={file.file_url || file.url}
                         download
                         className={styles.downloadBtn}
-                        title="Download PDF"
+                        aria-label={`Download ${file.title}`}
                       >
-                        Download PDF
+                        Download
                       </a>
                     </div>
                   ))}
@@ -223,7 +223,7 @@ function Home() {
             <strong>{course.semester}</strong>
           </div>
           <div>
-            <span>Lecture Schedule</span>
+            <span>Lecture schedule</span>
             <strong>{course.schedule}</strong>
           </div>
           <a href="/tas" data-internal-link>
@@ -245,8 +245,7 @@ function Home() {
             <h2 id="syllabus-title">Course Topics &amp; Core Modules</h2>
           </div>
           <p>
-            The 6 core mathematical pillars covered in Discrete Mathematics
-            under Dr. Tahaei.
+            The modules covered this semester, with the topics in each.
           </p>
         </div>
 

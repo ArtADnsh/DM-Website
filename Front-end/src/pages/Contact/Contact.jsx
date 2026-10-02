@@ -9,7 +9,6 @@ function Contact() {
     <div className={styles.page}>
       {/* PAGE HEADER */}
       <header className={styles.header}>
-        <p className={styles.eyebrow}>Discrete Mathematics</p>
         <h1 className={styles.title}>Contact Us &amp; Course Channels</h1>
         <p className={styles.subtitle}>
           Have a question about homeworks, project specs, quizzes, or recitation
