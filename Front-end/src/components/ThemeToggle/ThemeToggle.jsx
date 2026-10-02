@@ -5,7 +5,8 @@ import styles from "./ThemeToggle.module.css";
 const THEME_STORAGE_KEY = "dm-theme";
 
 function getInitialTheme() {
-  const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  let savedTheme;
+  try { savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY); } catch { /* Storage may be blocked. */ }
 
   if (savedTheme === "dark" || savedTheme === "light") {
     return savedTheme;
@@ -22,7 +23,10 @@ function ThemeToggle() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    try { window.localStorage.setItem(THEME_STORAGE_KEY, theme); } catch { /* Theme still works without persistence. */ }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      "content", theme === "dark" ? "#151923" : "#eef1f7",
+    );
   }, [theme]);
 
   const toggleTheme = () => {

@@ -9,7 +9,7 @@ function ContactCard({ member }) {
     <article className={styles.contactCard}>
       <div className={styles.cardTop}>
         {member.image ? (
-          <img src={member.image} alt={member.name} className={styles.avatar} />
+          <img loading="lazy" decoding="async" src={member.image} alt={member.name} className={styles.avatar} />
         ) : (
           <div
             className={styles.avatarFallback}

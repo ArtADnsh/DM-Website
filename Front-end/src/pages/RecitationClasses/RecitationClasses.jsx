@@ -8,9 +8,10 @@ function RecitationClasses() {
 
   useEffect(() => {
     let isMounted = true;
+    const controller = new AbortController();
     async function loadData() {
       try {
-        const data = await fetchRecitations();
+        const data = await fetchRecitations({ signal: controller.signal });
         if (isMounted && Array.isArray(data)) {
           setClasses(data);
         }
@@ -25,6 +26,7 @@ function RecitationClasses() {
     loadData();
     return () => {
       isMounted = false;
+      controller.abort();
     };
   }, []);
 
@@ -42,6 +44,7 @@ function RecitationClasses() {
       items={items}
       variant="recitation"
       unit="class"
+      pluralUnit="classes"
       emptyMessage={loading ? "Loading recitation classes..." : "No recitation classes have been published yet."}
     />
   );

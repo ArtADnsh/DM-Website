@@ -13,24 +13,35 @@ function getLocation() {
 
 export function useLocation() {
   const [location, setLocation] = useState(getLocation);
-  const { pathname, hash } = location;
 
   useEffect(() => {
     const handlePopState = () => setLocation(getLocation());
 
     window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, []);
 
   useEffect(() => {
     const handleInternalNavigation = (event) => {
-      const link = event.target.closest("a[data-internal-link]");
+      const link =
+        event.target instanceof Element
+          ? event.target.closest("a[data-internal-link]")
+          : null;
 
-      if (!link || event.defaultPrevented || event.button !== 0) {
-        return;
-      }
-
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      if (
+        !link ||
+        link.hasAttribute("download") ||
+        (link.target && link.target !== "_self") ||
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
         return;
       }
 
@@ -41,24 +52,51 @@ export function useLocation() {
       }
 
       event.preventDefault();
-      window.history.pushState({}, "", `${url.pathname}${url.hash}`);
+
+      const destination = `${url.pathname}${url.search}${url.hash}`;
+      const current =
+        `${window.location.pathname}` +
+        `${window.location.search}` +
+        `${window.location.hash}`;
+
+      if (destination !== current) {
+        window.history.pushState({}, "", destination);
+      }
+
+      // A new object also triggers scrolling when the URL hasn't changed.
       setLocation(getLocation());
     };
 
     document.addEventListener("click", handleInternalNavigation);
-    return () =>
+
+    return () => {
       document.removeEventListener("click", handleInternalNavigation);
+    };
   }, []);
 
   useEffect(() => {
-    const target = hash ? document.getElementById(hash.slice(1)) : null;
+    const { hash } = location;
+    let targetId = hash.slice(1);
+
+    try {
+      targetId = decodeURIComponent(targetId);
+    } catch {
+      // Keep malformed hashes literal.
+    }
+
+    const target = hash ? document.getElementById(targetId) : null;
+    const behavior = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches
+      ? "auto"
+      : "smooth";
 
     if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+      target.scrollIntoView({ behavior });
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior });
     }
-  }, [pathname, hash]);
+  }, [location]);
 
   return location;
 }

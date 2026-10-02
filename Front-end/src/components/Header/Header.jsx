@@ -21,6 +21,7 @@ function Header() {
 
   useEffect(() => {
     let ticking = false;
+    let animationFrame;
     let compact = window.scrollY > 40;
 
     setIsScrolled(compact);
@@ -42,14 +43,17 @@ function Header() {
       if (ticking) return;
 
       ticking = true;
-      requestAnimationFrame(evaluateScroll);
+      animationFrame = requestAnimationFrame(evaluateScroll);
     };
 
     window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   useEffect(() => {

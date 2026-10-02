@@ -19,10 +19,11 @@ function CourseMaterials() {
 
   useEffect(() => {
     let isMounted = true;
+    const controller = new AbortController();
 
     async function loadData() {
       try {
-        const data = await fetchCourseFiles();
+        const data = await fetchCourseFiles(null, { signal: controller.signal });
 
         if (isMounted && Array.isArray(data)) {
           setMaterials(data);
@@ -40,6 +41,7 @@ function CourseMaterials() {
 
     return () => {
       isMounted = false;
+      controller.abort();
     };
   }, []);
 

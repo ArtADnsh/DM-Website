@@ -134,7 +134,7 @@ function Footer() {
 
         {/* BOTTOM COPYRIGHT & CREDITS */}
         <div className={styles.bottomBar}>
-          <p className={styles.copyright}>
+          <p>
             © 2026 Discrete Mathematics. All rights reserved.
           </p>
 

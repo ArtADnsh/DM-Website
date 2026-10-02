@@ -22,7 +22,7 @@ function App() {
   if (pathname === "/tas") {
     page = <TAs />;
   } else if (recitationMatch) {
-    page = <RecitationClass id={recitationMatch[1]} />;
+    page = <RecitationClass key={recitationMatch[1]} id={recitationMatch[1]} />;
   } else if (
     pathname === "/recitations" ||
     pathname === "/videos" ||

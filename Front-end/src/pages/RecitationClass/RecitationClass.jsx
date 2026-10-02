@@ -29,9 +29,13 @@ function RecitationClass({ id }) {
 
   useEffect(() => {
     let isMounted = true;
+    const controller = new AbortController();
+    setLoading(true);
+    setRecitation(null);
+    setActiveTab("files");
     async function loadData() {
       try {
-        const data = await fetchRecitations();
+        const data = await fetchRecitations({ signal: controller.signal });
         if (isMounted && Array.isArray(data)) {
           const found = data.find(
             (item) =>
@@ -53,6 +57,7 @@ function RecitationClass({ id }) {
     loadData();
     return () => {
       isMounted = false;
+      controller.abort();
     };
   }, [id]);
 

@@ -12,10 +12,11 @@ function ResourceList({
   items = [],
   variant = 'document',
   unit = 'file',
+  pluralUnit = `${unit}s`,
   emptyMessage = 'Nothing has been published yet.',
 }) {
   const count = items.length;
-  const countLabel = count === 1 ? unit : `${unit}s`;
+  const countLabel = count === 1 ? unit : pluralUnit;
 
   return (
     <div className={styles.page}>

@@ -21,6 +21,8 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
       <div className={styles.top}>
         {image && !imgError ? (
           <img
+            loading="lazy"
+            decoding="async"
             src={image}
             alt={name}
             className={styles.avatar}

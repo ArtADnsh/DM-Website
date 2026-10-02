@@ -192,7 +192,7 @@
 .head {
   border-color: rgba(245, 158, 11, 0.28);
   background:
-    linear-gradient(155deg, rgba(245, 158, 11, 0.09), transparent 62%),
+    linear-gradient(155deg, rgba(245, 158, 11, 0.08), transparent 62%),
     var(--card-bg);
 }
 
