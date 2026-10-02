@@ -351,114 +351,6 @@
 }
 
 /* ================================
-   Result bar
-================================ */
-
-.resultBar {
-  min-height: 72px;
-
-  padding: 14px 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 20px;
-
-  border-bottom:
-    1px solid
-    var(--border);
-}
-
-.resultTitle {
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 11px;
-}
-
-.folderIcon {
-  width: 40px;
-
-  height: 36px;
-
-  display: grid;
-
-  place-items: center;
-
-  flex-shrink: 0;
-
-  color:
-    var(--primary-light);
-}
-
-.folderIcon svg {
-  width: 34px;
-
-  height: 34px;
-
-  overflow: visible;
-}
-
-.folderBack {
-  fill:
-    color-mix(
-      in srgb,
-      var(--primary-light) 56%,
-      var(--surface)
-    );
-}
-
-.folderFront {
-  fill:
-    color-mix(
-      in srgb,
-      var(--primary) 78%,
-      var(--primary-light)
-    );
-}
-
-.folderLine {
-  fill: none;
-
-  stroke:
-    color-mix(
-      in srgb,
-      white 44%,
-      var(--primary-light)
-    );
-
-  stroke-width: 1.25;
-
-  stroke-linecap: round;
-
-  opacity: 0.7;
-}
-
-.resultTitle strong,
-.resultTitle span {
-  display: block;
-}
-
-.resultTitle strong {
-  color: var(--text);
-
-  font-size: 14px;
-
-  font-weight: 700;
-}
-
-.resultTitle div > span {
-  margin-top: 3px;
-
-  color: var(--text-muted);
-
-  font-size: 12px;
-}
-
-/* ================================
    Materials
 ================================ */
 
@@ -676,11 +568,6 @@
       width;
   }
 
-  .resultBar {
-    min-height: 66px;
-
-    padding: 12px 14px;
-  }
 
   .panel {
     padding: 12px;

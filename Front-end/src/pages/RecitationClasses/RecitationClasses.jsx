@@ -43,8 +43,8 @@ function RecitationClasses() {
       description="Problem-solving classes, worksheets, solutions, and recordings — organized session by session."
       items={items}
       variant="recitation"
-      unit="class"
-      pluralUnit="classes"
+      unit="Class"
+      pluralUnit="Classes"
       emptyMessage={loading ? "Loading recitation classes..." : "No recitation classes have been published yet."}
     />
   );

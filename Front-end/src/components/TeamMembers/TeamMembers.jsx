@@ -85,7 +85,7 @@ function TeamMembers({
 
           <div className={styles.memberCount} aria-label={`${memberCount} team members`}>
             <strong>{memberCount}</strong>
-            <span>{memberCount === 1 ? 'member' : 'members'}</span>
+            <span>{memberCount === 1 ? 'Member' : 'Members'}</span>
           </div>
         </header>
 

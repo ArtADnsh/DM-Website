@@ -204,29 +204,6 @@ export function CheckIcon(props) {
   );
 }
 
-export function MaterialsFolderIcon({
-  backClassName,
-  frontClassName,
-  lineClassName,
-  ...props
-}) {
-  return (
-    <svg viewBox="0 0 32 32" {...props} aria-hidden="true">
-      <path
-        className={backClassName}
-        d="M3.5 8.75A3.25 3.25 0 0 1 6.75 5.5h6.1c.85 0 1.67.34 2.27.94l1.88 1.88h8.25a3.25 3.25 0 0 1 3.25 3.25v1.18h-25Z"
-      />
-
-      <path
-        className={frontClassName}
-        d="M3.5 12.25h25v10.5A3.75 3.75 0 0 1 24.75 26.5H7.25a3.75 3.75 0 0 1-3.75-3.75Z"
-      />
-
-      <path className={lineClassName} d="M7.25 16.25h17.5" />
-    </svg>
-  );
-}
-
 export function SendIcon(props) {
   return (
     <svg

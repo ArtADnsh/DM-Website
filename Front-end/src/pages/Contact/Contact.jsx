@@ -9,7 +9,7 @@ function Contact() {
     <div className={styles.page}>
       {/* PAGE HEADER */}
       <header className={styles.header}>
-        <h1 className={styles.title}>Contact Us &amp; Course Channels</h1>
+        <h1 className={styles.title}>Contact Us</h1>
         <p className={styles.subtitle}>
           Have a question about homeworks, project specs, quizzes, or recitation
           classes? Reach out directly to the corresponding team head or join the
@@ -20,7 +20,7 @@ function Contact() {
       {/* SECTION 1: OFFICIAL CHANNELS */}
       <section className={styles.section} aria-labelledby="channels-heading">
         <h2 id="channels-heading" className={styles.sectionTitle}>
-          Official Channels &amp; Platforms
+          Official Channels
         </h2>
         <p className={styles.sectionDesc}>
           Direct portals for announcements, discussion, homework submission, and

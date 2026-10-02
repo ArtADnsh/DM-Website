@@ -1,4 +1,3 @@
-import { MaterialsFolderIcon } from "../../components/icons";
 import { getMaterialCategory, normalizeMaterial } from "../../utils/materials";
 import { materialTabs } from "../../data/materialTabs";
 import { useScrollIndicator } from "../../hooks/useScrollIndicator";
@@ -74,6 +73,8 @@ function CourseMaterials() {
     return groups;
   }, [normalizedMaterials]);
 
+  const totalCountLabel = normalizedMaterials.length === 1 ? "File" : "Files";
+
   const tabCountsKey = materialTabs
     .map((tab) => groupedMaterials[tab.id]?.length ?? 0)
     .join("-");
@@ -83,8 +84,6 @@ function CourseMaterials() {
   const activeItems = groupedMaterials[activeTab] ?? [];
 
   const activeTabConfig = materialTabs.find((tab) => tab.id === activeTab);
-
-  const activeCountLabel = activeItems.length === 1 ? "file" : "files";
 
   const handleTabClick = (event, tabId) => {
     setActiveTab(tabId);
@@ -133,11 +132,11 @@ function CourseMaterials() {
 
         <div
           className={styles.totalCount}
-          aria-label={`${normalizedMaterials.length} files total`}
+          aria-label={`${normalizedMaterials.length} ${totalCountLabel.toLowerCase()} total`}
         >
           <strong>{normalizedMaterials.length}</strong>
 
-          <span>files</span>
+          <span>{totalCountLabel}</span>
         </div>
       </header>
 
@@ -193,26 +192,6 @@ function CourseMaterials() {
               />
             </div>
           )}
-        </div>
-
-        <div className={styles.resultBar}>
-          <div className={styles.resultTitle}>
-            <span className={styles.folderIcon}>
-              <MaterialsFolderIcon
-                backClassName={styles.folderBack}
-                frontClassName={styles.folderFront}
-                lineClassName={styles.folderLine}
-              />
-            </span>
-
-            <div>
-              <strong>{activeTabConfig?.label}</strong>
-
-              <span>
-                {activeItems.length} {activeCountLabel}
-              </span>
-            </div>
-          </div>
         </div>
 
         <div

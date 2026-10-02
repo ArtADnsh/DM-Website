@@ -16,7 +16,7 @@ function Mentor() {
 
           <div className={styles.count} aria-label={`${mentorAssignments.length} students`}>
             <strong>{mentorAssignments.length}</strong>
-            <span>students</span>
+            <span>Students</span>
           </div>
         </header>
 
