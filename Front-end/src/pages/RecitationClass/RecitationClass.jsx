@@ -9,15 +9,11 @@ const TABS = [
   {
     id: "files",
     label: "Class Files",
-    singular: "file",
-    plural: "files",
     emptyMessage: "No class files have been published yet.",
   },
   {
     id: "videos",
     label: "Class Videos",
-    singular: "video",
-    plural: "videos",
     emptyMessage: "No class recordings have been published yet.",
   },
 ];
@@ -61,6 +57,21 @@ function RecitationClass({ id }) {
     };
   }, [id]);
 
+  const handleTabKeyDown = (event, index) => {
+    let nextIndex;
+
+    if (event.key === "ArrowRight") nextIndex = (index + 1) % TABS.length;
+    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + TABS.length) % TABS.length;
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = TABS.length - 1;
+    else return;
+
+    event.preventDefault();
+    setActiveTab(TABS[nextIndex].id);
+    const tabs = event.currentTarget.closest('[role="tablist"]');
+    tabs?.querySelectorAll('[role="tab"]')[nextIndex]?.focus();
+  };
+
   if (loading) {
     return (
       <div className={styles.page}>
@@ -100,8 +111,6 @@ function RecitationClass({ id }) {
   const activeConfig = TABS.find((tab) => tab.id === activeTab) ?? TABS[0];
   const activeItems = activeTab === "files" ? files : videos;
   const totalResources = files.length + videos.length;
-  const activeUnit =
-    activeItems.length === 1 ? activeConfig.singular : activeConfig.plural;
 
   const telegramHandle =
     recitation.instructor_telegram || recitation.instructorTelegram;
@@ -161,7 +170,7 @@ function RecitationClass({ id }) {
           aria-label={`${totalResources} resources total`}
         >
           <strong>{totalResources}</strong>
-          <span>{totalResources === 1 ? "resource" : "resources"}</span>
+          <span>{totalResources === 1 ? "Resource" : "Resources"}</span>
         </div>
       </header>
 
@@ -174,7 +183,7 @@ function RecitationClass({ id }) {
           role="tablist"
           aria-label="Recitation resource type"
         >
-          {TABS.map((tab) => {
+          {TABS.map((tab, index) => {
             const isActive = tab.id === activeTab;
             const count = (tab.id === "files" ? files : videos).length;
 
@@ -182,7 +191,10 @@ function RecitationClass({ id }) {
               <button
                 key={tab.id}
                 type="button"
+                id={`recitation-tab-${tab.id}`}
                 role="tab"
+                tabIndex={isActive ? 0 : -1}
+                onKeyDown={(event) => handleTabKeyDown(event, index)}
                 aria-selected={isActive}
                 aria-controls="recitation-resources-panel"
                 className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
@@ -200,23 +212,11 @@ function RecitationClass({ id }) {
           })}
         </div>
 
-        <div className={styles.resultBar}>
-          <div>
-            <strong>{activeConfig.label}</strong>
-            <span>
-              {activeItems.length} {activeUnit}
-            </span>
-          </div>
-          <span className={styles.resultHint}>
-            {activeTab === "files"
-              ? "Slides, worksheets & solutions"
-              : "Session recordings"}
-          </span>
-        </div>
-
         <div
           id="recitation-resources-panel"
           role="tabpanel"
+          tabIndex={0}
+          aria-labelledby={`recitation-tab-${activeTab}`}
           className={styles.panel}
         >
           {activeItems.length > 0 ? (

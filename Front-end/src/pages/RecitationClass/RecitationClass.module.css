@@ -222,39 +222,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.resultBar {
-  min-height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 13px 18px;
-  border-bottom: 1px solid var(--border);
-}
-
-.resultBar strong,
-.resultBar div > span {
-  display: block;
-}
-
-.resultBar strong {
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.resultBar div > span {
-  margin-top: 3px;
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-.resultHint {
-  color: var(--text-muted);
-  font-size: 11.5px;
-  text-align: right;
-}
-
 .panel {
   min-height: 180px;
   padding: 18px;
@@ -356,14 +323,6 @@
     font-size: 12.5px;
   }
 
-  .resultBar {
-    min-height: 64px;
-    padding: 12px 14px;
-  }
-
-  .resultHint {
-    display: none;
-  }
 
   .panel {
     padding: 12px;

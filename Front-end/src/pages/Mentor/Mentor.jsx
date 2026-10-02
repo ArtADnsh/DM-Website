@@ -2,6 +2,8 @@ import { mentorAssignments } from '../../data/mentors';
 import styles from './Mentor.module.css';
 
 function Mentor() {
+  const studentCountLabel = mentorAssignments.length === 1 ? 'Student' : 'Students';
+
   return (
     <div className={styles.page}>
       <section className={styles.panel} aria-labelledby="mentor-title">
@@ -14,9 +16,9 @@ function Mentor() {
             </p>
           </div>
 
-          <div className={styles.count} aria-label={`${mentorAssignments.length} students`}>
+          <div className={styles.count} aria-label={`${mentorAssignments.length} ${studentCountLabel.toLowerCase()}`}>
             <strong>{mentorAssignments.length}</strong>
-            <span>Students</span>
+            <span>{studentCountLabel}</span>
           </div>
         </header>
 
