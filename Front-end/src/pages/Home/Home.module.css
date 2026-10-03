@@ -207,7 +207,7 @@
 
 .recitationLink:hover span,
 .recitationLink:focus-visible span {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 .recitationLink:active {
