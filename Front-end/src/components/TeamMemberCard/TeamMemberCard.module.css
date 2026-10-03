@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   min-width: 0;
-  min-height: 200px;
+  min-height: 196px;
   padding: 22px;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -43,9 +43,9 @@
 
 .avatar,
 .avatarFallback {
-  width: 96px;
-  height: 96px;
-  flex: 0 0 96px;
+  width: 98px;
+  height: 98px;
+  flex: 0 0 98px;
   border: 1px solid var(--border);
   border-radius: 18px;
 }
@@ -79,7 +79,7 @@
 }
 
 .identity {
-  min-height: 44px;
+  min-height: 30px;
 }
 
 .name {
@@ -100,7 +100,7 @@
 
 .divider {
   height: 1px;
-  margin: 14px 0;
+  margin: 16px 0 13px;
   background: var(--border);
 }
 
@@ -165,7 +165,7 @@
 }
 
 .hta {
-  min-height: 212px;
+  min-height: 208px;
   border-color: rgba(20, 184, 166, 0.2);
   background:
     linear-gradient(155deg, rgba(20, 184, 166, 0.13), transparent 62%),
@@ -174,9 +174,9 @@
 
 .hta .avatar,
 .hta .avatarFallback {
-  width: 108px;
-  height: 108px;
-  flex-basis: 108px;
+  width: 114px;
+  height: 114px;
+  flex-basis: 114px;
 }
 
 .hta .badge {
@@ -207,7 +207,7 @@
 }
 
 .professor {
-  min-height: 230px;
+  min-height: 226px;
   padding: 26px;
   border-color: rgba(108, 99, 255, 0.28);
   background:
@@ -218,9 +218,9 @@
 
 .professor .avatar,
 .professor .avatarFallback {
-  width: 124px;
-  height: 124px;
-  flex-basis: 124px;
+  width: 130px;
+  height: 130px;
+  flex-basis: 130px;
   border-radius: 22px;
 }
 
@@ -270,9 +270,9 @@
   .hta .avatarFallback,
   .avatar,
   .avatarFallback {
-    width: 84px;
-    height: 84px;
-    flex-basis: 84px;
+    width: 88px;
+    height: 88px;
+    flex-basis: 88px;
     border-radius: 17px;
   }
 }

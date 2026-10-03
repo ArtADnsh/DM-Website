@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import FileCard from "../../components/FileCard/FileCard";
 import { fetchRecitations } from "../../api";
+import { teamMembers } from "../../data/teamMembers";
 import styles from "./RecitationClass.module.css";
 
 const TABS = [
@@ -112,18 +113,16 @@ function RecitationClass({ id }) {
   const activeItems = activeTab === "files" ? files : videos;
   const totalResources = files.length + videos.length;
 
-  const telegramHandle =
-    recitation.instructor_telegram || recitation.instructorTelegram;
-  const telegramUrl = telegramHandle
-    ? telegramHandle.startsWith("http")
-      ? telegramHandle
-      : `https://t.me/${telegramHandle.replace("@", "")}`
-    : null;
-  const telegramLabel = telegramHandle
-    ? telegramHandle.startsWith("@")
-      ? telegramHandle
-      : `@${telegramHandle.split("/").pop()}`
-    : "";
+  const normalizeName = (name) =>
+    String(name ?? "").trim().replace(/\s+/g, " ").toLowerCase();
+  const instructor = teamMembers.find(
+    (member) => normalizeName(member.name) === normalizeName(recitation.instructor),
+  );
+  const telegramHandle = instructor?.telegram?.trim().replace(/^@/, "");
+  const telegramUrl =
+    telegramHandle && !telegramHandle.startsWith("replace_me_")
+      ? `https://t.me/${telegramHandle}`
+      : null;
 
   return (
     <div className={styles.page}>
@@ -155,11 +154,11 @@ function RecitationClass({ id }) {
                 href={telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.telegramButton}
+                className={styles.telegramLink}
                 title={`Ask ${recitation.instructor} a question on Telegram`}
               >
-                <TelegramIcon />
-                <span>Ask TA on Telegram</span>
+                <TelegramIcon aria-hidden="true" />
+                <span>Ask on Telegram</span>
               </a>
             )}
           </div>

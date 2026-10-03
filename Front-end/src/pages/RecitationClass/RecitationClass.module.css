@@ -101,32 +101,70 @@
   font-weight: 650;
 }
 
-.telegramButton {
+.telegramLink {
+  --telegram-accent: #1678a8;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 12px;
-  border: 1px solid rgba(42, 171, 238, 0.35);
-  border-radius: 999px;
-  background: color-mix(in srgb, #2aabee 12%, var(--surface));
-  color: #2aabee;
-  font-size: 12.5px;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 5px 11px;
+  border: 1px solid rgba(42, 171, 238, 0.18);
+  border-radius: 10px;
+  background: rgba(42, 171, 238, 0.06);
+  color: var(--telegram-accent);
+  font-size: 12px;
   font-weight: 650;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none !important;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.telegramButton svg {
+.telegramLink svg {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
 }
 
-.telegramButton:hover {
-  background: color-mix(in srgb, #2aabee 22%, var(--surface));
-  border-color: #2aabee;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 12px rgba(42, 171, 238, 0.2);
+.telegramLink:hover {
+  background: rgba(42, 171, 238, 0.11);
+  border-color: rgba(42, 171, 238, 0.32);
+  color: var(--telegram-accent);
+  text-decoration: none !important;
+}
+
+.telegramLink:focus-visible {
+  outline: 2px solid var(--telegram-accent);
+  outline-offset: 3px;
+  text-decoration: none !important;
+}
+
+.telegramLink:active {
+  background: rgba(42, 171, 238, 0.16);
+  text-decoration: none !important;
+}
+
+.telegramLink span {
+  text-decoration: none !important;
+}
+
+:global([data-theme='dark']) .telegramLink {
+  --telegram-accent: #7dd3fc;
+  border-color: rgba(125, 211, 252, 0.2);
+  background: rgba(42, 171, 238, 0.08);
+}
+
+:global([data-theme='dark']) .telegramLink:hover {
+  border-color: rgba(125, 211, 252, 0.36);
+  background: rgba(42, 171, 238, 0.15);
+}
+
+:global([data-theme='dark']) .telegramLink:active {
+  background: rgba(42, 171, 238, 0.2);
 }
 
 .totalCount {
@@ -323,7 +361,6 @@
     font-size: 12.5px;
   }
 
-
   .panel {
     padding: 12px;
   }
@@ -332,5 +369,11 @@
 @media (max-width: 390px) {
   .tab > svg {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .telegramLink {
+    transition: none;
   }
 }
