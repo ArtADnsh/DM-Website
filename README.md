@@ -1,6 +1,6 @@
 # DM-Website
 
-Full-stack portal for **Discrete Mathematics & Data Fundamentals (CS-201)**, featuring a React SPA frontend and a Django API backend, containerized for production deployment with Docker and Nginx.
+Full-stack portal for **Discrete Mathematics & Data Fundamentals**, featuring a React SPA frontend and a Django API backend, containerized for production deployment with Docker and Nginx.
 
 ---
 
