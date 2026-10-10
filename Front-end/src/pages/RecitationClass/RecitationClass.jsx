@@ -58,6 +58,16 @@ function RecitationClass({ id }) {
     };
   }, [id]);
 
+  useEffect(() => {
+    const pageTitle = loading
+      ? `Recitation Class ${id}`
+      : recitation
+        ? `Recitation Class ${recitation.number || id}: ${recitation.title || "Session"}`
+        : "Class Not Found";
+
+    document.title = `${pageTitle} | Discrete Mathematics · IUST`;
+  }, [id, loading, recitation]);
+
   const handleTabKeyDown = (event, index) => {
     let nextIndex;
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation } from "./hooks/useLocation";
 
 import Header from "./components/Header/Header";
@@ -18,28 +19,43 @@ function App() {
 
   const recitationMatch = pathname.match(/^\/recitations\/(\d+)$/);
   let page;
+  let pageTitle = "Home";
 
   if (pathname === "/tas") {
+    pageTitle = "Teaching Team";
     page = <TAs />;
   } else if (recitationMatch) {
+    // The detail page sets its title from the fetched session data.
+    pageTitle = null;
     page = <RecitationClass key={recitationMatch[1]} id={recitationMatch[1]} />;
   } else if (
     pathname === "/recitations" ||
     pathname === "/videos" ||
     pathname === "/tutorials"
   ) {
+    pageTitle = "Recitation Classes";
     page = <RecitationClasses />;
   } else if (pathname === "/project") {
+    pageTitle = "Project";
     page = <Project />;
   } else if (pathname === "/materials") {
+    pageTitle = "Course Materials";
     page = <CourseMaterials />;
   } else if (pathname === "/contact") {
+    pageTitle = "Contact Us";
     page = <Contact />;
   } else if (pathname === "/mentor" || pathname === "/mentors") {
+    pageTitle = "Mentor Assignments";
     page = <Mentor />;
   } else {
     page = <Home />;
   }
+
+  useEffect(() => {
+    if (pageTitle !== null) {
+      document.title = `${pageTitle} | Discrete Mathematics · IUST`;
+    }
+  }, [pageTitle]);
 
   return (
     <div className="app">
