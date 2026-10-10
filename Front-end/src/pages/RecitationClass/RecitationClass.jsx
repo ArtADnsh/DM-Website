@@ -22,29 +22,35 @@ const TABS = [
 function RecitationClass({ id }) {
   const [recitation, setRecitation] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [activeTab, setActiveTab] = useState("files");
 
   useEffect(() => {
     let isMounted = true;
     const controller = new AbortController();
     setLoading(true);
+    setLoadFailed(false);
     setRecitation(null);
     setActiveTab("files");
     async function loadData() {
       try {
         const data = await fetchRecitations({ signal: controller.signal });
+        if (isMounted) {
+          setLoadFailed(!Array.isArray(data));
+        }
         if (isMounted && Array.isArray(data)) {
-          const found = data.find(
-            (item) =>
-              String(item.id) === String(id) ||
-              String(item.number) === String(id),
-          );
+          const found =
+            data.find((item) => String(item.id) === String(id)) ??
+            data.find((item) => String(item.number) === String(id));
           if (found) {
             setRecitation(found);
           }
         }
       } catch (err) {
-        console.error("Failed to load recitation detail:", err);
+        if (isMounted) {
+          setLoadFailed(true);
+          console.error("Failed to load recitation detail:", err);
+        }
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -61,12 +67,14 @@ function RecitationClass({ id }) {
   useEffect(() => {
     const pageTitle = loading
       ? `Recitation Class ${id}`
-      : recitation
+      : loadFailed
+        ? "Unable to Load Recitation Class"
+        : recitation
         ? `Recitation Class ${recitation.number || id}: ${recitation.title || "Session"}`
         : "Class Not Found";
 
     document.title = `${pageTitle} | Discrete Mathematics · IUST`;
-  }, [id, loading, recitation]);
+  }, [id, loading, loadFailed, recitation]);
 
   const handleTabKeyDown = (event, index) => {
     let nextIndex;
@@ -90,9 +98,25 @@ function RecitationClass({ id }) {
           <span aria-hidden="true">←</span>
           Recitation Classes
         </a>
-        <div className={styles.notFound}>
+        <div className={styles.notFound} role="status" aria-busy="true">
           <span>Loading session...</span>
           <p>Fetching recitation details from backend...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadFailed) {
+    return (
+      <div className={styles.page}>
+        <a className={styles.backLink} href="/recitations" data-internal-link>
+          <span aria-hidden="true">←</span>
+          Recitation Classes
+        </a>
+        <div className={styles.notFound} role="alert">
+          <span>Unable to load class</span>
+          <h1>Recitation details could not be loaded.</h1>
+          <p>Please refresh the page to try again.</p>
         </div>
       </div>
     );

@@ -129,7 +129,7 @@
 }
 
 .professorGrid {
-  grid-template-columns: minmax(0, 560px);
+  grid-template-columns: minmax(0, 400px);
 }
 
 .htaGrid {

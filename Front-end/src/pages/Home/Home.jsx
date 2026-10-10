@@ -21,6 +21,8 @@ function Home() {
   const [announcement, setAnnouncement] = useState(null);
   const [latestRecitation, setLatestRecitation] = useState(null);
   const [latestFiles, setLatestFiles] = useState([]);
+  const [announcementLoadFailed, setAnnouncementLoadFailed] = useState(false);
+  const [filesLoadFailed, setFilesLoadFailed] = useState(false);
 
   // Fetch API updates on mount. The shared API client keeps deploy URLs configurable.
   useEffect(() => {
@@ -29,7 +31,7 @@ function Home() {
 
     async function loadUpdates() {
       try {
-        const [recitations, files, ann] = await Promise.all([
+        const [recitationsResult, filesResult, announcementResult] = await Promise.allSettled([
           fetchRecitations({ signal: controller.signal }),
           fetchCourseFiles(null, { signal: controller.signal }),
           fetchAnnouncement({ signal: controller.signal }),
@@ -37,21 +39,32 @@ function Home() {
 
         if (!isMounted) return;
 
-        if (ann && ann.is_active) {
-          setAnnouncement(ann);
-        } else {
-          setAnnouncement(null);
+        const announcementSucceeded =
+          announcementResult.status === "fulfilled" &&
+          (announcementResult.value === null ||
+            (typeof announcementResult.value === "object" &&
+              !Array.isArray(announcementResult.value)));
+        setAnnouncementLoadFailed(!announcementSucceeded);
+        const ann = announcementSucceeded ? announcementResult.value : null;
+        setAnnouncement(ann?.is_active ? ann : null);
+
+        if (
+          recitationsResult.status === "fulfilled" &&
+          Array.isArray(recitationsResult.value)
+        ) {
+          setLatestRecitation(recitationsResult.value[0] || null);
         }
 
-        if (Array.isArray(recitations)) {
-          setLatestRecitation(recitations[0] || null);
-        }
-
-        if (Array.isArray(files)) {
-          setLatestFiles(files.slice(0, 2));
-        }
+        const filesSucceeded =
+          filesResult.status === "fulfilled" && Array.isArray(filesResult.value);
+        setFilesLoadFailed(!filesSucceeded);
+        setLatestFiles(filesSucceeded ? filesResult.value.slice(0, 2) : []);
       } catch (err) {
-        console.error("Failed to load home updates:", err);
+        if (isMounted) {
+          setAnnouncementLoadFailed(true);
+          setFilesLoadFailed(true);
+          console.error("Failed to load home updates:", err);
+        }
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -106,6 +119,15 @@ function Home() {
                 <div className={styles.skeletonTitle} />
                 <div className={styles.skeletonText} />
               </div>
+            ) : announcementLoadFailed ? (
+              <div className={styles.recitationCard} role="alert">
+                <h4 className={styles.noAnnouncementTitle}>
+                  Announcements could not be loaded
+                </h4>
+                <p className={styles.noAnnouncementSubtext}>
+                  Please refresh the page to try again.
+                </p>
+              </div>
             ) : announcement && announcement.is_active ? (
               <div className={`${styles.recitationCard} ${styles.fadeIn}`}>
                 <div className={styles.recitationHeader}>
@@ -148,6 +170,15 @@ function Home() {
             )}
 
             {/* Recent Files Download Box */}
+            {!isLoading && filesLoadFailed && (
+              <div className={styles.recentFilesBox} role="alert">
+                <span className={styles.filesBoxTitle}>Recent materials</span>
+                <p className={styles.noAnnouncementSubtext}>
+                  Recent materials could not be loaded. Please refresh the page
+                  to try again.
+                </p>
+              </div>
+            )}
             {latestFiles.length > 0 && (
               <div className={styles.recentFilesBox}>
                 <span className={styles.filesBoxTitle}>

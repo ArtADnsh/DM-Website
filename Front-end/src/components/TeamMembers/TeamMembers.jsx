@@ -19,9 +19,9 @@ const DEFAULT_ROLE_CONFIG = {
 const DEFAULT_ROLE_ORDER = ['Professor', 'HTA', 'TA'];
 
 const GRID_VARIANTS = {
-  Professor: styles.professorGrid,
-  HTA: styles.htaGrid,
-  TA: styles.taGrid,
+  professor: styles.professorGrid,
+  hta: styles.htaGrid,
+  ta: styles.taGrid,
 };
 
 function groupMembersByRole(members, roleOrder, roleConfig) {
@@ -101,7 +101,7 @@ function TeamMembers({
                 </div>
               </div>
 
-              <div className={`${styles.grid} ${GRID_VARIANTS[group.id || group.role] || styles.taGrid}`}>
+              <div className={`${styles.grid} ${GRID_VARIANTS[(group.id || group.role || "").toLowerCase()] || styles.taGrid}`}>
                 {group.members.map((member, index) => (
                   <TeamMemberCard
                     key={`${group.id || group.role}-${member.id || member.name}-${index}`}

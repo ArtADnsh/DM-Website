@@ -5,46 +5,49 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
-export async function fetchAnnouncement() {
+export async function fetchAnnouncement({ signal } = {}) {
   try {
-    const res = await fetch(`${API_BASE_URL}/announcement/`);
+    const res = await fetch(`${API_BASE_URL}/announcement/`, { signal });
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
     const data = await res.json();
     return data;
   } catch (err) {
-    console.warn('Backend API announcement offline/error:', err.message);
-    return null;
+    // Navigation cancellation is expected, not a backend error.
+    if (signal?.aborted || err.name === 'AbortError') return null;
+    throw err;
   }
 }
 
-export async function fetchRecitations() {
+export async function fetchRecitations({ signal } = {}) {
   try {
-    const res = await fetch(`${API_BASE_URL}/recitations/`);
+    const res = await fetch(`${API_BASE_URL}/recitations/`, { signal });
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
     const data = await res.json();
     return data;
   } catch (err) {
-    console.warn('Backend API connection offline/error, using static recitations fallback:', err.message);
-    return null;
+    // Navigation cancellation is expected, not a backend error.
+    if (signal?.aborted || err.name === 'AbortError') return null;
+    throw err;
   }
 }
 
-export async function fetchCourseFiles(category = null) {
+export async function fetchCourseFiles(category = null, { signal } = {}) {
   try {
     const url = category ? `${API_BASE_URL}/files/?category=${category}` : `${API_BASE_URL}/files/`;
-    const res = await fetch(url);
+    const res = await fetch(url, { signal });
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
     const data = await res.json();
     return data;
   } catch (err) {
-    console.warn('Backend API connection offline/error, using static course files fallback:', err.message);
-    return null;
+    // Navigation cancellation is expected, not a backend error.
+    if (signal?.aborted || err.name === 'AbortError') return null;
+    throw err;
   }
 }
 
