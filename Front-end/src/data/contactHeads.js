@@ -1,54 +1,18 @@
-export const contactHeads = [
-  {
-    id: "head-01",
-    name: "Amir Jebbeli",
-    badge: "HTA",
-    scope: "Overall Course Logistics & Head TA Support",
-    email: "Amirjebbeli75@outlook.com",
-    telegram: "@Amir_Jebbeli",
-    image: "/images/tas/Amir Jebbeli.webp",
-  },
-  {
-    id: "head-02",
-    name: "Kasra Nouri",
-    badge: "HTA",
-    scope: "Overall Course Logistics & Head TA Support",
-    email: "kasra.nouri85@gmail.com",
-    telegram: "@UnicornKN",
-    image: "/images/tas/Kasra Nouri.webp",
-  },
-  {
-    id: "head-recitation",
-    name: "Kian Sharifian",
-    badge: "Recitation Head",
-    scope: "Weekly Problem-Solving & Tutorial Sessions",
-    telegram: "@kian_sharifan",
-  },
-  {
-    id: "head-hw",
-    name: "Elmira Bekiasai",
-    badge: "HW Head",
-    scope: "Homework Assignments & Problem Sets",
-    email: "elmirabekiasai220@gmail.com",
-    telegram: "@elmira85b",
-    image: "/images/tas/Elmira Bekiasai.webp",
-  },
-  {
-    id: "head-project",
-    name: "Mobina Hoshiaripour",
-    badge: "Project Head",
-    scope: "Course Programming & Research Project",
-    email: "ma.hoshiar@gmail.com",
-    telegram: "@mobinahhh",
-    image: "/images/tas/Mobina Hoshiaripour.webp",
-  },
-  {
-    id: "head-quiz",
-    name: "Iliya Ebrahimi",
-    badge: "Quiz Head",
-    scope: "Weekly Quizzes & Exam Grading",
-    email: "iliyaebrahimiwork1000@gmail.com",
-    telegram: "@Iliya_Ebrahimi",
-    image: "/images/tas/Iliya Ebrahimi.webp",
-  },
+import { teamMembers } from "./teamMembers";
+
+// The Contact page reuses each head's profile (name, photo, email, Telegram,
+// badge) from teamMembers.js - the single source of truth - and only adds the
+// short "scope" line describing what to contact them about.
+const headScopes = [
+  { id: "hta-01", scope: "Overall Course Logistics & Head TA Support" },
+  { id: "hta-02", scope: "Overall Course Logistics & Head TA Support" },
+  { id: "ta-17", scope: "Weekly Problem-Solving & Tutorial Sessions" },
+  { id: "ta-08", scope: "Homework Assignments & Problem Sets" },
+  { id: "ta-13", scope: "Course Programming & Research Project" },
+  { id: "ta-06", scope: "Weekly Quizzes & Exam Grading" },
 ];
+
+export const contactHeads = headScopes.flatMap(({ id, scope }) => {
+  const member = teamMembers.find((candidate) => candidate.id === id);
+  return member ? [{ ...member, scope }] : [];
+});

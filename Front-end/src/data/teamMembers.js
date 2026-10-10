@@ -52,7 +52,7 @@ export const teamCategories = [
     members: [
       {
         id: 'ta-17',
-        name: 'Kian Sharifian',
+        name: 'Kian Sharifan',
         role: 'TA',
         badge: 'Recitation Head',
         telegram: '@kian_sharifan',
