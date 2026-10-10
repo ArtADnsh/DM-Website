@@ -136,6 +136,30 @@
   pointer-events: none;
 }
 
+/* BulletIcon's countdown circle; CSS owns all progress frames. */
+.activeCircleBullet .bulletSvg circle[stroke-dasharray] {
+  animation: galleryProgress var(--slide-duration, 4000ms) linear forwards;
+}
+
+.slideshowContainer[data-paused="true"] .bulletSvg circle[stroke-dasharray] {
+  animation-play-state: paused;
+}
+
+@keyframes galleryProgress {
+  from {
+    stroke-dashoffset: var(--ring-circumference);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activeCircleBullet .bulletSvg circle[stroke-dasharray] {
+    animation-play-state: paused;
+  }
+}
+
 .centerDot {
   fill: rgba(255, 255, 255, 0.4);
   transition: fill 0.2s ease;

@@ -19,9 +19,9 @@ function PhotoPlaceholder({ label }) {
 }
 
 function ClassroomGallery({ gallery = [] }) {
-  const [{ currentSlide, progress }, setSlide] = useState({
+  const [{ currentSlide, cycle }, setSlide] = useState({
     currentSlide: 0,
-    progress: 0,
+    cycle: 0,
   });
 
   const [isHovered, setIsHovered] = useState(false);
@@ -46,44 +46,13 @@ function ClassroomGallery({ gallery = [] }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (
-      isHovered ||
-      isFocused ||
-      isHidden ||
-      reducedMotion ||
-      gallery.length <= 1
-    ) {
-      return;
-    }
-
-    let previousTime = performance.now();
-
-    const timer = setInterval(() => {
-      const now = performance.now();
-      const elapsed = now - previousTime;
-      previousTime = now;
-
-      setSlide((previous) => {
-        const nextProgress =
-          previous.progress + (elapsed / SLIDE_DURATION) * 100;
-
-        return nextProgress >= 100
-          ? {
-            currentSlide: (previous.currentSlide + 1) % gallery.length,
-            progress: 0,
-          }
-          : { ...previous, progress: nextProgress };
-      });
-    }, 40);
-
-    return () => clearInterval(timer);
-  }, [isHovered, isFocused, isHidden, reducedMotion, gallery.length]);
+  const isPaused =
+    isHovered || isFocused || isHidden || reducedMotion || gallery.length <= 1;
 
   const handleNextSlide = () => {
     setSlide((previous) => ({
       currentSlide: (previous.currentSlide + 1) % gallery.length,
-      progress: 0,
+      cycle: previous.cycle + 1,
     }));
   };
 
@@ -91,12 +60,19 @@ function ClassroomGallery({ gallery = [] }) {
     setSlide((previous) => ({
       currentSlide:
         (previous.currentSlide - 1 + gallery.length) % gallery.length,
-      progress: 0,
+      cycle: previous.cycle + 1,
     }));
   };
 
   const handleDotClick = (currentSlide) => {
-    setSlide({ currentSlide, progress: 0 });
+    setSlide((previous) => ({
+      currentSlide,
+      cycle: previous.cycle + 1,
+    }));
+  };
+
+  const handleProgressEnd = () => {
+    if (!isPaused) handleNextSlide();
   };
 
   if (!gallery.length) return null;
@@ -104,6 +80,8 @@ function ClassroomGallery({ gallery = [] }) {
   return (
     <div
       className={styles.slideshowContainer}
+      data-paused={isPaused}
+      style={{ "--slide-duration": `${SLIDE_DURATION}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocusCapture={() => setIsFocused(true)}
@@ -157,8 +135,6 @@ function ClassroomGallery({ gallery = [] }) {
               const isActive = idx === currentSlide;
               const ringRadius = 8;
               const circumference = 2 * Math.PI * ringRadius;
-              const strokeDashoffset =
-                circumference - (circumference * progress) / 100;
 
               return (
                 <button
@@ -170,11 +146,14 @@ function ClassroomGallery({ gallery = [] }) {
                   aria-current={isActive ? "true" : undefined}
                 >
                   <BulletIcon
+                    key={isActive ? cycle : "inactive"}
                     className={styles.bulletSvg}
+                    style={{ "--ring-circumference": circumference }}
+                    onAnimationEnd={isActive ? handleProgressEnd : undefined}
                     isActive={isActive}
                     ringRadius={ringRadius}
                     circumference={circumference}
-                    strokeDashoffset={strokeDashoffset}
+                    strokeDashoffset={circumference}
                     centerDotClassName={styles.centerDot}
                   />
                 </button>
