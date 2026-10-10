@@ -105,12 +105,12 @@ function Header() {
         >
           <img
             src={logoLight}
-            alt="IUST Logo"
+            alt=""
             className={`${styles.logo} ${styles.logoLight}`}
           />
           <img
             src={logoDark}
-            alt="IUST Logo"
+            alt=""
             className={`${styles.logo} ${styles.logoDark}`}
           />
 

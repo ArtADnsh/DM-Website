@@ -124,6 +124,7 @@ function ClassroomGallery({ gallery = [] }) {
             <img
               src={photo.src}
               alt={photo.alt}
+              loading={index === 0 ? "eager" : "lazy"}
               decoding="async"
               fetchPriority={index === 0 ? "high" : "auto"}
             />
