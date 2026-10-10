@@ -3,6 +3,15 @@
   top: 0;
   z-index: 100;
   border-bottom: 1px solid var(--border);
+}
+
+/* Keep blur off the ancestor of the viewport-fixed menu and overlay. */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -254,7 +263,7 @@
 }
 
 @media (max-width: 600px) {
-  .header {
+  .header::before {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }

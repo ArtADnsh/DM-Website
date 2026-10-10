@@ -55,7 +55,7 @@
   border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 999px;
   background: rgba(245, 158, 11, 0.14);
-  color: #f59e0b;
+  color: #92400e;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -65,7 +65,11 @@
 .htaBadge {
   border-color: rgba(20, 184, 166, 0.22);
   background: rgba(20, 184, 166, 0.14);
-  color: #0d9488;
+  color: #115e59;
+}
+
+:global([data-theme='dark']) .badge {
+  color: #fcd34df2;
 }
 
 :global([data-theme='dark']) .htaBadge {
