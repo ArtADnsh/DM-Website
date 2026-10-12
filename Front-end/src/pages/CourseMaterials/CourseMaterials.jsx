@@ -121,7 +121,6 @@ function CourseMaterials() {
     <div className={styles.page}>
       <header className={styles.header}>
         <div className={styles.headingCopy}>
-          <p className={styles.eyebrow}>Discrete Mathematics</p>
 
           <h1 className={styles.title}>Course Materials</h1>
 

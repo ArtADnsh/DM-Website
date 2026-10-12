@@ -6,7 +6,6 @@ import styles from './ResourceList.module.css';
  * Renders a page heading with an item counter and a list of <FileCard />.
  */
 function ResourceList({
-  eyebrow,
   title,
   description,
   items = [],
@@ -22,7 +21,6 @@ function ResourceList({
     <div className={styles.page}>
       <header className={styles.header}>
         <div>
-          {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}
           <h1 className={styles.title}>{title}</h1>
           {description && <p className={styles.subtitle}>{description}</p>}
         </div>
