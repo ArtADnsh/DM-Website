@@ -10,8 +10,6 @@
   border-radius: 30px;
   background: color-mix(in srgb, var(--surface) 44%, transparent);
   box-shadow: 0 24px 70px color-mix(in srgb, var(--shadow) 45%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
 }
 
 .header {

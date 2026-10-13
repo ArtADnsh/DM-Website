@@ -74,6 +74,7 @@ function CourseMaterials() {
   }, [normalizedMaterials]);
 
   const totalCountLabel = normalizedMaterials.length === 1 ? "File" : "Files";
+  const countsReady = !loading && !loadFailed;
 
   const tabCountsKey = materialTabs
     .map((tab) => groupedMaterials[tab.id]?.length ?? 0)
@@ -131,9 +132,16 @@ function CourseMaterials() {
 
         <div
           className={styles.totalCount}
-          aria-label={`${normalizedMaterials.length} ${totalCountLabel.toLowerCase()} total`}
+          aria-busy={loading}
+          aria-label={
+            loading
+              ? "Loading course materials count"
+              : loadFailed
+                ? "Course materials count unavailable"
+                : `${normalizedMaterials.length} ${totalCountLabel.toLowerCase()} total`
+          }
         >
-          <strong>{normalizedMaterials.length}</strong>
+          <strong aria-hidden="true">{countsReady ? normalizedMaterials.length : "—"}</strong>
 
           <span>{totalCountLabel}</span>
         </div>
@@ -174,7 +182,9 @@ function CourseMaterials() {
 
                   <span className={styles.tabShortLabel}>{tab.shortLabel}</span>
 
-                  <span className={styles.tabCount}>{count}</span>
+                  <span className={styles.tabCount} aria-busy={loading}>
+                    {countsReady ? count : "—"}
+                  </span>
                 </button>
               );
             })}

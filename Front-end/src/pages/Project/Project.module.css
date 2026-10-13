@@ -92,8 +92,6 @@
   border-radius: 22px;
   background:
     color-mix(in srgb, var(--surface) 62%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 .detail {

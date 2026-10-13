@@ -47,6 +47,8 @@ function RecitationClasses() {
       title="Recitation Classes"
       description="Problem-solving classes, worksheets, solutions, and recordings — organized session by session."
       items={items}
+      loading={loading}
+      loadFailed={loadFailed}
       variant="recitation"
       unit="Class"
       pluralUnit="Classes"

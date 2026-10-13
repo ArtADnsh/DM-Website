@@ -12,10 +12,13 @@ function ResourceList({
   variant = 'document',
   unit = 'file',
   pluralUnit = `${unit}s`,
+  loading = false,
+  loadFailed = false,
   emptyMessage = 'Nothing has been published yet.',
 }) {
   const count = items.length;
   const countLabel = count === 1 ? unit : pluralUnit;
+  const countReady = !loading && !loadFailed;
 
   return (
     <div className={styles.page}>
@@ -25,8 +28,18 @@ function ResourceList({
           {description && <p className={styles.subtitle}>{description}</p>}
         </div>
 
-        <div className={styles.count} aria-label={`${count} ${countLabel}`}>
-          <strong>{count}</strong>
+        <div
+          className={styles.count}
+          aria-busy={loading}
+          aria-label={
+            loading
+              ? `Loading ${pluralUnit.toLowerCase()} count`
+              : loadFailed
+                ? `${pluralUnit} count unavailable`
+                : `${count} ${countLabel}`
+          }
+        >
+          <strong aria-hidden="true">{countReady ? count : '—'}</strong>
           <span>{countLabel}</span>
         </div>
       </header>

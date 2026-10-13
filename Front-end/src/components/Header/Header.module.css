@@ -13,8 +13,9 @@
   z-index: -1;
   pointer-events: none;
   background: var(--header-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
 }
 
 .container {
@@ -161,8 +162,8 @@
   border: 1px solid var(--border);
   border-radius: 20px;
   background: var(--menu-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
   box-shadow: 0 20px 60px var(--shadow);
   opacity: 0;
   visibility: hidden;
@@ -264,8 +265,8 @@
 
 @media (max-width: 600px) {
   .header::before {
-    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
 
   .container {

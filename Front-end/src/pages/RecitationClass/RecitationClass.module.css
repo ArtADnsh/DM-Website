@@ -197,8 +197,6 @@
   border-radius: 26px;
   background: color-mix(in srgb, var(--surface) 48%, transparent);
   box-shadow: 0 18px 55px color-mix(in srgb, var(--shadow) 24%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 .tabs {

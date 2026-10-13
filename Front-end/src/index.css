@@ -18,8 +18,8 @@
 
   --border: rgba(23, 24, 42, 0.1);
 
-  --header-bg: rgba(255, 255, 255, 0.88);
-  --menu-bg: rgba(255, 255, 255, 0.9);
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --menu-bg: rgba(255, 255, 255, 0.8);
   --footer-bg: rgba(255, 255, 255, 0.6);
   --overlay-bg: rgba(15, 17, 35, 0.05);
   --card-bg: rgba(255, 255, 255, 0.65);
@@ -42,8 +42,8 @@
 
   --border: rgba(186, 198, 224, 0.1);
 
-  --header-bg: rgba(20, 24, 34, 0.96);
-  --menu-bg: rgba(28, 34, 48, 0.97);
+  --header-bg: rgba(20, 24, 34, 0.9);
+  --menu-bg: rgba(28, 34, 48, 0.88);
   --footer-bg: rgba(14, 17, 24, 0.72);
 
   --card-bg: rgba(255, 255, 255, 0.045);
