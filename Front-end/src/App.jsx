@@ -11,6 +11,7 @@ import RecitationClass from "./pages/RecitationClass/RecitationClass";
 import Mentor from "./pages/Mentor/Mentor";
 import Project from "./pages/Project/Project";
 import Contact from "./pages/Contact/Contact";
+import NotFound from "./pages/NotFound/NotFound";
 
 import "./App.css";
 
@@ -47,8 +48,11 @@ function App() {
   } else if (pathname === "/mentor" || pathname === "/mentors") {
     pageTitle = "Mentor Assignments";
     page = <Mentor />;
-  } else {
+  } else if (pathname === "/") {
     page = <Home />;
+  } else {
+    pageTitle = "Page Not Found";
+    page = <NotFound />;
   }
 
   useEffect(() => {
