@@ -589,7 +589,7 @@
   height: 3px;
   background: var(--module-accent, var(--primary));
   opacity: 0.85;
-  transition: opacity 0.3s ease, height 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .syllabusCard:hover {
@@ -600,7 +600,6 @@
 
 .syllabusCard:hover::before {
   opacity: 1;
-  height: 4px;
 }
 
 .cardHeader {

@@ -126,7 +126,6 @@
   background: transparent;
   cursor: pointer;
   border-radius: 50%;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bulletSvg {
@@ -167,10 +166,6 @@
 
 .circleBulletBtn:hover .centerDot {
   fill: rgba(255, 255, 255, 0.9);
-}
-
-.circleBulletBtn:hover {
-  transform: scale(1.1);
 }
 
 .activeCircleBullet {
