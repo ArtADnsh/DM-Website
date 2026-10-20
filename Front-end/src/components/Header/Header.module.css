@@ -245,7 +245,7 @@
 .menu a:focus-visible {
   background: rgba(108, 99, 255, 0.16);
   color: var(--text);
-  transform: translateX(3px);
+  transform: translateX(2px);
 }
 
 .menu a.activeLink {
