@@ -1,5 +1,5 @@
 /**
- * Mock data for the "Recitation Classes" (حل تمرین) pages.
+ * Mock data for the "Recitation Classes" pages.
  *
  * Each class has its own `files` (slides / worksheets / solutions) and
  * `videos` (recordings). When the backend endpoint is ready, replace the

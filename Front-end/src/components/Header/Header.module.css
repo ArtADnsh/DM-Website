@@ -162,8 +162,8 @@
   border: 1px solid var(--border);
   border-radius: 20px;
   background: var(--menu-bg);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   box-shadow: 0 20px 60px var(--shadow);
   opacity: 0;
   visibility: hidden;

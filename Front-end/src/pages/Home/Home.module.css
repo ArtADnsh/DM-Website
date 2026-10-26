@@ -302,8 +302,6 @@
   border-radius: 30px;
   background: var(--card-bg);
   box-shadow: 0 28px 80px color-mix(in srgb, var(--shadow) 48%, transparent);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
 }
 
 .courseCard::before {
@@ -593,7 +591,7 @@
 }
 
 .syllabusCard:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--module-accent, var(--primary)) 45%, var(--border));
   box-shadow: 0 24px 60px color-mix(in srgb, var(--shadow) 42%, transparent);
 }

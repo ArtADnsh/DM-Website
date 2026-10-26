@@ -288,11 +288,11 @@
   display: none;
 }
 
-/*
-  در حالت desktop
-  اسلایدبار سفارشی وجود ندارد.
-*/
 .tabScrollTrack {
+  display: none;
+}
+
+.tabScrollTrack[hidden] {
   display: none;
 }
 
@@ -359,11 +359,6 @@
 
     margin-bottom: 22px;
   }
-
-  /*
-    wrapper فضای لازم برای
-    scrollbar سفارشی را ایجاد می‌کند.
-  */
   .tabsWrapper {
     position: relative;
 
@@ -490,7 +485,7 @@
 
     bottom: 0;
 
-    min-width: 32px;
+    left: 0;
 
     border-radius: 999px;
 
@@ -509,9 +504,7 @@
         transparent
       );
 
-    will-change:
-      left,
-      width;
+    transform: translateX(0);
   }
 
 

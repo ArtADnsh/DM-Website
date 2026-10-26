@@ -1,6 +1,6 @@
 import { getMaterialCategory, normalizeMaterial } from "../../utils/materials";
 import { materialTabs } from "../../data/materialTabs";
-import { useScrollIndicator } from "../../hooks/useScrollIndicator";
+import ScrollIndicator from "../../components/ScrollIndicator/ScrollIndicator";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import FileCard from "../../components/FileCard/FileCard";
@@ -79,8 +79,6 @@ function CourseMaterials() {
   const tabCountsKey = materialTabs
     .map((tab) => groupedMaterials[tab.id]?.length ?? 0)
     .join("-");
-
-  const tabScroller = useScrollIndicator(tabsRef, tabCountsKey, activeTab);
 
   const activeItems = groupedMaterials[activeTab] ?? [];
 
@@ -190,17 +188,12 @@ function CourseMaterials() {
             })}
           </div>
 
-          {tabScroller.visible && (
-            <div className={styles.tabScrollTrack} aria-hidden="true">
-              <div
-                className={styles.tabScrollThumb}
-                style={{
-                  width: `${tabScroller.width}%`,
-                  left: `${tabScroller.left}%`,
-                }}
-              />
-            </div>
-          )}
+          <ScrollIndicator
+            scrollRef={tabsRef}
+            contentKey={tabCountsKey}
+            trackClassName={styles.tabScrollTrack}
+            thumbClassName={styles.tabScrollThumb}
+          />
         </div>
 
         <div

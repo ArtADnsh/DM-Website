@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ImageIcon,
   ChevronLeftIcon,
@@ -19,6 +19,9 @@ function PhotoPlaceholder({ label }) {
 }
 
 function ClassroomGallery({ gallery = [] }) {
+  const containerRef = useRef(null);
+  const hasGallery = gallery.length > 0;
+  const [isInView, setIsInView] = useState(false);
   const [{ currentSlide, cycle }, setSlide] = useState({
     currentSlide: 0,
     cycle: 0,
@@ -46,8 +49,39 @@ function ClassroomGallery({ gallery = [] }) {
     };
   }, []);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return undefined;
+
+    // Keep autoplay available in browsers without IntersectionObserver.
+    if (!("IntersectionObserver" in window)) {
+      setIsInView(true);
+      return undefined;
+    }
+
+    let active = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (active && entry) setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+
+    observer.observe(container);
+
+    return () => {
+      active = false;
+      observer.disconnect();
+    };
+  }, [hasGallery]);
+
   const isPaused =
-    isHovered || isFocused || isHidden || reducedMotion || gallery.length <= 1;
+    !isInView ||
+    isHovered ||
+    isFocused ||
+    isHidden ||
+    reducedMotion ||
+    gallery.length <= 1;
 
   const handleNextSlide = () => {
     setSlide((previous) => ({
@@ -79,6 +113,7 @@ function ClassroomGallery({ gallery = [] }) {
 
   return (
     <div
+      ref={containerRef}
       className={styles.slideshowContainer}
       data-paused={isPaused}
       style={{ "--slide-duration": `${SLIDE_DURATION}ms` }}
