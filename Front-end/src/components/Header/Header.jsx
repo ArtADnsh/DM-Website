@@ -1,4 +1,6 @@
-import { navigationLinks } from "../../data/navigation";
+import { navigationLinks, isNavLinkActive } from "../../data/navigation";
+import { ROUTES } from "../../data/routes";
+import { siteInfo } from "../../data/site";
 import { MenuIcon, CloseIcon } from "../icons";
 import { useEffect, useRef, useState } from "react";
 
@@ -7,7 +9,7 @@ import logoDark from "../../assets/logo_dark.webp";
 import styles from "./Header.module.css";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
-function Header() {
+function Header({ pathname }) {
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -99,9 +101,9 @@ function Header() {
       <div className={styles.container}>
         <a
           className={styles.courseInfo}
-          href="/"
+          href={ROUTES.home.path}
           data-internal-link
-          aria-label="Discrete Mathematics home"
+          aria-label={`${siteInfo.courseName} home`}
         >
           <img
             src={logoLight}
@@ -115,13 +117,11 @@ function Header() {
           />
 
           <div className={styles.courseText}>
-            <p className={styles.university}>
-              Iran University of Science and Technology
-            </p>
+            <p className={styles.university}>{siteInfo.universityName}</p>
 
-            <p className={styles.courseName}>Discrete Mathematics</p>
+            <p className={styles.courseName}>{siteInfo.courseName}</p>
 
-            <p className={styles.semester}>Semester 4051</p>
+            <p className={styles.semester}>Semester {siteInfo.semesterCode}</p>
           </div>
         </a>
 
@@ -161,9 +161,7 @@ function Header() {
           </div>
 
           {navigationLinks.map((item) => {
-            const currentPath =
-              window.location.pathname.replace(/\/+$/, "") || "/";
-            const isActive = item.isActive(currentPath);
+            const isActive = isNavLinkActive(item, pathname);
 
             return (
               <a

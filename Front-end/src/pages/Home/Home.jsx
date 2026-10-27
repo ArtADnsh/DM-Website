@@ -1,84 +1,41 @@
 import {
   AnnouncementIcon,
 } from "../../components/icons";
-import { useState, useEffect } from "react";
 
 import ClassroomGallery from "../../components/ClassroomGallery/ClassroomGallery";
 import { homeContent } from "../../data/homeContent";
 import { courseSyllabus } from "../../data/courseSyllabus";
-import {
-  fetchCourseFiles,
-  fetchRecitations,
-  fetchAnnouncement,
-} from "../../api";
+import { fetchCourseFiles, fetchAnnouncement } from "../../api";
+import { useApiData } from "../../hooks/useApiData";
+import { ROUTES } from "../../data/routes";
 import styles from "./Home.module.css";
+
+const isAnnouncement = (value) =>
+  value === null || (typeof value === "object" && !Array.isArray(value));
 
 function Home() {
   const { gallery, course } = homeContent;
 
-  // API Data State
-  const [isLoading, setIsLoading] = useState(true);
-  const [announcement, setAnnouncement] = useState(null);
-  const [latestRecitation, setLatestRecitation] = useState(null);
-  const [latestFiles, setLatestFiles] = useState([]);
-  const [announcementLoadFailed, setAnnouncementLoadFailed] = useState(false);
-  const [filesLoadFailed, setFilesLoadFailed] = useState(false);
+  const announcementState = useApiData(fetchAnnouncement, {
+    isValid: isAnnouncement,
+  });
+  const filesState = useApiData(fetchCourseFiles);
 
-  // Fetch API updates on mount. The shared API client keeps deploy URLs configurable.
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
+  const isLoading = announcementState.loading || filesState.loading;
+  const announcementLoadFailed = announcementState.failed;
+  const filesLoadFailed = filesState.failed;
+  const announcement = announcementState.data?.is_active
+    ? announcementState.data
+    : null;
+  const latestFiles = isLoading ? [] : (filesState.data ?? []).slice(0, 2);
 
-    async function loadUpdates() {
-      try {
-        const [recitationsResult, filesResult, announcementResult] = await Promise.allSettled([
-          fetchRecitations({ signal: controller.signal }),
-          fetchCourseFiles(null, { signal: controller.signal }),
-          fetchAnnouncement({ signal: controller.signal }),
-        ]);
-
-        if (!isMounted) return;
-
-        const announcementSucceeded =
-          announcementResult.status === "fulfilled" &&
-          (announcementResult.value === null ||
-            (typeof announcementResult.value === "object" &&
-              !Array.isArray(announcementResult.value)));
-        setAnnouncementLoadFailed(!announcementSucceeded);
-        const ann = announcementSucceeded ? announcementResult.value : null;
-        setAnnouncement(ann?.is_active ? ann : null);
-
-        if (
-          recitationsResult.status === "fulfilled" &&
-          Array.isArray(recitationsResult.value)
-        ) {
-          setLatestRecitation(recitationsResult.value[0] || null);
-        }
-
-        const filesSucceeded =
-          filesResult.status === "fulfilled" && Array.isArray(filesResult.value);
-        setFilesLoadFailed(!filesSucceeded);
-        setLatestFiles(filesSucceeded ? filesResult.value.slice(0, 2) : []);
-      } catch (err) {
-        if (isMounted) {
-          setAnnouncementLoadFailed(true);
-          setFilesLoadFailed(true);
-          console.error("Failed to load home updates:", err);
-        }
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
-      }
-    }
-
-    loadUpdates();
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, []);
+  const courseFacts = [
+    { label: "Instructor", value: course.professor },
+    { label: "University", value: course.university },
+    { label: "Department", value: course.department },
+    { label: "Semester", value: course.semester },
+    { label: "Lecture schedule", value: course.schedule },
+  ];
 
   return (
     <div className={styles.home}>
@@ -237,27 +194,13 @@ function Home() {
         </div>
 
         <aside className={styles.courseFacts} aria-label="Course information">
-          <div>
-            <span>Instructor</span>
-            <strong>{course.professor}</strong>
-          </div>
-          <div>
-            <span>University</span>
-            <strong>{course.university}</strong>
-          </div>
-          <div>
-            <span>Department</span>
-            <strong>{course.department}</strong>
-          </div>
-          <div>
-            <span>Semester</span>
-            <strong>{course.semester}</strong>
-          </div>
-          <div>
-            <span>Lecture schedule</span>
-            <strong>{course.schedule}</strong>
-          </div>
-          <a href="/tas" data-internal-link>
+          {courseFacts.map(({ label, value }) => (
+            <div key={label}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
+          <a href={ROUTES.team.path} data-internal-link>
             Meet the teaching team
             <span aria-hidden="true">→</span>
           </a>
@@ -310,7 +253,7 @@ function Home() {
 
               <div className={styles.cardFooter}>
                 <a
-                  href="/materials"
+                  href={ROUTES.materials.path}
                   data-internal-link
                   className={styles.moduleCta}
                 >

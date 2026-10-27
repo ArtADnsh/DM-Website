@@ -1,3 +1,4 @@
+import { ROUTES } from "../../data/routes";
 import styles from "./NotFound.module.css";
 
 function NotFound() {
@@ -9,7 +10,7 @@ function NotFound() {
         <p className={styles.description}>
           The page you’re looking for doesn’t exist or may have moved.
         </p>
-        <a className={styles.homeLink} href="/" data-internal-link>
+        <a className={styles.homeLink} href={ROUTES.home.path} data-internal-link>
           Back to home <span aria-hidden="true">→</span>
         </a>
       </div>

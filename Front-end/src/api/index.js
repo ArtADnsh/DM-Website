@@ -5,14 +5,14 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
-export async function fetchAnnouncement({ signal } = {}) {
+/** GET `path` and parse JSON. Resolves to null when the request was aborted. */
+async function request(path, { signal } = {}) {
   try {
-    const res = await fetch(`${API_BASE_URL}/announcement/`, { signal });
+    const res = await fetch(`${API_BASE_URL}${path}`, { signal });
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
-    const data = await res.json();
-    return data;
+    return await res.json();
   } catch (err) {
     // Navigation cancellation is expected, not a backend error.
     if (signal?.aborted || err.name === 'AbortError') return null;
@@ -20,35 +20,13 @@ export async function fetchAnnouncement({ signal } = {}) {
   }
 }
 
-export async function fetchRecitations({ signal } = {}) {
-  try {
-    const res = await fetch(`${API_BASE_URL}/recitations/`, { signal });
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    // Navigation cancellation is expected, not a backend error.
-    if (signal?.aborted || err.name === 'AbortError') return null;
-    throw err;
-  }
-}
+export const fetchAnnouncement = (options) => request('/announcement/', options);
 
-export async function fetchCourseFiles(category = null, { signal } = {}) {
-  try {
-    const url = category ? `${API_BASE_URL}/files/?category=${category}` : `${API_BASE_URL}/files/`;
-    const res = await fetch(url, { signal });
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    // Navigation cancellation is expected, not a backend error.
-    if (signal?.aborted || err.name === 'AbortError') return null;
-    throw err;
-  }
+export const fetchRecitations = (options) => request('/recitations/', options);
+
+export function fetchCourseFiles({ category = null, signal } = {}) {
+  const query = category ? `?category=${encodeURIComponent(category)}` : '';
+  return request(`/files/${query}`, { signal });
 }
 
 export async function checkBackendHealth() {

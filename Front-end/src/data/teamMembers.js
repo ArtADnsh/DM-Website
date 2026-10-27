@@ -269,5 +269,24 @@ export const teamCategories = [
   },
 ];
 
-// Flat list export for backward compatibility
+// Flat list of every member, in display order.
 export const teamMembers = teamCategories.flatMap((cat) => cat.members);
+
+/** Looks a member up by id (e.g. 'ta-01'). */
+export function getTeamMember(id) {
+  return teamMembers.find((member) => member.id === id);
+}
+
+/** Members of one category (e.g. 'professor', 'hta'). */
+export function getTeamMembersByCategory(categoryId) {
+  return teamCategories.find((category) => category.id === categoryId)?.members ?? [];
+}
+
+const normalizeName = (name) =>
+  String(name ?? '').trim().replace(/\s+/g, ' ').toLowerCase();
+
+/** Case/whitespace-insensitive lookup by display name. */
+export function findTeamMemberByName(name) {
+  const target = normalizeName(name);
+  return teamMembers.find((member) => normalizeName(member.name) === target);
+}

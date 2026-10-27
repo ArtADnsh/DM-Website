@@ -1,51 +1,23 @@
 import { getMaterialCategory, normalizeMaterial } from "../../utils/materials";
 import { materialTabs } from "../../data/materialTabs";
 import ScrollIndicator from "../../components/ScrollIndicator/ScrollIndicator";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import FileCard from "../../components/FileCard/FileCard";
+import CountBadge from "../../components/CountBadge/CountBadge";
+import { useApiData } from "../../hooks/useApiData";
+import { getNextTabIndex } from "../../utils/tabs";
+import { getScrollBehavior } from "../../utils/motion";
 import { fetchCourseFiles } from "../../api";
 import styles from "./CourseMaterials.module.css";
 
 function CourseMaterials() {
-  const [materials, setMaterials] = useState([]);
-
   const [activeTab, setActiveTab] = useState("lecture-notes");
 
-  const [loading, setLoading] = useState(true);
-  const [loadFailed, setLoadFailed] = useState(false);
+  const { data, loading, failed: loadFailed } = useApiData(fetchCourseFiles);
+  const materials = data ?? [];
 
   const tabsRef = useRef(null);
-
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
-
-    async function loadData() {
-      try {
-        const data = await fetchCourseFiles(null, { signal: controller.signal });
-
-        if (isMounted) {
-          setLoadFailed(!Array.isArray(data));
-          if (Array.isArray(data)) setMaterials(data);
-        }
-      } catch (error) {
-        if (isMounted) setLoadFailed(true);
-        console.error("Failed to fetch course materials:", error);
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    loadData();
-
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, []);
 
   const normalizedMaterials = useMemo(
     () => materials.map(normalizeMaterial),
@@ -99,17 +71,13 @@ function CourseMaterials() {
 
     tabs.scrollTo({
       left: Math.max(0, targetLeft),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      behavior: getScrollBehavior(),
     });
   };
 
   const handleTabKeyDown = (event, index) => {
-    let nextIndex;
-    if (event.key === "ArrowRight") nextIndex = (index + 1) % materialTabs.length;
-    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + materialTabs.length) % materialTabs.length;
-    else if (event.key === "Home") nextIndex = 0;
-    else if (event.key === "End") nextIndex = materialTabs.length - 1;
-    else return;
+    const nextIndex = getNextTabIndex(event.key, index, materialTabs.length);
+    if (nextIndex === null) return;
     event.preventDefault();
     const tab = tabsRef.current?.querySelectorAll('[role="tab"]')[nextIndex];
     tab?.focus();
@@ -128,21 +96,19 @@ function CourseMaterials() {
           </p>
         </div>
 
-        <div
-          className={styles.totalCount}
-          aria-busy={loading}
-          aria-label={
+        <CountBadge
+          busy={loading}
+          valueHidden
+          value={countsReady ? normalizedMaterials.length : "—"}
+          label={totalCountLabel}
+          ariaLabel={
             loading
               ? "Loading course materials count"
               : loadFailed
                 ? "Course materials count unavailable"
                 : `${normalizedMaterials.length} ${totalCountLabel.toLowerCase()} total`
           }
-        >
-          <strong aria-hidden="true">{countsReady ? normalizedMaterials.length : "—"}</strong>
-
-          <span>{totalCountLabel}</span>
-        </div>
+        />
       </header>
 
       <section

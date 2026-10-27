@@ -1,6 +1,30 @@
 import { ExternalIcon, PlatformIcon } from "../icons";
+import { Fragment } from "react";
 import { courseLinks } from "../../data/courseLinks";
+import { footerLinks } from "../../data/navigation";
+import { headTAs, siteInfo, websiteCreators } from "../../data/site";
+import { getTelegramUrl } from "../../utils/people";
 import styles from "./Footer.module.css";
+
+/** Name + Telegram link for each person; data comes from teamMembers.js. */
+function PeopleList({ people }) {
+  return (
+    <ul className={styles.contactList}>
+      {people.map((person) => (
+        <li key={person.id}>
+          <span>{person.name}</span>
+          <a
+            href={getTelegramUrl(person.telegram)}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {person.telegram}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function Footer() {
   return (
@@ -12,15 +36,17 @@ function Footer() {
           <div className={styles.brandCol}>
             <div className={styles.logoBadge}>
               <span className={styles.badgeDot} />
-              Discrete Mathematics
+              {siteInfo.courseName}
             </div>
-            <h3 className={styles.courseTitle}>Fall 2026 · Semester 4051</h3>
+            <h3 className={styles.courseTitle}>
+              {siteInfo.term} · Semester {siteInfo.semesterCode}
+            </h3>
             <p className={styles.courseDesc}>
-              Official course portal for Discrete Mathematics, Department of
-              Computer Engineering at Iran University of Science and Technology.
+              Official course portal for {siteInfo.courseName},{" "}
+              {siteInfo.departmentName} at {siteInfo.universityName}.
             </p>
             <div className={styles.profTag}>
-              Instructor: <strong>Dr. Tahaei</strong>
+              Instructor: <strong>{siteInfo.instructorName}</strong>
             </div>
           </div>
 
@@ -28,31 +54,13 @@ function Footer() {
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Navigation</h4>
             <ul className={styles.linkList}>
-              <li>
-                <a href="/" data-internal-link>
-                  Home Page
-                </a>
-              </li>
-              <li>
-                <a href="/materials" data-internal-link>
-                  Course Materials
-                </a>
-              </li>
-              <li>
-                <a href="/tutorials" data-internal-link>
-                  Tutorial Recordings
-                </a>
-              </li>
-              <li>
-                <a href="/tas" data-internal-link>
-                  Meet the Teaching Team
-                </a>
-              </li>
-              <li>
-                <a href="/contact" data-internal-link>
-                  Contact Us
-                </a>
-              </li>
+              {footerLinks.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} data-internal-link>
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -85,62 +93,29 @@ function Footer() {
           {/* COLUMN 4: HEAD TAs & WEBSITE CREATORS */}
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Head TAs</h4>
-            <ul className={styles.contactList}>
-              <li>
-                <span>Amir Jebbeli</span>
-                <a
-                  href="https://t.me/Amir_Jebbeli"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  @Amir_Jebbeli
-                </a>
-              </li>
-              <li>
-                <span>Kasra Nouri</span>
-                <a
-                  href="https://t.me/UnicornKN"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  @UnicornKN
-                </a>
-              </li>
-            </ul>
+            <PeopleList people={headTAs} />
 
             <h4 className={`${styles.colTitle} ${styles.subTitle}`}>
               Website Creators
             </h4>
-            <ul className={styles.contactList}>
-              <li>
-                <span>Arta Danesh</span>
-                <a
-                  href="https://t.me/ArtA_Dnsh"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  @ArtA_Dnsh
-                </a>
-              </li>
-              <li>
-                <span>Koosha Majlesi</span>
-                <a href="https://t.me/kmajl84" target="_blank" rel="noreferrer">
-                  @kmajl84
-                </a>
-              </li>
-            </ul>
+            <PeopleList people={websiteCreators} />
           </div>
         </div>
 
         {/* BOTTOM COPYRIGHT & CREDITS */}
         <div className={styles.bottomBar}>
           <p>
-            © 2026 Discrete Mathematics. All rights reserved.
+            © {siteInfo.copyrightYear} {siteInfo.courseName}. All rights reserved.
           </p>
 
           <p className={styles.credits}>
-            Designed &amp; Developed by <strong>Arta Danesh</strong> &amp;{" "}
-            <strong>Koosha Majlesi</strong>
+            Designed &amp; Developed by{" "}
+            {websiteCreators.map((creator, index) => (
+              <Fragment key={creator.id}>
+                {index > 0 && " & "}
+                <strong>{creator.name}</strong>
+              </Fragment>
+            ))}
           </p>
         </div>
       </div>

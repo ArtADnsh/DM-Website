@@ -1,24 +1,20 @@
 import { TelegramIcon, EmailIcon } from "../icons";
-import { getInitials } from "../../utils/people";
+import Avatar from "../Avatar/Avatar";
+import { getTelegramUrl } from "../../utils/people";
 import styles from "./ContactCard.module.css";
 
 /** Personal contact details keep the outline icons, separate from platform branding. */
 function ContactCard({ member }) {
-  const telegramHandle = member.telegram?.replace(/^@/, "");
+  const telegramUrl = getTelegramUrl(member.telegram);
   return (
     <article className={styles.contactCard}>
       <div className={styles.cardTop}>
-        {member.image ? (
-          <img loading="lazy" decoding="async" src={member.image} alt={member.name} className={styles.avatar} />
-        ) : (
-          <div
-            className={styles.avatarFallback}
-            role="img"
-            aria-label={member.name}
-          >
-            {getInitials(member.name)}
-          </div>
-        )}
+        <Avatar
+          name={member.name}
+          image={member.image}
+          imageClassName={styles.avatar}
+          fallbackClassName={styles.avatarFallback}
+        />
         <span
           className={`${styles.badge} ${member.badge === "HTA" ? styles.htaBadge : ""}`}
         >
@@ -34,9 +30,9 @@ function ContactCard({ member }) {
       <div className={styles.cardDivider} />
 
       <div className={styles.contactActions}>
-        {member.telegram && (
+        {telegramUrl && (
           <a
-            href={`https://t.me/${telegramHandle}`}
+            href={telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.actionBtn}

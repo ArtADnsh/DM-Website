@@ -1,9 +1,15 @@
 import { FolderIcon, VideoIcon, TelegramIcon } from "../../components/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import FileCard from "../../components/FileCard/FileCard";
+import CountBadge from "../../components/CountBadge/CountBadge";
 import { fetchRecitations } from "../../api";
-import { teamMembers } from "../../data/teamMembers";
+import { useApiData } from "../../hooks/useApiData";
+import { useDocumentTitle } from "../../hooks/useDocumentTitle";
+import { findTeamMemberByName } from "../../data/teamMembers";
+import { ROUTES } from "../../data/routes";
+import { getTelegramUrl } from "../../utils/people";
+import { getNextTabIndex } from "../../utils/tabs";
 import styles from "./RecitationClass.module.css";
 
 const TABS = [
@@ -19,71 +25,40 @@ const TABS = [
   },
 ];
 
+function BackLink({ children }) {
+  return (
+    <a className={styles.backLink} href={ROUTES.recitations.path} data-internal-link>
+      <span aria-hidden="true">←</span>
+      {children}
+    </a>
+  );
+}
+
 function RecitationClass({ id }) {
-  const [recitation, setRecitation] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [loadFailed, setLoadFailed] = useState(false);
   const [activeTab, setActiveTab] = useState("files");
 
-  useEffect(() => {
-    let isMounted = true;
-    const controller = new AbortController();
-    setLoading(true);
-    setLoadFailed(false);
-    setRecitation(null);
-    setActiveTab("files");
-    async function loadData() {
-      try {
-        const data = await fetchRecitations({ signal: controller.signal });
-        if (isMounted) {
-          setLoadFailed(!Array.isArray(data));
-        }
-        if (isMounted && Array.isArray(data)) {
-          const found =
-            data.find((item) => String(item.id) === String(id)) ??
-            data.find((item) => String(item.number) === String(id));
-          if (found) {
-            setRecitation(found);
-          }
-        }
-      } catch (err) {
-        if (isMounted) {
-          setLoadFailed(true);
-          console.error("Failed to load recitation detail:", err);
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    }
-    loadData();
-    return () => {
-      isMounted = false;
-      controller.abort();
-    };
-  }, [id]);
+  const { data, loading, failed: loadFailed } = useApiData(fetchRecitations, {
+    deps: [id],
+  });
+  const recitation = Array.isArray(data)
+    ? (data.find((item) => String(item.id) === String(id)) ??
+      data.find((item) => String(item.number) === String(id)) ??
+      null)
+    : null;
 
-  useEffect(() => {
-    const pageTitle = loading
+  useDocumentTitle(
+    loading
       ? `Recitation Class ${id}`
       : loadFailed
         ? "Unable to Load Recitation Class"
         : recitation
-        ? `Recitation Class ${recitation.number || id}: ${recitation.title || "Session"}`
-        : "Class Not Found";
-
-    document.title = `${pageTitle} | Discrete Mathematics · IUST`;
-  }, [id, loading, loadFailed, recitation]);
+          ? `Recitation Class ${recitation.number || id}: ${recitation.title || "Session"}`
+          : "Class Not Found",
+  );
 
   const handleTabKeyDown = (event, index) => {
-    let nextIndex;
-
-    if (event.key === "ArrowRight") nextIndex = (index + 1) % TABS.length;
-    else if (event.key === "ArrowLeft") nextIndex = (index - 1 + TABS.length) % TABS.length;
-    else if (event.key === "Home") nextIndex = 0;
-    else if (event.key === "End") nextIndex = TABS.length - 1;
-    else return;
+    const nextIndex = getNextTabIndex(event.key, index, TABS.length);
+    if (nextIndex === null) return;
 
     event.preventDefault();
     setActiveTab(TABS[nextIndex].id);
@@ -94,10 +69,7 @@ function RecitationClass({ id }) {
   if (loading) {
     return (
       <div className={styles.page}>
-        <a className={styles.backLink} href="/recitations" data-internal-link>
-          <span aria-hidden="true">←</span>
-          Recitation Classes
-        </a>
+        <BackLink>Recitation Classes</BackLink>
         <div className={styles.notFound} role="status" aria-busy="true">
           <span>Loading session...</span>
           <p>Fetching recitation details from backend...</p>
@@ -109,10 +81,7 @@ function RecitationClass({ id }) {
   if (loadFailed) {
     return (
       <div className={styles.page}>
-        <a className={styles.backLink} href="/recitations" data-internal-link>
-          <span aria-hidden="true">←</span>
-          Recitation Classes
-        </a>
+        <BackLink>Recitation Classes</BackLink>
         <div className={styles.notFound} role="alert">
           <span>Unable to load class</span>
           <h1>Recitation details could not be loaded.</h1>
@@ -125,10 +94,7 @@ function RecitationClass({ id }) {
   if (!recitation) {
     return (
       <div className={styles.page}>
-        <a className={styles.backLink} href="/recitations" data-internal-link>
-          <span aria-hidden="true">←</span>
-          Recitation Classes
-        </a>
+        <BackLink>Recitation Classes</BackLink>
         <div className={styles.notFound}>
           <span>Class not found</span>
           <h1>This recitation class does not exist.</h1>
@@ -147,23 +113,13 @@ function RecitationClass({ id }) {
   const activeItems = activeTab === "files" ? files : videos;
   const totalResources = files.length + videos.length;
 
-  const normalizeName = (name) =>
-    String(name ?? "").trim().replace(/\s+/g, " ").toLowerCase();
-  const instructor = teamMembers.find(
-    (member) => normalizeName(member.name) === normalizeName(recitation.instructor),
+  const telegramUrl = getTelegramUrl(
+    findTeamMemberByName(recitation.instructor)?.telegram,
   );
-  const telegramHandle = instructor?.telegram?.trim().replace(/^@/, "");
-  const telegramUrl =
-    telegramHandle && !telegramHandle.startsWith("replace_me_")
-      ? `https://t.me/${telegramHandle}`
-      : null;
 
   return (
     <div className={styles.page}>
-      <a className={styles.backLink} href="/recitations" data-internal-link>
-        <span aria-hidden="true">←</span>
-        All recitation classes
-      </a>
+      <BackLink>All recitation classes</BackLink>
 
       <header className={styles.header}>
         <div className={styles.headingCopy}>
@@ -198,13 +154,11 @@ function RecitationClass({ id }) {
           </div>
         </div>
 
-        <div
-          className={styles.totalCount}
-          aria-label={`${totalResources} resources total`}
-        >
-          <strong>{totalResources}</strong>
-          <span>{totalResources === 1 ? "Resource" : "Resources"}</span>
-        </div>
+        <CountBadge
+          value={totalResources}
+          label={totalResources === 1 ? "Resource" : "Resources"}
+          ariaLabel={`${totalResources} resources total`}
+        />
       </header>
 
       <section

@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { EmailIcon, SendIcon } from "../icons";
-import { getInitials } from "../../utils/people";
+import Avatar from "../Avatar/Avatar";
+import { getTelegramUrl } from "../../utils/people";
 import styles from "./TeamMemberCard.module.css";
 
 const ROLE_VARIANTS = {
@@ -10,29 +10,19 @@ const ROLE_VARIANTS = {
 };
 
 function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
-  const [imgError, setImgError] = useState(false);
   const isHead = (badge || role)?.toLowerCase().includes("head");
   const roleVariant = isHead ? styles.head : ROLE_VARIANTS[role] || "";
-  const telegramHandle = telegram?.replace(/^@/, "");
-  const isPlaceholderTelegram = telegramHandle?.startsWith("replace_me_");
+  const telegramUrl = getTelegramUrl(telegram);
 
   return (
     <article className={`${styles.card} ${roleVariant}`}>
       <div className={styles.top}>
-        {image && !imgError ? (
-          <img
-            loading="lazy"
-            decoding="async"
-            src={image}
-            alt={name}
-            className={styles.avatar}
-            onError={() => setImgError(true)}
-          />
-        ) : (
-          <div className={styles.avatarFallback} role="img" aria-label={name}>
-            {getInitials(name, { stripTitle: true })}
-          </div>
-        )}
+        <Avatar
+          name={name}
+          image={image}
+          imageClassName={styles.avatar}
+          fallbackClassName={styles.avatarFallback}
+        />
         <span className={styles.badge}>{badge || role}</span>
       </div>
 
@@ -52,7 +42,7 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
         )}
 
         {telegram &&
-          (isPlaceholderTelegram ? (
+          (!telegramUrl ? (
             <div
               className={`${styles.infoRow} ${styles.placeholderContact}`}
               title="Replace this placeholder in src/data/teamMembers.js"
@@ -62,7 +52,7 @@ function TeamMemberCard({ name, role, badge, focus, image, email, telegram }) {
             </div>
           ) : (
             <a
-              href={`https://t.me/${telegramHandle}`}
+              href={telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.infoRow}

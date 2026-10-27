@@ -1,4 +1,6 @@
+import CountBadge from '../../components/CountBadge/CountBadge';
 import { mentorAssignments } from '../../data/mentors';
+import { siteInfo } from '../../data/site';
 import styles from './Mentor.module.css';
 
 function Mentor() {
@@ -12,14 +14,15 @@ function Mentor() {
             <p className={styles.eyebrow}>Student Support</p>
             <h1 id="mentor-title" className={styles.title}>Mentor Assignments</h1>
             <p className={styles.description}>
-              The current mentor assignments for students in Discrete Mathematics.
+              The current mentor assignments for students in {siteInfo.courseName}.
             </p>
           </div>
 
-          <div className={styles.count} aria-label={`${mentorAssignments.length} ${studentCountLabel.toLowerCase()}`}>
-            <strong>{mentorAssignments.length}</strong>
-            <span>{studentCountLabel}</span>
-          </div>
+          <CountBadge
+            value={mentorAssignments.length}
+            label={studentCountLabel}
+            ariaLabel={`${mentorAssignments.length} ${studentCountLabel.toLowerCase()}`}
+          />
         </header>
 
         <div className={styles.tableShell}>

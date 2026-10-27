@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getScrollBehavior } from "../utils/motion";
 
 function normalizePath(pathname) {
   return pathname.replace(/\/+$/, "") || "/";
@@ -85,11 +86,7 @@ export function useLocation() {
     }
 
     const target = hash ? document.getElementById(targetId) : null;
-    const behavior = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches
-      ? "auto"
-      : "smooth";
+    const behavior = getScrollBehavior();
 
     if (target) {
       target.scrollIntoView({ behavior });

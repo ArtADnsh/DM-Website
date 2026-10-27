@@ -1,4 +1,5 @@
 import TeamMemberCard from '../TeamMemberCard/TeamMemberCard';
+import CountBadge from '../CountBadge/CountBadge';
 import styles from './TeamMembers.module.css';
 
 const DEFAULT_ROLE_CONFIG = {
@@ -83,10 +84,11 @@ function TeamMembers({
             {description && <p className={styles.description}>{description}</p>}
           </div>
 
-          <div className={styles.memberCount} aria-label={`${memberCount} team members`}>
-            <strong>{memberCount}</strong>
-            <span>{memberCount === 1 ? 'Member' : 'Members'}</span>
-          </div>
+          <CountBadge
+            value={memberCount}
+            label={memberCount === 1 ? 'Member' : 'Members'}
+            ariaLabel={`${memberCount} team members`}
+          />
         </header>
 
         <div className={styles.groups}>

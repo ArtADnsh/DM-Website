@@ -1,4 +1,5 @@
 import FileCard from '../FileCard/FileCard';
+import CountBadge from '../CountBadge/CountBadge';
 import styles from './ResourceList.module.css';
 
 /**
@@ -28,20 +29,19 @@ function ResourceList({
           {description && <p className={styles.subtitle}>{description}</p>}
         </div>
 
-        <div
-          className={styles.count}
-          aria-busy={loading}
-          aria-label={
+        <CountBadge
+          busy={loading}
+          valueHidden
+          value={countReady ? count : '—'}
+          label={countLabel}
+          ariaLabel={
             loading
               ? `Loading ${pluralUnit.toLowerCase()} count`
               : loadFailed
                 ? `${pluralUnit} count unavailable`
                 : `${count} ${countLabel}`
           }
-        >
-          <strong aria-hidden="true">{countReady ? count : '—'}</strong>
-          <span>{countLabel}</span>
-        </div>
+        />
       </header>
 
       {count > 0 ? (

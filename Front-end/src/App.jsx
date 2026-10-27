@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useLocation } from "./hooks/useLocation";
+import { useDocumentTitle } from "./hooks/useDocumentTitle";
+import { ROUTES, RECITATION_DETAIL_PATTERN } from "./data/routes";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -15,55 +16,44 @@ import NotFound from "./pages/NotFound/NotFound";
 
 import "./App.css";
 
-function App() {
-  const { pathname } = useLocation();
+const PAGES = [
+  { route: ROUTES.home, title: "Home", Page: Home },
+  { route: ROUTES.team, title: "Teaching Team", Page: TAs },
+  { route: ROUTES.recitations, title: "Recitation Classes", Page: RecitationClasses },
+  { route: ROUTES.project, title: "Project", Page: Project },
+  { route: ROUTES.materials, title: "Course Materials", Page: CourseMaterials },
+  { route: ROUTES.contact, title: "Contact Us", Page: Contact },
+  { route: ROUTES.mentors, title: "Mentor Assignments", Page: Mentor },
+];
 
-  const recitationMatch = pathname.match(/^\/recitations\/(\d+)$/);
-  let page;
-  let pageTitle = "Home";
+function resolvePage(pathname) {
+  const recitationMatch = pathname.match(RECITATION_DETAIL_PATTERN);
 
-  if (pathname === "/tas") {
-    pageTitle = "Teaching Team";
-    page = <TAs />;
-  } else if (recitationMatch) {
-    // The detail page sets its title from the fetched session data.
-    pageTitle = null;
-    page = <RecitationClass key={recitationMatch[1]} id={recitationMatch[1]} />;
-  } else if (
-    pathname === "/recitations" ||
-    pathname === "/videos" ||
-    pathname === "/tutorials"
-  ) {
-    pageTitle = "Recitation Classes";
-    page = <RecitationClasses />;
-  } else if (pathname === "/project") {
-    pageTitle = "Project";
-    page = <Project />;
-  } else if (pathname === "/materials") {
-    pageTitle = "Course Materials";
-    page = <CourseMaterials />;
-  } else if (pathname === "/contact") {
-    pageTitle = "Contact Us";
-    page = <Contact />;
-  } else if (pathname === "/mentor" || pathname === "/mentors") {
-    pageTitle = "Mentor Assignments";
-    page = <Mentor />;
-  } else if (pathname === "/") {
-    page = <Home />;
-  } else {
-    pageTitle = "Page Not Found";
-    page = <NotFound />;
+  if (recitationMatch) {
+    // The detail page sets its own title from the fetched session data.
+    const id = recitationMatch[1];
+    return { title: null, page: <RecitationClass key={id} id={id} /> };
   }
 
-  useEffect(() => {
-    if (pageTitle !== null) {
-      document.title = `${pageTitle} | Discrete Mathematics · IUST`;
-    }
-  }, [pageTitle]);
+  const match = PAGES.find(({ route }) => route.matches.includes(pathname));
+
+  if (match) {
+    const { Page, title } = match;
+    return { title, page: <Page /> };
+  }
+
+  return { title: "Page Not Found", page: <NotFound /> };
+}
+
+function App() {
+  const { pathname } = useLocation();
+  const { title, page } = resolvePage(pathname);
+
+  useDocumentTitle(title);
 
   return (
     <div className="app">
-      <Header />
+      <Header pathname={pathname} />
       <main>{page}</main>
       <Footer />
     </div>

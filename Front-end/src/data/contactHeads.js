@@ -1,4 +1,4 @@
-import { teamMembers } from "./teamMembers";
+import { getTeamMember } from "./teamMembers";
 
 // The Contact page reuses each head's profile (name, photo, email, Telegram,
 // badge) from teamMembers.js - the single source of truth - and only adds the
@@ -13,6 +13,6 @@ const headScopes = [
 ];
 
 export const contactHeads = headScopes.flatMap(({ id, scope }) => {
-  const member = teamMembers.find((candidate) => candidate.id === id);
+  const member = getTeamMember(id);
   return member ? [{ ...member, scope }] : [];
 });

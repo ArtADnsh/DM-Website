@@ -2,6 +2,7 @@ import { ExternalIcon, PlatformIcon, MapPinIcon } from "../../components/icons";
 import ContactCard from "../../components/ContactCard/ContactCard";
 import { contactHeads } from "../../data/contactHeads";
 import { courseLinks } from "../../data/courseLinks";
+import { siteInfo } from "../../data/site";
 import styles from "./Contact.module.css";
 
 function Contact() {
@@ -75,10 +76,10 @@ function Contact() {
           <MapPinIcon />
         </div>
         <div className={styles.locationText}>
-          <h3>Department of Computer Engineering</h3>
+          <h3>{siteInfo.departmentName}</h3>
           <p>
-            Iran University of Science and Technology (IUST) · Narmak, Tehran,
-            Iran
+            {siteInfo.universityName} ({siteInfo.universityShortName}) ·{" "}
+            {siteInfo.address}
           </p>
         </div>
       </div>

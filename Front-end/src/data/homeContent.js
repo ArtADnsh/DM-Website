@@ -1,9 +1,11 @@
+import { siteInfo } from './site';
+
 export const homeContent = {
   gallery: [
     {
       id: 1,
       src: '/images/classroom1.webp',
-      alt: 'Discrete Mathematics Lecture Hall with Dr. Tahaei',
+      alt: `${siteInfo.courseName} Lecture Hall with ${siteInfo.instructorName}`,
       label: 'Lecture Hall',
     },
     {
@@ -21,13 +23,13 @@ export const homeContent = {
   ],
 
   course: {
-    eyebrow: 'Discrete Mathematics · Fall 2026',
+    eyebrow: `${siteInfo.courseName} · ${siteInfo.term}`,
     title: 'Discrete Mathematics & Data Fundamentals',
-    professor: 'Dr. Tahaei',
-    university: 'Iran University of Science and Technology',
-    department: 'Department of Computer Engineering',
-    semester: 'Fall 2026',
-    schedule: 'Saturdays & Mondays, 07:30 - 09:00',
+    professor: siteInfo.instructorName,
+    university: siteInfo.universityName,
+    department: siteInfo.departmentName,
+    semester: siteInfo.term,
+    schedule: siteInfo.lectureSchedule,
 
     description:
       'This portal is the central hub for Discrete Mathematics. Access lecture notes, download assignment problem sets, view quiz solutions, check weekly recitation schedules, and stay updated with official announcements.',
