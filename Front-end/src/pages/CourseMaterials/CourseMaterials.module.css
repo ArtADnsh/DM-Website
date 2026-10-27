@@ -366,7 +366,7 @@
     scrollbar-width: none;
 
     touch-action:
-      pan-x;
+      auto;
   }
 
   .tabs::-webkit-scrollbar {

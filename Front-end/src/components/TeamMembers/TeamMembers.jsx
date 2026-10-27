@@ -104,9 +104,9 @@ function TeamMembers({
               </div>
 
               <div className={`${styles.grid} ${GRID_VARIANTS[(group.id || group.role || "").toLowerCase()] || styles.taGrid}`}>
-                {group.members.map((member, index) => (
+                {group.members.map((member) => (
                   <TeamMemberCard
-                    key={`${group.id || group.role}-${member.id || member.name}-${index}`}
+                    key={member.id}
                     name={member.name}
                     role={member.role}
                     badge={member.badge || member.role}

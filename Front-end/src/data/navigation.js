@@ -29,7 +29,7 @@ export function isNavLinkActive(navLink, pathname) {
 export const footerLinks = [
   link(ROUTES.home, 'Home Page'),
   link(ROUTES.materials, 'Course Materials'),
-  link(ROUTES.recitations, 'Tutorial Recordings'),
+  link(ROUTES.recitations, 'Recitation Classes'),
   link(ROUTES.team, 'Meet the Teaching Team'),
   link(ROUTES.contact, 'Contact Us'),
 ];

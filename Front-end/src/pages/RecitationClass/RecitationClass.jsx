@@ -72,7 +72,6 @@ function RecitationClass({ id }) {
         <BackLink>Recitation Classes</BackLink>
         <div className={styles.notFound} role="status" aria-busy="true">
           <span>Loading session...</span>
-          <p>Fetching recitation details from backend...</p>
         </div>
       </div>
     );
