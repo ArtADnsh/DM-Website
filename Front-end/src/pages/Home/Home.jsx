@@ -42,12 +42,12 @@ function Home() {
       {/* HERO SECTION: SLIDESHOW + LATEST UPDATES WIDGET */}
       <section
         className={styles.heroSection}
-        aria-label="Classroom gallery and latest updates"
+        aria-labelledby="home-hero-title"
       >
         <div className={styles.sectionHeading}>
           <div>
             <p className={styles.eyebrow}>Inside the classroom</p>
-            <h2>Classroom and updates</h2>
+            <h1 id="home-hero-title">Classroom and updates</h1>
           </div>
           <p>
             Class photos, course announcements, and recently added materials.
@@ -62,7 +62,7 @@ function Home() {
           <div className={styles.updatesWidget}>
             <div className={styles.widgetHeader}>
               <span className={styles.widgetBadge}>LIVE UPDATES</span>
-              <h3>Upcoming & Recent</h3>
+              <h2>Upcoming & Recent</h2>
             </div>
 
             {/* Recitation Schedule Card or Course Announcement */}
@@ -78,9 +78,9 @@ function Home() {
               </div>
             ) : announcementLoadFailed ? (
               <div className={styles.recitationCard} role="alert">
-                <h4 className={styles.noAnnouncementTitle}>
+                <h3 className={styles.noAnnouncementTitle}>
                   Announcements could not be loaded
-                </h4>
+                </h3>
                 <p className={styles.noAnnouncementSubtext}>
                   Please refresh the page to try again.
                 </p>
@@ -117,9 +117,9 @@ function Home() {
                     ✨ ALL CAUGHT UP
                   </span>
                 </div>
-                <h4 className={styles.noAnnouncementTitle}>
+                <h3 className={styles.noAnnouncementTitle}>
                   No announcements right now
-                </h4>
+                </h3>
                 <p className={styles.noAnnouncementSubtext}>
                   New course announcements will appear here.
                 </p>
@@ -175,9 +175,9 @@ function Home() {
       >
         <div className={styles.courseMain}>
           <p className={styles.eyebrow}>{course.eyebrow}</p>
-          <h1 id="home-title" className={styles.title}>
+          <h2 id="home-title" className={styles.title}>
             {course.title}
-          </h1>
+          </h2>
           <p className={styles.description}>{course.description}</p>
           <p className={styles.secondaryDescription}>
             {course.secondaryDescription}
@@ -256,6 +256,7 @@ function Home() {
                   href={ROUTES.materials.path}
                   data-internal-link
                   className={styles.moduleCta}
+                  aria-label={`View materials for ${module.title}`}
                 >
                   View materials
                   <span aria-hidden="true">→</span>

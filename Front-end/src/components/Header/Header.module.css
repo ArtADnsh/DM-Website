@@ -119,8 +119,8 @@
 }
 
 .menuButton:hover {
-  background: rgba(108, 99, 255, 0.14);
-  border-color: rgba(108, 99, 255, 0.35);
+  background: rgb(var(--primary-soft-rgb) / 0.14);
+  border-color: rgb(var(--primary-soft-rgb) / 0.35);
 }
 
 .menuIcon {
@@ -233,7 +233,7 @@
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(108, 99, 255, 0.2);
+  -webkit-tap-highlight-color: rgb(var(--primary-soft-rgb) / 0.16);
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -241,11 +241,15 @@
 }
 
 .menu a:hover,
-.menu a:active,
-.menu a:focus-visible {
-  background: rgba(108, 99, 255, 0.16);
+.menu a:active {
+  background: rgb(var(--primary-soft-rgb) / 0.14);
   color: var(--text);
   transform: translateX(2px);
+}
+
+.menu a:focus-visible {
+  background: rgb(var(--primary-soft-rgb) / 0.14);
+  color: var(--text);
 }
 
 .menu a.activeLink {
@@ -321,15 +325,10 @@
     padding: 13px 16px;
   }
 
-  .menu a:active,
-  .menu a:hover {
-    background: rgba(108, 99, 255, 0.2);
-    color: var(--text);
-    transform: translateX(3px);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .container,
   .logo,
   .courseText,
@@ -339,9 +338,25 @@
 }
 
 @media (max-width: 380px) {
-  .courseInfo { gap: 8px; }
-  .logo { width: 36px; height: 36px; }
-  .courseName { font-size: 14px; }
-  .university { max-width: 160px; font-size: 8px; }
-  .actions { gap: 6px; }
+  .courseInfo {
+    gap: 8px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .courseName {
+    font-size: 14px;
+  }
+
+  .university {
+    max-width: 160px;
+    font-size: 8px;
+  }
+
+  .actions {
+    gap: 6px;
+  }
 }

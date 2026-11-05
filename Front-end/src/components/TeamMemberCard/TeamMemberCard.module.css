@@ -5,7 +5,7 @@
   min-height: 196px;
   padding: 22px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   background: var(--card-bg);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow) 68%, transparent);
   transition: border-color 0.15s ease, background-color 0.15s ease;
@@ -49,7 +49,7 @@
   display: grid;
   place-items: center;
   background:
-    linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 70%),
+    linear-gradient(145deg, rgb(var(--primary-soft-rgb) / 0.18), transparent 70%),
     color-mix(in srgb, var(--surface) 66%, transparent);
   color: var(--text);
   font-size: 22px;
@@ -65,7 +65,7 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   white-space: nowrap;
-  background: rgba(108, 99, 255, 0.14);
+  background: rgb(var(--primary-soft-rgb) / 0.14);
   color: var(--primary-light);
 }
 
@@ -139,27 +139,27 @@
 }
 
 .ta {
-  border-color: rgba(59, 130, 246, 0.18);
+  border-color: rgb(var(--accent-ta-rgb) / 0.18);
   background:
-    linear-gradient(160deg, rgba(59, 130, 246, 0.1), transparent 58%),
+    linear-gradient(160deg, rgb(var(--accent-ta-rgb) / 0.10), transparent 58%),
     var(--card-bg);
 }
 
 .ta .badge {
-  border-color: rgba(59, 130, 246, 0.16);
-  background: rgba(59, 130, 246, 0.13);
-  color: #1d4fd8df;
+  border-color: rgb(var(--accent-ta-rgb) / 0.16);
+  background: rgb(var(--accent-ta-rgb) / 0.13);
+  color: var(--accent-ta-text);
 }
 
 .ta:hover {
-  border-color: rgba(59, 130, 246, 0.38);
+  border-color: rgb(var(--accent-ta-rgb) / 0.38);
 }
 
 .hta {
   min-height: 208px;
-  border-color: rgba(20, 184, 166, 0.2);
+  border-color: rgb(var(--accent-hta-rgb) / 0.20);
   background:
-    linear-gradient(155deg, rgba(20, 184, 166, 0.13), transparent 62%),
+    linear-gradient(155deg, rgb(var(--accent-hta-rgb) / 0.13), transparent 62%),
     var(--card-bg);
 }
 
@@ -171,38 +171,38 @@
 }
 
 .hta .badge {
-  border-color: rgba(20, 184, 166, 0.18);
-  background: rgba(20, 184, 166, 0.14);
-  color: #115e59;
+  border-color: rgb(var(--accent-hta-rgb) / 0.18);
+  background: rgb(var(--accent-hta-rgb) / 0.14);
+  color: var(--accent-hta-text);
 }
 
 .hta:hover {
-  border-color: rgba(20, 184, 166, 0.42);
+  border-color: rgb(var(--accent-hta-rgb) / 0.42);
 }
 
 .head {
-  border-color: rgba(245, 158, 11, 0.28);
+  border-color: rgb(var(--accent-head-rgb) / 0.28);
   background:
-    linear-gradient(155deg, rgba(245, 158, 11, 0.07), transparent 62%),
+    linear-gradient(155deg, rgb(var(--accent-head-rgb) / 0.07), transparent 62%),
     var(--card-bg);
 }
 
 .head .badge {
-  border-color: rgba(245, 158, 11, 0.25);
-  background: rgba(245, 158, 11, 0.18);
-  color: #92400e;
+  border-color: rgb(var(--accent-head-rgb) / 0.25);
+  background: rgb(var(--accent-head-rgb) / 0.18);
+  color: var(--accent-head-text);
 }
 
 .head:hover {
-  border-color: rgba(245, 158, 11, 0.48);
+  border-color: rgb(var(--accent-head-rgb) / 0.48);
 }
 
 .professor {
   min-height: 226px;
   padding: 26px;
-  border-color: rgba(108, 99, 255, 0.28);
+  border-color: rgb(var(--primary-soft-rgb) / 0.28);
   background:
-    linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 64%),
+    linear-gradient(145deg, rgb(var(--primary-soft-rgb) / 0.18), transparent 64%),
     var(--card-bg);
   box-shadow: 0 16px 42px color-mix(in srgb, var(--shadow) 72%, transparent);
 }
@@ -224,31 +224,31 @@
 }
 
 .professor .badge {
-  border-color: rgba(108, 99, 255, 0.22);
-  background: rgba(108, 99, 255, 0.16);
+  border-color: rgb(var(--primary-soft-rgb) / 0.22);
+  background: rgb(var(--primary-soft-rgb) / 0.16);
   color: var(--primary-light);
 }
 
 .professor:hover {
-  border-color: rgba(108, 99, 255, 0.5);
+  border-color: rgb(var(--primary-soft-rgb) / 0.5);
 }
 
 :global([data-theme='dark']) .ta .badge {
-  background: rgba(59, 130, 246, 0.2);
-  color: #93c5fd;
+  background: rgb(var(--accent-ta-rgb) / 0.20);
+  color: var(--accent-ta-text);
 }
 
 :global([data-theme='dark']) .hta .badge {
-  background: rgba(20, 184, 166, 0.2);
-  color: #5eead4;
+  background: rgb(var(--accent-hta-rgb) / 0.20);
+  color: var(--accent-hta-text);
 }
 
 :global([data-theme='dark']) .head .badge {
-  color: #fcd34df2;
+  color: var(--accent-head-text);
 }
 
 :global([data-theme='dark']) .professor .badge {
-  background: rgba(108, 99, 255, 0.22);
+  background: rgb(var(--primary-soft-rgb) / 0.22);
   color: var(--primary-light);
 }
 

@@ -102,16 +102,16 @@
 }
 
 .telegramLink {
-  --telegram-accent: #1678a8;
+  --telegram-accent: var(--accent-telegram);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   min-height: 32px;
   padding: 5px 11px;
-  border: 1px solid rgba(42, 171, 238, 0.18);
+  border: 1px solid rgb(var(--accent-telegram-rgb) / 0.18);
   border-radius: 10px;
-  background: rgba(42, 171, 238, 0.06);
+  background: rgb(var(--accent-telegram-rgb) / 0.06);
   color: var(--telegram-accent);
   font-size: 12px;
   font-weight: 650;
@@ -131,8 +131,8 @@
 }
 
 .telegramLink:hover {
-  background: rgba(42, 171, 238, 0.11);
-  border-color: rgba(42, 171, 238, 0.32);
+  background: rgb(var(--accent-telegram-rgb) / 0.11);
+  border-color: rgb(var(--accent-telegram-rgb) / 0.32);
   color: var(--telegram-accent);
   text-decoration: none !important;
 }
@@ -144,7 +144,7 @@
 }
 
 .telegramLink:active {
-  background: rgba(42, 171, 238, 0.16);
+  background: rgb(var(--accent-telegram-rgb) / 0.16);
   text-decoration: none !important;
 }
 
@@ -153,24 +153,24 @@
 }
 
 :global([data-theme='dark']) .telegramLink {
-  --telegram-accent: #7dd3fc;
-  border-color: rgba(125, 211, 252, 0.2);
-  background: rgba(42, 171, 238, 0.08);
+  --telegram-accent: var(--accent-telegram);
+  border-color: color-mix(in srgb, var(--accent-telegram) 20%, transparent);
+  background: rgb(var(--accent-telegram-rgb) / 0.08);
 }
 
 :global([data-theme='dark']) .telegramLink:hover {
-  border-color: rgba(125, 211, 252, 0.36);
-  background: rgba(42, 171, 238, 0.15);
+  border-color: color-mix(in srgb, var(--accent-telegram) 36%, transparent);
+  background: rgb(var(--accent-telegram-rgb) / 0.15);
 }
 
 :global([data-theme='dark']) .telegramLink:active {
-  background: rgba(42, 171, 238, 0.2);
+  background: rgb(var(--accent-telegram-rgb) / 0.20);
 }
 
 .browser {
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 26px;
+  border-radius: var(--radius-xl);
   background: color-mix(in srgb, var(--surface) 48%, transparent);
   box-shadow: 0 18px 55px color-mix(in srgb, var(--shadow) 24%, transparent);
 }
@@ -208,8 +208,8 @@
 
 .tab:hover {
   color: var(--text);
-  border-color: color-mix(in srgb, var(--primary-light) 36%, var(--border));
-  background: color-mix(in srgb, var(--primary) 7%, var(--surface));
+  border-color: rgb(var(--primary-soft-rgb) / 0.32);
+  background: rgb(var(--primary-soft-rgb) / 0.10);
 }
 
 .activeTab {

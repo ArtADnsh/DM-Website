@@ -172,21 +172,8 @@
 
 .tab:hover {
   color: var(--text);
-
-  border-color:
-    color-mix(
-      in srgb,
-      var(--primary-light) 40%,
-      var(--border)
-    );
-
-  background:
-    color-mix(
-      in srgb,
-      var(--primary) 8%,
-      var(--surface)
-    );
-
+  border-color: rgb(var(--primary-soft-rgb) / 0.32);
+  background: rgb(var(--primary-soft-rgb) / 0.10);
 }
 
 .activeTab {

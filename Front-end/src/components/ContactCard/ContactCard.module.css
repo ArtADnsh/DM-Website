@@ -4,14 +4,14 @@
   flex-direction: column;
   padding: 24px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   background: var(--card-bg);
   box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow) 68%, transparent);
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .contactCard:hover {
-  border-color: rgba(108, 99, 255, 0.3);
+  border-color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 .cardTop {
@@ -39,7 +39,7 @@
   display: grid;
   place-items: center;
   background:
-    linear-gradient(145deg, rgba(108, 99, 255, 0.18), transparent 70%),
+    linear-gradient(145deg, rgb(var(--primary-soft-rgb) / 0.18), transparent 70%),
     color-mix(in srgb, var(--surface) 66%, transparent);
   color: var(--text);
   font-size: 20px;
@@ -48,10 +48,10 @@
 
 .badge {
   padding: 5px 12px;
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  border: 1px solid rgb(var(--accent-head-rgb) / 0.25);
   border-radius: 999px;
-  background: rgba(245, 158, 11, 0.14);
-  color: #92400e;
+  background: rgb(var(--accent-head-rgb) / 0.14);
+  color: var(--accent-head-text);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -59,17 +59,17 @@
 }
 
 .htaBadge {
-  border-color: rgba(20, 184, 166, 0.22);
-  background: rgba(20, 184, 166, 0.14);
-  color: #115e59;
+  border-color: rgb(var(--accent-hta-rgb) / 0.22);
+  background: rgb(var(--accent-hta-rgb) / 0.14);
+  color: var(--accent-hta-text);
 }
 
 :global([data-theme='dark']) .badge {
-  color: #fcd34df2;
+  color: var(--accent-head-text);
 }
 
 :global([data-theme='dark']) .htaBadge {
-  color: #5eead4;
+  color: var(--accent-hta-text);
 }
 
 .memberIdentity {
@@ -131,7 +131,7 @@
 
 .actionBtn:hover {
   background: color-mix(in srgb, var(--primary) 14%, var(--surface));
-  border-color: rgba(108, 99, 255, 0.4);
+  border-color: color-mix(in srgb, var(--primary) 40%, transparent);
   color: var(--primary-light);
 }
 

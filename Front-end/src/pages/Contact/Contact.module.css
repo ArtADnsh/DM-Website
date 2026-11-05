@@ -75,7 +75,7 @@
 
 .channelCard:hover {
   transform: translateY(-3px);
-  border-color: rgba(108, 99, 255, 0.4);
+  border-color: rgb(var(--primary-soft-rgb) / 0.4);
   box-shadow: 0 14px 36px color-mix(in srgb, var(--shadow) 78%, transparent);
 }
 
@@ -154,7 +154,7 @@
   display: grid;
   place-items: center;
   border-radius: 16px;
-  background: rgba(108, 99, 255, 0.14);
+  background: rgb(var(--primary-soft-rgb) / 0.14);
   color: var(--primary-light);
 }
 

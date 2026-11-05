@@ -123,9 +123,9 @@
 
 .mentorName {
   padding: 6px 11px;
-  border: 1px solid rgba(108, 99, 255, 0.18);
+  border: 1px solid rgb(var(--primary-soft-rgb) / 0.18);
   border-radius: 999px;
-  background: rgba(108, 99, 255, 0.09);
+  background: rgb(var(--primary-soft-rgb) / 0.09);
   color: var(--primary-light);
   font-size: 13px;
   font-weight: 720;

@@ -20,6 +20,7 @@
   min-width: 0;
 }
 
+.sectionHeading h1,
 .sectionHeading h2 {
   margin: 0;
   color: var(--text);
@@ -83,7 +84,7 @@
   margin-bottom: 4px;
 }
 
-.widgetHeader h3 {
+.widgetHeader h2 {
   margin: 0;
   color: var(--text);
   font-size: 18px;
@@ -95,7 +96,7 @@
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(108, 99, 255, 0.15);
+  background: rgb(var(--primary-soft-rgb) / 0.15);
   color: var(--primary-light);
   font-size: 10px;
   font-weight: 800;
@@ -112,7 +113,7 @@
 }
 
 .recitationCard:hover {
-  border-color: rgba(108, 99, 255, 0.35);
+  border-color: rgb(var(--primary-soft-rgb) / 0.35);
 }
 
 /* NO ANNOUNCEMENTS COOL STATE */
@@ -127,9 +128,9 @@
   gap: 6px;
   padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  color: #10b981;
+  background: rgb(var(--accent-hta-rgb) / 0.12);
+  border: 1px solid rgb(var(--accent-hta-rgb) / 0.25);
+  color: var(--accent-hta-text);
   font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -174,9 +175,9 @@
   gap: 8px;
   margin-top: 4px;
   padding: 8px 14px;
-  border: 1px solid rgba(108, 99, 255, 0.28);
+  border: 1px solid rgb(var(--primary-soft-rgb) / 0.28);
   border-radius: 999px;
-  background: rgba(108, 99, 255, 0.1);
+  background: rgb(var(--primary-soft-rgb) / 0.1);
   color: var(--primary-light);
   font-size: 12px;
   font-weight: 750;
@@ -200,7 +201,7 @@
   border-color: transparent;
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(108, 99, 255, 0.32);
+  box-shadow: 0 8px 20px rgb(var(--primary-soft-rgb) / 0.32);
 }
 
 .recitationLink:hover span,
@@ -312,7 +313,7 @@
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(108, 99, 255, 0.24), transparent 68%);
+  background: radial-gradient(circle, rgb(var(--primary-soft-rgb) / 0.24), transparent 68%);
   pointer-events: none;
 }
 
@@ -420,7 +421,7 @@
   min-height: 58px;
   margin-top: auto;
   padding: 0 20px;
-  background: rgba(108, 99, 255, 0.1);
+  background: rgb(var(--primary-soft-rgb) / 0.1);
   color: var(--primary-light);
   font-size: 12px;
   font-weight: 750;
@@ -428,7 +429,7 @@
 }
 
 .courseFacts>a:hover {
-  background: rgba(108, 99, 255, 0.16);
+  background: rgb(var(--primary-soft-rgb) / 0.16);
 }
 
 /* RESPONSIVE LAYOUT FOR TABLETS AND MOBILE PHONES */

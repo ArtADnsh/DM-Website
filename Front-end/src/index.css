@@ -7,22 +7,40 @@
 :root {
   color-scheme: light;
 
-  --background: #eef1f7;
-  --surface: #ffffff;
+  --background: #f1f1f0;
+  --surface: #fbfbfa;
 
-  --primary: #5948d7;
-  --primary-light: #5846bd;
+  --primary: #625b9b;
+  --primary-light: #6f679f;
+  --primary-soft-rgb: 112 104 169;
 
-  --text: #15172a;
-  --text-muted: #5b5d70;
+  /* Shared semantic accents */
+  --accent-ta-rgb: 76 119 174;
+  --accent-hta-rgb: 65 145 137;
+  --accent-head-rgb: 190 145 77;
+  --accent-telegram-rgb: 42 171 238;
+  --accent-ta-text: #456b9e;
+  --accent-hta-text: #326b66;
+  --accent-head-text: #866238;
+  --accent-telegram: #14739f;
 
-  --border: rgba(23, 24, 42, 0.1);
+  /* Shared shape tokens */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --text: #20212a;
+  --text-muted: #666873;
+
+  --border: rgba(35, 36, 44, 0.1);
 
   --header-bg: rgba(255, 255, 255, 0.8);
   --menu-bg: rgba(255, 255, 255, 0.8);
   --footer-bg: rgba(255, 255, 255, 0.6);
   --overlay-bg: rgba(15, 17, 35, 0.05);
-  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-bg: rgba(255, 255, 255, 0.82);
   --shadow: rgba(23, 24, 42, 0.14);
 
   --container-width: 1200px;
@@ -31,22 +49,27 @@
 [data-theme='dark'] {
   color-scheme: dark;
 
-  --background: #151923;
-  --surface: #1c2230;
+  --background: #181a20;
+  --surface: #22252d;
 
-  --primary: #5948d7;
-  --primary-light: #918aff;
+  --primary: #625b9b;
+  --primary-light: #a39bcf;
 
-  --text: #f3f4f6;
-  --text-muted: #a7adba;
+  --accent-ta-text: #93c5fd;
+  --accent-hta-text: #5eead4;
+  --accent-head-text: #fcd34d;
+  --accent-telegram: #7dd3fc;
 
-  --border: rgba(186, 198, 224, 0.1);
+  --text: #eeeeef;
+  --text-muted: #aaadb6;
+
+  --border: rgba(196, 198, 210, 0.12);
 
   --header-bg: rgba(20, 24, 34, 0.9);
   --menu-bg: rgba(28, 34, 48, 0.88);
   --footer-bg: rgba(14, 17, 24, 0.72);
 
-  --card-bg: rgba(255, 255, 255, 0.045);
+  --card-bg: rgba(255, 255, 255, 0.055);
   --shadow: rgba(0, 0, 0, 0.32);
 
   --overlay-bg: rgba(0, 0, 0, 0.38);
@@ -110,7 +133,7 @@ a:focus-visible {
 }
 
 ::selection {
-  background: rgba(108, 99, 255, 0.22);
+  background: rgba(117, 109, 169, 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {

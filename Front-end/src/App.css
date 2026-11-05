@@ -8,7 +8,7 @@
   background:
     radial-gradient(
       circle at 80% 0%,
-      rgba(108, 99, 255, 0.12),
+      rgb(var(--primary-soft-rgb) / 0.12),
       transparent 35%
     ),
     var(--background);
@@ -18,7 +18,7 @@
   background:
     radial-gradient(
       circle at 80% 0%,
-      rgba(102, 94, 255, 0.12),
+      rgb(var(--primary-soft-rgb) / 0.12),
       transparent 34%
     ),
     var(--background);

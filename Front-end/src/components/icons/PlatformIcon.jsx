@@ -2,7 +2,7 @@ export function TelegramBrandIcon(props) {
   return (
     <svg viewBox="0 0 256 256" stroke="none" aria-hidden="true" {...props}>
       <path
-        fill="#5846bd"
+        fill="currentColor"
         fillRule="evenodd"
         d="
           M128 0
@@ -39,7 +39,7 @@ export function QueraIcon(props) {
   return (
     <svg viewBox="0 0 512 512" aria-hidden="true" {...props}>
       <path
-        fill="#5846bd"
+        fill="currentColor"
         fillRule="evenodd"
         d="
           M256 0
@@ -71,7 +71,7 @@ export function BaleIcon(props) {
   return (
     <svg
       viewBox="0 0 601 601"
-      fill="#5846bd"
+      fill="currentColor"
       stroke="none"
       aria-hidden="true"
       {...props}
@@ -197,7 +197,7 @@ export function ChatBrandIcon(props) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="#5846bd"
+      fill="currentColor"
       stroke="none"
       aria-hidden="true"
       {...props}
