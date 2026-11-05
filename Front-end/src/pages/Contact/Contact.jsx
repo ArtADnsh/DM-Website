@@ -12,8 +12,8 @@ function Contact() {
       <header className={styles.header}>
         <h1 className={styles.title}>Contact Us</h1>
         <p className={styles.subtitle}>
-          Have a question about homeworks, project specs, quizzes, or recitation
-          classes? Reach out directly to the corresponding team head or join the
+          Have a question about homework, the project, quizzes, or recitation
+          classes? Message the relevant team head directly, or join the
           official course channels.
         </p>
       </header>
@@ -24,8 +24,7 @@ function Contact() {
           Official Channels
         </h2>
         <p className={styles.sectionDesc}>
-          Direct portals for announcements, discussion, homework submission, and
-          social media.
+          Announcements, discussion, and homework submission.
         </p>
 
         <div className={styles.channelsGrid}>
@@ -56,11 +55,10 @@ function Contact() {
         aria-labelledby="team-contacts-heading"
       >
         <h2 id="team-contacts-heading" className={styles.sectionTitle}>
-          Teaching Team Section Heads
+          Who to Contact
         </h2>
         <p className={styles.sectionDesc}>
-          Connect directly with the TA head responsible for your specific topic
-          or concern.
+          Each head below is responsible for one part of the course.
         </p>
 
         <div className={styles.teamGrid}>

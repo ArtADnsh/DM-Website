@@ -23,14 +23,16 @@ function ThemeToggle() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    try { window.localStorage.setItem(THEME_STORAGE_KEY, theme); } catch { /* Theme still works without persistence. */ }
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       "content", theme === "dark" ? "#151923" : "#eef1f7",
     );
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+    const nextTheme = isDark ? "light" : "dark";
+    setTheme(nextTheme);
+    // Saved only on an explicit choice, so first-time visitors keep following their system theme.
+    try { window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme); } catch { /* Theme still works without persistence. */ }
   };
 
   return (

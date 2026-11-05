@@ -21,7 +21,9 @@ function PhotoPlaceholder({ label }) {
 function ClassroomGallery({ gallery = [] }) {
   const containerRef = useRef(null);
   const hasGallery = gallery.length > 0;
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(
+    () => !("IntersectionObserver" in window),
+  );
   const [{ currentSlide, cycle }, setSlide] = useState({
     currentSlide: 0,
     cycle: 0,
@@ -55,7 +57,6 @@ function ClassroomGallery({ gallery = [] }) {
 
     // Keep autoplay available in browsers without IntersectionObserver.
     if (!("IntersectionObserver" in window)) {
-      setIsInView(true);
       return undefined;
     }
 
@@ -117,9 +118,16 @@ function ClassroomGallery({ gallery = [] }) {
       className={styles.slideshowContainer}
       data-paused={isPaused}
       style={{ "--slide-duration": `${SLIDE_DURATION}ms` }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocusCapture={() => setIsFocused(true)}
+      role="group"
+      aria-roledescription="carousel"
+      aria-label="Classroom photos"
+      // Touch taps also fire mouse events; only a real mouse should pause.
+      onPointerEnter={(event) => setIsHovered(event.pointerType === "mouse")}
+      onPointerLeave={() => setIsHovered(false)}
+      // Clicking an arrow leaves focus on it; only keyboard focus should pause.
+      onFocusCapture={(event) => {
+        if (event.target.matches(":focus-visible")) setIsFocused(true);
+      }}
       onBlurCapture={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) {
           setIsFocused(false);

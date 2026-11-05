@@ -15,13 +15,12 @@ function CourseMaterials() {
   const [activeTab, setActiveTab] = useState("lecture-notes");
 
   const { data, loading, failed: loadFailed } = useApiData(fetchCourseFiles);
-  const materials = data ?? [];
 
   const tabsRef = useRef(null);
 
   const normalizedMaterials = useMemo(
-    () => materials.map(normalizeMaterial),
-    [materials],
+    () => (data ?? []).map(normalizeMaterial),
+    [data],
   );
 
   const groupedMaterials = useMemo(() => {

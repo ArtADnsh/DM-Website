@@ -13,7 +13,7 @@ function Header({ pathname }) {
   const menuButtonRef = useRef(null);
   const menuRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(() => window.scrollY > 40);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -27,8 +27,6 @@ function Header({ pathname }) {
     let ticking = false;
     let animationFrame;
     let compact = window.scrollY > 40;
-
-    setIsScrolled(compact);
 
     const evaluateScroll = () => {
       const scrollY = window.scrollY;
@@ -62,6 +60,7 @@ function Header({ pathname }) {
 
   useEffect(() => {
     const menu = menuRef.current;
+    const menuButton = menuButtonRef.current;
     if (menu) menu.inert = !isMenuOpen;
     if (!isMenuOpen) return undefined;
     menu?.querySelector('a')?.focus();
@@ -90,7 +89,7 @@ function Header({ pathname }) {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      menuButtonRef.current?.focus();
+      menuButton?.focus();
     };
   }, [isMenuOpen]);
 

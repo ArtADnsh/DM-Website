@@ -13,13 +13,15 @@ function PeopleList({ people }) {
       {people.map((person) => (
         <li key={person.id}>
           <span>{person.name}</span>
-          <a
-            href={getTelegramUrl(person.telegram)}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {person.telegram}
-          </a>
+          {getTelegramUrl(person.telegram) ? (
+            <a
+              href={getTelegramUrl(person.telegram)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {person.telegram}
+            </a>
+          ) : null}
         </li>
       ))}
     </ul>
@@ -105,7 +107,7 @@ function Footer() {
         {/* BOTTOM COPYRIGHT & CREDITS */}
         <div className={styles.bottomBar}>
           <p>
-            © {siteInfo.copyrightYear} {siteInfo.courseName}. All rights reserved.
+            © {siteInfo.copyrightYear} {siteInfo.courseName} · {siteInfo.universityShortName}
           </p>
 
           <p className={styles.credits}>

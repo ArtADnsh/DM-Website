@@ -9,7 +9,7 @@ function TAs() {
       <TeamMembers
         eyebrow={siteInfo.courseName}
         title="Teaching Team"
-        description={`Meet the professor, head TAs, and specialized teaching teams supporting ${siteInfo.courseName} throughout the semester.`}
+        description="Your instructor and teaching assistants, grouped by responsibility."
         categories={teamCategories}
       />
     </div>

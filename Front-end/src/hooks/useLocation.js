@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getScrollBehavior } from "../utils/motion";
 
 function normalizePath(pathname) {
@@ -75,7 +75,15 @@ export function useLocation() {
     };
   }, []);
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    // Keep the browser's own scroll restoration on reload.
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      if (!location.hash) return;
+    }
+
     const { hash } = location;
     let targetId = hash.slice(1);
 
@@ -86,12 +94,12 @@ export function useLocation() {
     }
 
     const target = hash ? document.getElementById(targetId) : null;
-    const behavior = getScrollBehavior();
 
     if (target) {
-      target.scrollIntoView({ behavior });
+      target.scrollIntoView({ behavior: getScrollBehavior() });
     } else {
-      window.scrollTo({ top: 0, behavior });
+      // A new page should start at the top immediately, not scroll up through it.
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [location]);
 

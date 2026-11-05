@@ -32,10 +32,10 @@ export const homeContent = {
     schedule: siteInfo.lectureSchedule,
 
     description:
-      'This portal is the central hub for Discrete Mathematics. Access lecture notes, download assignment problem sets, view quiz solutions, check weekly recitation schedules, and stay updated with official announcements.',
+      'Everything for the course in one place: lecture notes, assignments, quizzes, recitation classes, and announcements.',
 
     secondaryDescription:
-      'The course focuses on mathematical logic, set theory, graph theory, combinatorics, recurrence relations, and discrete algorithms forming the bedrock of computer science.',
+      'Topics include logic and proofs, set theory, number theory, combinatorics, and graph theory.',
 
     features: [
       'Lecture notes & materials',

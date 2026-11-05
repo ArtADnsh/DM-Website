@@ -53,8 +53,13 @@ function App() {
 
   return (
     <div className="app">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Header pathname={pathname} />
-      <main>{page}</main>
+      <main id="main-content" tabIndex={-1}>
+        {page}
+      </main>
       <Footer />
     </div>
   );
