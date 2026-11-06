@@ -44,14 +44,14 @@
   min-height: 44px;
   margin-top: 28px;
   padding: 12px 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   background: var(--primary);
   color: #ffffff;
   font-weight: 600;
 }
 
 .homeLink:hover {
-  background: var(--primary-light);
+  background: var(--primary-hover);
 }
 
 @media (max-width: 600px) {
@@ -60,6 +60,6 @@
   }
 
   .card {
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
   }
 }

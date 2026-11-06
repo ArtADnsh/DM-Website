@@ -5,9 +5,9 @@
   min-height: 380px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 28px;
+  border-radius: var(--radius-2xl);
   background: var(--card-bg);
-  box-shadow: 0 20px 60px color-mix(in srgb, var(--shadow) 36%, transparent);
+  box-shadow: var(--shadow-panel);
   isolation: isolate;
 }
 
@@ -108,7 +108,7 @@
   gap: 4px;
   padding: 4px 10px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -183,7 +183,7 @@
     min-height: 0;
     height: auto;
     aspect-ratio: 16 / 9;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .carouselArrow {
@@ -226,6 +226,6 @@
     min-height: 0;
     height: auto;
     aspect-ratio: 16 / 9;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
   }
 }

@@ -12,14 +12,14 @@
   padding: clamp(28px, 5vw, 48px);
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 30px;
+  border-radius: var(--radius-2xl);
   background:
     radial-gradient(circle at 100% 0%,
       color-mix(in srgb, var(--primary) 16%, transparent),
       transparent 38%),
     var(--card-bg);
   box-shadow:
-    0 24px 70px color-mix(in srgb, var(--shadow) 34%, transparent);
+    var(--shadow-panel);
 }
 
 .hero::after {
@@ -73,7 +73,7 @@
   margin-top: 22px;
   padding: 8px 12px;
   border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border));
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background:
     color-mix(in srgb, var(--primary) 9%, transparent);
   color: var(--primary-light);
@@ -89,7 +89,7 @@
   align-content: center;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: var(--radius-xl);
   background:
     color-mix(in srgb, var(--surface) 62%, transparent);
 }
@@ -162,7 +162,7 @@
   min-height: 156px;
   padding: 20px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   background: var(--card-bg);
 }
 
@@ -172,7 +172,7 @@
   display: grid;
   place-items: center;
   margin-bottom: 17px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background:
     color-mix(in srgb, var(--primary) 12%, transparent);
   color: var(--primary-light);
@@ -239,7 +239,7 @@
     grid-template-columns: 1fr;
     gap: 28px;
     padding: 26px 20px;
-    border-radius: 24px;
+    border-radius: var(--radius-xl);
   }
 
   .guidelines {

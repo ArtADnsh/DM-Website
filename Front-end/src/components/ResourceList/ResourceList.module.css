@@ -38,7 +38,7 @@
 .empty {
   padding: 56px 20px;
   border: 1px dashed var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   color: var(--text-muted);
   font-size: 14px;
   text-align: center;

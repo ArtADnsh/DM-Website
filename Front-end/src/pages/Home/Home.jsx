@@ -1,5 +1,8 @@
 import {
   AnnouncementIcon,
+  CheckCircleIcon,
+  DownloadIcon,
+  MegaphoneIcon,
 } from "../../components/icons";
 
 import ClassroomGallery from "../../components/ClassroomGallery/ClassroomGallery";
@@ -89,7 +92,8 @@ function Home() {
               <div className={`${styles.recitationCard} ${styles.fadeIn}`}>
                 <div className={styles.recitationHeader}>
                   <span className={styles.recitationTag}>
-                    {announcement.title || "📢 Course announcement"}
+                    <MegaphoneIcon />
+                    {announcement.title || "Course announcement"}
                   </span>
                 </div>
                 <p className={styles.announcementMessage}>
@@ -114,7 +118,8 @@ function Home() {
               >
                 <div className={styles.recitationHeader}>
                   <span className={styles.noAnnouncementTag}>
-                    ✨ ALL CAUGHT UP
+                    <CheckCircleIcon />
+                    ALL CAUGHT UP
                   </span>
                 </div>
                 <h3 className={styles.noAnnouncementTitle}>
@@ -139,7 +144,8 @@ function Home() {
             {latestFiles.length > 0 && (
               <div className={styles.recentFilesBox}>
                 <span className={styles.filesBoxTitle}>
-                  📥 Recent materials
+                  <DownloadIcon />
+                  Recent materials
                 </span>
                 <div className={styles.fileList}>
                   {latestFiles.map((file) => (

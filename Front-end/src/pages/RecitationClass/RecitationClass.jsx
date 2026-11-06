@@ -215,6 +215,7 @@ function RecitationClass({ id }) {
                     number: String(index + 1).padStart(2, "0"),
                   }}
                   variant={activeTab === "files" ? "document" : "video"}
+                  headingLevel={2}
                 />
               ))}
             </section>

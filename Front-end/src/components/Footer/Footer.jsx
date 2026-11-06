@@ -40,9 +40,9 @@ function Footer() {
               <span className={styles.badgeDot} />
               {siteInfo.courseName}
             </div>
-            <h3 className={styles.courseTitle}>
+            <h2 className={styles.courseTitle}>
               {siteInfo.term} · Semester {siteInfo.semesterCode}
-            </h3>
+            </h2>
             <p className={styles.courseDesc}>
               Official course portal for {siteInfo.courseName},{" "}
               {siteInfo.departmentName} at {siteInfo.universityName}.
@@ -54,7 +54,7 @@ function Footer() {
 
           {/* COLUMN 2: QUICK NAVIGATION */}
           <div className={styles.col}>
-            <h4 className={styles.colTitle}>Navigation</h4>
+            <h2 className={styles.colTitle}>Navigation</h2>
             <ul className={styles.linkList}>
               {footerLinks.map((item) => (
                 <li key={item.href}>
@@ -68,7 +68,7 @@ function Footer() {
 
           {/* COLUMN 3: USEFUL LINKS & PORTALS */}
           <div className={styles.col}>
-            <h4 className={styles.colTitle}>Useful Links</h4>
+            <h2 className={styles.colTitle}>Useful Links</h2>
             <ul className={styles.portalList}>
               {courseLinks.map((link) => (
                 <li key={link.id}>
@@ -94,12 +94,12 @@ function Footer() {
 
           {/* COLUMN 4: HEAD TAs & WEBSITE CREATORS */}
           <div className={styles.col}>
-            <h4 className={styles.colTitle}>Head TAs</h4>
+            <h2 className={styles.colTitle}>Head TAs</h2>
             <PeopleList people={headTAs} />
 
-            <h4 className={`${styles.colTitle} ${styles.subTitle}`}>
+            <h3 className={`${styles.colTitle} ${styles.subTitle}`}>
               Website Creators
-            </h4>
+            </h3>
             <PeopleList people={websiteCreators} />
           </div>
         </div>

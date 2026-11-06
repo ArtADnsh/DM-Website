@@ -8,7 +8,7 @@
   flex-shrink: 0;
 
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
 
   background: color-mix(in srgb, var(--surface) 60%, transparent);
   color: var(--text);

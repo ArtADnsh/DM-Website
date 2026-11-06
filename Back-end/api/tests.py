@@ -15,13 +15,13 @@ class ApiEndpointsTestCase(TestCase):
     def test_get_announcement(self):
         CourseAnnouncement.objects.create(
             pk=1,
-            title='📢 Test Notice',
+            title='Test Notice',
             message='Test announcement content',
             is_active=True
         )
         response = self.client.get('/api/announcement/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data.get('title'), '📢 Test Notice')
+        self.assertEqual(response.data.get('title'), 'Test Notice')
 
     def test_get_recitations(self):
         recitation = RecitationClass.objects.create(

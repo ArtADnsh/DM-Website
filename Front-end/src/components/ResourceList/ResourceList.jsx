@@ -47,7 +47,12 @@ function ResourceList({
       {count > 0 ? (
         <section className={styles.list} aria-label={title}>
           {items.map((item) => (
-            <FileCard key={item.id} file={item} variant={variant} />
+            <FileCard
+              key={item.id}
+              file={item}
+              variant={variant}
+              headingLevel={2}
+            />
           ))}
         </section>
       ) : (

@@ -7,7 +7,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--card-bg);
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--shadow) 68%, transparent);
+  box-shadow: var(--shadow-card);
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
@@ -38,7 +38,7 @@
   height: 98px;
   flex: 0 0 98px;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
 }
 
 .avatar {
@@ -60,7 +60,7 @@
 .badge {
   padding: 5px 11px;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -85,7 +85,7 @@
 .focus {
   margin-top: 6px;
   color: var(--text-muted);
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -204,7 +204,7 @@
   background:
     linear-gradient(145deg, rgb(var(--primary-soft-rgb) / 0.18), transparent 64%),
     var(--card-bg);
-  box-shadow: 0 16px 42px color-mix(in srgb, var(--shadow) 72%, transparent);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .professor .avatar,
@@ -212,7 +212,7 @@
   width: 130px;
   height: 130px;
   flex-basis: 130px;
-  border-radius: 22px;
+  border-radius: var(--radius-xl);
 }
 
 .professor .avatarFallback {
@@ -268,7 +268,7 @@
     width: 88px;
     height: 88px;
     flex-basis: 88px;
-    border-radius: 17px;
+    border-radius: var(--radius-md);
   }
 }
 

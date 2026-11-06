@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             name='CourseAnnouncement',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(default='📢 Course Announcement', help_text='Header tag/title e.g. 📌 Notice, 📢 Update', max_length=200)),
+                ('title', models.CharField(default='Course Announcement', help_text='Header tag/title e.g. Notice, Update', max_length=200)),
                 ('message', models.TextField(help_text='Write any active announcement or notice for the Home page')),
                 ('link', models.CharField(blank=True, help_text='Optional button link (URL or internal path e.g. /materials)', max_length=500)),
                 ('link_text', models.CharField(blank=True, default='View Details', help_text='Button label', max_length=100)),

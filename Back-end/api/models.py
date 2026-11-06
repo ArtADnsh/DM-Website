@@ -135,7 +135,7 @@ class CourseFile(models.Model):
 
 
 class CourseAnnouncement(models.Model):
-    title = models.CharField(max_length=200, default="📢 Course Announcement", help_text="Header tag/title e.g. 📌 Notice, 📢 Update")
+    title = models.CharField(max_length=200, default="Course Announcement", help_text="Header tag/title e.g. Notice, Update")
     message = models.TextField(help_text="Write any active announcement or notice for the Home page")
     link = models.CharField(max_length=500, blank=True, help_text="Optional button link (URL or internal path e.g. /materials)")
     link_text = models.CharField(max_length=100, default="View Details", blank=True, help_text="Button label")

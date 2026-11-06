@@ -8,9 +8,9 @@
   margin: 0 auto;
   padding: clamp(28px, 4vw, 48px);
   border: 1px solid var(--border);
-  border-radius: 30px;
+  border-radius: var(--radius-2xl);
   background: color-mix(in srgb, var(--surface) 44%, transparent);
-  box-shadow: 0 24px 70px color-mix(in srgb, var(--shadow) 45%, transparent);
+  box-shadow: var(--shadow-panel);
 }
 
 .header {
@@ -56,7 +56,7 @@
   margin-top: 34px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: var(--radius-xl);
   background: var(--card-bg);
 }
 
@@ -124,7 +124,7 @@
 .mentorName {
   padding: 6px 11px;
   border: 1px solid rgb(var(--primary-soft-rgb) / 0.18);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: rgb(var(--primary-soft-rgb) / 0.09);
   color: var(--primary-light);
   font-size: 13px;
@@ -151,7 +151,7 @@
   .panel {
     width: min(100% - 28px, var(--container-width));
     padding: 26px 18px;
-    border-radius: 22px;
+    border-radius: var(--radius-xl);
   }
 
   .header {
@@ -163,7 +163,7 @@
 
   .tableShell {
     margin-top: 26px;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .indexColumn {
@@ -212,7 +212,7 @@
   .mentorName {
     min-height: 30px;
     padding: 4px 7px;
-    border-radius: 12px;
+    border-radius: var(--radius-sm);
     font-size: 9px;
     line-height: 1.5;
     white-space: normal;

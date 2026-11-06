@@ -24,11 +24,15 @@
   --accent-head-text: #866238;
   --accent-telegram: #14739f;
 
+  --primary-hover: color-mix(in srgb, var(--primary) 85%, #000);
+
   /* Shared shape tokens */
-  --radius-sm: 10px;
-  --radius-md: 14px;
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
   --radius-lg: 20px;
   --radius-xl: 24px;
+  --radius-2xl: 28px;
   --radius-pill: 999px;
 
   --text: #20212a;
@@ -42,6 +46,12 @@
   --overlay-bg: rgba(15, 17, 35, 0.05);
   --card-bg: rgba(255, 255, 255, 0.82);
   --shadow: rgba(23, 24, 42, 0.14);
+
+  /* Shared elevation tokens */
+  --shadow-card: 0 12px 32px color-mix(in srgb, var(--shadow) 40%, transparent);
+  --shadow-card-hover: 0 20px 48px color-mix(in srgb, var(--shadow) 55%, transparent);
+  --shadow-panel: 0 24px 70px color-mix(in srgb, var(--shadow) 40%, transparent);
+  --shadow-popover: 0 20px 60px var(--shadow);
 
   --container-width: 1200px;
 }
@@ -129,7 +139,7 @@ a:focus-visible {
 [role='tabpanel']:focus-visible {
   outline: 3px solid var(--primary-light);
   outline-offset: 4px;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
 }
 
 ::selection {

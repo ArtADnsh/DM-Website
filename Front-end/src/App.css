@@ -34,7 +34,7 @@ main {
   left: 8px;
   z-index: 300;
   padding: 10px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--primary);
   color: #fff;
   font-weight: 600;

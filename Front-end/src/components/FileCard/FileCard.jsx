@@ -48,11 +48,13 @@ const VARIANTS = {
  *
  * @param {'document' | 'video' | 'recitation'} variant - controls icon, accent colour, meta and action.
  * @param {object} file - resource data (see src/data/*).
+ * @param {2 | 3} headingLevel - heading level of the title; use 2 when the list sits directly under the page's h1.
  */
-function FileCard({ file, variant = "document" }) {
+function FileCard({ file, variant = "document", headingLevel = 3 }) {
   const config = VARIANTS[variant] ?? VARIANTS.document;
   const { Icon, ActionIcon } = config;
   const { number, title, description, url } = file;
+  const Heading = `h${headingLevel}`;
 
   const isAvailable = Boolean(url) && url !== "#";
   const meta = config.getMeta(file).filter(Boolean).join(" · ");
@@ -71,7 +73,7 @@ function FileCard({ file, variant = "document" }) {
       </div>
 
       <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
+        <Heading className={styles.title}>{title}</Heading>
         {description && <p className={styles.description}>{description}</p>}
         {meta && <p className={styles.meta}>{meta}</p>}
       </div>

@@ -379,6 +379,24 @@ export function BulletIcon({
   );
 }
 
+export function MegaphoneIcon(props) {
+  return (
+    <svg {...ICON_PROPS} {...props}>
+      <path d="m3 11 18-5v12L3 14v-3z" />
+      <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+    </svg>
+  );
+}
+
+export function CheckCircleIcon(props) {
+  return (
+    <svg {...ICON_PROPS} {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8.5 12.5 2.5 2.5 4.5-5" />
+    </svg>
+  );
+}
+
 export function AnnouncementIcon(props) {
   return (
     <svg

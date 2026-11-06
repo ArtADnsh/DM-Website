@@ -7,9 +7,9 @@
   width: 100%;
   padding: clamp(28px, 4vw, 48px);
   border: 1px solid var(--border);
-  border-radius: 30px;
+  border-radius: var(--radius-2xl);
   background: color-mix(in srgb, var(--surface) 44%, transparent);
-  box-shadow: 0 24px 70px color-mix(in srgb, var(--shadow) 45%, transparent);
+  box-shadow: var(--shadow-panel);
 }
 
 .header {
@@ -128,7 +128,7 @@
 
   .panel {
     padding: 28px 22px;
-    border-radius: 22px;
+    border-radius: var(--radius-xl);
   }
 
   .header {

@@ -66,17 +66,17 @@
   gap: 16px;
   padding: 20px 22px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   background: var(--card-bg);
   text-decoration: none;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 8px 24px color-mix(in srgb, var(--shadow) 60%, transparent);
+  box-shadow: var(--shadow-card);
 }
 
 .channelCard:hover {
   transform: translateY(-3px);
   border-color: rgb(var(--primary-soft-rgb) / 0.4);
-  box-shadow: 0 14px 36px color-mix(in srgb, var(--shadow) 78%, transparent);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .channelIcon {
@@ -85,7 +85,7 @@
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--primary) 12%, var(--surface));
   color: var(--primary-light);
 }
@@ -143,7 +143,7 @@
   gap: 20px;
   padding: 24px 28px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--surface) 60%, transparent);
 }
 
@@ -153,7 +153,7 @@
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: var(--radius-md);
   background: rgb(var(--primary-soft-rgb) / 0.14);
   color: var(--primary-light);
 }

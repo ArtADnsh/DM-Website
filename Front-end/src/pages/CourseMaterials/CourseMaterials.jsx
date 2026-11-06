@@ -182,6 +182,7 @@ function CourseMaterials() {
                     number: String(index + 1).padStart(2, "0"),
                   }}
                   variant="document"
+                  headingLevel={2}
                 />
               ))}
             </section>
