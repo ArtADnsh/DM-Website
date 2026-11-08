@@ -64,14 +64,6 @@
   color: var(--accent-hta-text);
 }
 
-:global([data-theme='dark']) .badge {
-  color: var(--accent-head-text);
-}
-
-:global([data-theme='dark']) .htaBadge {
-  color: var(--accent-hta-text);
-}
-
 .memberIdentity {
   margin-bottom: 16px;
 }

@@ -56,7 +56,7 @@ function ResourceList({
           ))}
         </section>
       ) : (
-        <div className={styles.empty}>{emptyMessage}</div>
+        <div className={styles.empty} role="status">{emptyMessage}</div>
       )}
     </div>
   );

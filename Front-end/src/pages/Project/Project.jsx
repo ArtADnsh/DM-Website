@@ -35,7 +35,7 @@ function Project() {
           <span className={styles.status}>{projectInfo.status}</span>
         </div>
 
-        <div className={styles.detailsCard} aria-label="Project overview">
+        <div className={styles.detailsCard} role="group" aria-label="Project overview">
           {projectInfo.details.map((detail) => (
             <div className={styles.detail} key={detail.label}>
               <span>{detail.label}</span>

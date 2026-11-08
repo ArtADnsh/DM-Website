@@ -40,7 +40,6 @@ function ThemeToggle() {
       className={styles.toggle}
       onClick={toggleTheme}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-      aria-pressed={isDark}
       title={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
       <span className={styles.iconWrap} aria-hidden="true">

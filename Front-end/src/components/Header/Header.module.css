@@ -15,7 +15,6 @@
   background: var(--header-bg);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-
 }
 
 .container {
@@ -197,7 +196,7 @@
   letter-spacing: 0.08em;
 }
 
-/* MINIMAL PINK-RED GLOW CLOSE BUTTON ON HOVER */
+/* CLOSE BUTTON INSIDE THE MENU */
 .closeButton {
   width: 30px;
   height: 30px;
@@ -287,18 +286,6 @@
     height: 46px;
   }
 
-  .headerScrolled .logo {
-    transform: scale(0.78);
-  }
-
-  .courseText {
-    transform-origin: left center;
-  }
-
-  .headerScrolled .courseText {
-    transform: scale(0.84);
-  }
-
   .university {
     font-size: 9px;
   }
@@ -325,16 +312,6 @@
     padding: 13px 16px;
   }
 
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .container,
-  .logo,
-  .courseText,
-  .actions {
-    transition: none;
-  }
 }
 
 @media (max-width: 380px) {

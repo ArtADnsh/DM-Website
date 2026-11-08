@@ -223,9 +223,6 @@
 
 @media (max-width: 440px) {
   .slideshowContainer {
-    min-height: 0;
-    height: auto;
-    aspect-ratio: 16 / 9;
     border-radius: var(--radius-md);
   }
 }

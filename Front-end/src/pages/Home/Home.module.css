@@ -55,12 +55,6 @@
   align-items: stretch;
 }
 
-/* SLIDESHOW CONTAINER */
-
-/* CLEAR & VISIBLE MINIMALIST FLOATING ARROWS */
-
-/* ULTRA-CLEAN ELEGANT CIRCULAR TIMER BULLETS IN A FROSTED GLASS CAPSULE */
-
 /* LATEST UPDATES & RECITATIONS WIDGET */
 .updatesWidget {
   width: 100%;
@@ -81,6 +75,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 4px;
 }
 
@@ -295,6 +290,7 @@
 .downloadBtn {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 4px;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
@@ -377,7 +373,6 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 28px;
-  scroll-margin-top: 110px;
 }
 
 .features span {
@@ -553,18 +548,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-  }
-
-  .fileItem {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-
-  .downloadBtn {
-    width: 100%;
-    justify-content: center;
-    padding: 8px 12px;
   }
 }
 
@@ -801,12 +784,17 @@
   overflow-wrap: anywhere;
 }
 
-.widgetHeader { gap: 10px; }
-.downloadBtn { flex-shrink: 0; }
 .syllabusCard:focus-within {
   border-color: var(--module-accent);
 }
+
 @media (max-width: 680px) {
-  .syllabusGrid { gap: 16px; }
-  .syllabusCard { padding: 22px; border-radius: var(--radius-lg); }
+  .syllabusGrid {
+    gap: 16px;
+  }
+
+  .syllabusCard {
+    padding: 22px;
+    border-radius: var(--radius-lg);
+  }
 }

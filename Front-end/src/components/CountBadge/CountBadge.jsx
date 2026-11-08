@@ -9,7 +9,7 @@ import styles from "./CountBadge.module.css";
  */
 function CountBadge({ value, label, ariaLabel, busy, valueHidden = false }) {
   return (
-    <div className={styles.count} aria-busy={busy} aria-label={ariaLabel}>
+    <div className={styles.count} role="img" aria-busy={busy} aria-label={ariaLabel}>
       <strong aria-hidden={valueHidden ? "true" : undefined}>{value}</strong>
       <span>{label}</span>
     </div>

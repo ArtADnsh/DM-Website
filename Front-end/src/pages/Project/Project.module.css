@@ -261,14 +261,12 @@
     text-align: left;
   }
 
-  @media (max-width: 760px) {
-    .comingSoon {
-      min-height: 360px;
-      padding: 32px 18px;
-    }
+  .comingSoon {
+    min-height: 360px;
+    padding: 32px 18px;
+  }
 
-    .comingSoon h1 {
-      font-size: clamp(30px, 10vw, 42px);
-    }
+  .comingSoon h1 {
+    font-size: clamp(30px, 10vw, 42px);
   }
 }

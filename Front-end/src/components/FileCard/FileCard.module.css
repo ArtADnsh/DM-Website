@@ -51,14 +51,6 @@
   --accent-text: var(--accent-ta-text);
 }
 
-:global([data-theme='dark']) .video {
-  --accent-text: var(--accent-hta-text);
-}
-
-:global([data-theme='dark']) .recitation {
-  --accent-text: var(--accent-ta-text);
-}
-
 /* Icon tile */
 .icon {
   position: relative;
@@ -125,7 +117,7 @@
 
 .meta {
   margin-top: 4px;
-  color: color-mix(in srgb, var(--text-muted) 78%, transparent);
+  color: var(--text-muted);
   font-size: 13px;
   font-weight: 500;
 }
@@ -169,10 +161,6 @@
 a.action:hover {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
   background: color-mix(in srgb, var(--accent) 20%, transparent);
-}
-
-a.action:active {
-  transform: translateY(0);
 }
 
 .disabled {

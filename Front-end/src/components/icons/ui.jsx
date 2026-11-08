@@ -230,6 +230,7 @@ export function MenuIcon(props) {
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
+      aria-hidden="true"
       {...props}
     >
       <path d="M4 6h16M4 12h16M4 18h16" />
@@ -246,6 +247,7 @@ export function CloseIcon(props) {
       strokeWidth="1.6"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
       {...props}
     >
       <path d="M18 6L6 18M6 6l12 12" />
@@ -311,6 +313,7 @@ export function ChevronLeftIcon(props) {
       strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
       {...props}
     >
       <path d="M15 18l-6-6 6-6" />
@@ -327,6 +330,7 @@ export function ChevronRightIcon(props) {
       strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
       {...props}
     >
       <path d="M9 18l6-6-6-6" />
@@ -343,7 +347,7 @@ export function BulletIcon({
   ...props
 }) {
   return (
-    <svg viewBox="0 0 24 24" {...props}>
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       {isActive ? (
         <>
           {/* Subtle hairline track ring */}

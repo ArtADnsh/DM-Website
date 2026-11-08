@@ -143,8 +143,6 @@ function CourseMaterials() {
                 >
                   <span className={styles.tabLabel}>{tab.label}</span>
 
-                  <span className={styles.tabShortLabel}>{tab.shortLabel}</span>
-
                   <span className={styles.tabCount} aria-busy={loading}>
                     {countsReady ? count : "—"}
                   </span>

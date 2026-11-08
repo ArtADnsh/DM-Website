@@ -11,19 +11,6 @@
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-.card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-}
-
-
-
 .top {
   display: flex;
   align-items: flex-start;
@@ -235,21 +222,14 @@
 
 :global([data-theme='dark']) .ta .badge {
   background: rgb(var(--accent-ta-rgb) / 0.20);
-  color: var(--accent-ta-text);
 }
 
 :global([data-theme='dark']) .hta .badge {
   background: rgb(var(--accent-hta-rgb) / 0.20);
-  color: var(--accent-hta-text);
-}
-
-:global([data-theme='dark']) .head .badge {
-  color: var(--accent-head-text);
 }
 
 :global([data-theme='dark']) .professor .badge {
   background: rgb(var(--primary-soft-rgb) / 0.22);
-  color: var(--primary-light);
 }
 
 @media (max-width: 480px) {

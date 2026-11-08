@@ -14,16 +14,6 @@
     var(--background);
 }
 
-[data-theme='dark'] .app {
-  background:
-    radial-gradient(
-      circle at 80% 0%,
-      rgb(var(--primary-soft-rgb) / 0.12),
-      transparent 34%
-    ),
-    var(--background);
-}
-
 main {
   flex: 1;
 }

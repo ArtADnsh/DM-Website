@@ -189,7 +189,7 @@ function Home() {
             {course.secondaryDescription}
           </p>
 
-          <div className={styles.features} aria-label="Website resources">
+          <div className={styles.features} role="group" aria-label="Website resources">
             {course.features.map((feature) => (
               <span key={feature}>
                 <AnnouncementIcon />
