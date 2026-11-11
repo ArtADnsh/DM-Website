@@ -7,24 +7,32 @@
 :root {
   color-scheme: light;
 
-  --background: #f1f1f0;
-  --surface: #fbfbfa;
+  --background: #f1f1f4;
+  --surface: #fafafc;
 
   --primary: #625b9b;
-  --primary-light: #665f9b;
+  --primary-light: var(--primary);
   --primary-soft-rgb: 112 104 169;
+  --text-inverse: #fff;
+
+  --primary-tint: rgb(var(--primary-soft-rgb) / 0.10);          /* resting fill: pills, links, table head */
+  --primary-tint-strong: rgb(var(--primary-soft-rgb) / 0.14);   /* hover fill, icon tiles, badges */
+  --primary-tint-selected: rgb(var(--primary-soft-rgb) / 0.18); /* current / selected item */
+  --primary-border: rgb(var(--primary-soft-rgb) / 0.28);        /* tinted chip and card borders */
+  --primary-border-strong: rgb(var(--primary-soft-rgb) / 0.38); /* border of a hovered control */
 
   /* Shared semantic accents */
   --accent-ta-rgb: 76 119 174;
   --accent-hta-rgb: 65 145 137;
   --accent-head-rgb: 190 145 77;
   --accent-telegram-rgb: 42 171 238;
-  --accent-ta-text: #456b9e;
+  --accent-ta-text: #426799;
   --accent-hta-text: #326b66;
   --accent-head-text: #866238;
-  --accent-telegram: #14739f;
+  --accent-telegram: #126f9a;
 
   --primary-hover: color-mix(in srgb, var(--primary) 85%, #000);
+  --primary-active: color-mix(in srgb, var(--primary) 72%, #000);
 
   /* Shared shape tokens */
   --radius-xs: 8px;
@@ -36,7 +44,7 @@
   --radius-pill: 999px;
 
   --text: #20212a;
-  --text-muted: #666873;
+  --text-muted: #62646f;
 
   --border: rgba(35, 36, 44, 0.1);
 
@@ -62,22 +70,22 @@
   --background: #181a20;
   --surface: #22252d;
 
-  --primary: #625b9b;
+  --primary: #7068a9;
   --primary-light: #a39bcf;
 
-  --accent-ta-text: #93c5fd;
-  --accent-hta-text: #5eead4;
-  --accent-head-text: #fcd34d;
-  --accent-telegram: #7dd3fc;
+  --accent-ta-text: #97c1f2;
+  --accent-hta-text: #6cd0c1;
+  --accent-head-text: #eac566;
+  --accent-telegram: #80ccef;
 
   --text: #eeeeef;
   --text-muted: #aaadb6;
 
   --border: rgba(196, 198, 210, 0.12);
 
-  --header-bg: rgba(20, 24, 34, 0.9);
-  --menu-bg: rgba(28, 34, 48, 0.88);
-  --footer-bg: rgba(14, 17, 24, 0.72);
+  --header-bg: rgba(19, 21, 27, 0.9);
+  --menu-bg: rgba(34, 37, 45, 0.92);
+  --footer-bg: rgba(13, 15, 20, 0.72);
 
   --card-bg: rgba(255, 255, 255, 0.055);
   --shadow: rgba(0, 0, 0, 0.32);
@@ -143,7 +151,7 @@ a:focus-visible {
 }
 
 ::selection {
-  background: rgba(117, 109, 169, 0.2);
+  background: rgb(var(--primary-soft-rgb) / 0.2);
 }
 
 @media (prefers-reduced-motion: reduce) {

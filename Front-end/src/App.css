@@ -26,7 +26,7 @@ main {
   padding: 10px 16px;
   border-radius: var(--radius-sm);
   background: var(--primary);
-  color: #fff;
+  color: var(--text-inverse);
   font-weight: 600;
   transform: translateY(-200%);
 }

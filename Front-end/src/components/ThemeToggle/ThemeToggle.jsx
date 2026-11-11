@@ -24,7 +24,7 @@ function ThemeToggle() {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
-      "content", theme === "dark" ? "#181a20" : "#f1f1f0",
+      "content", theme === "dark" ? "#181a20" : "#f1f1f4",
     );
   }, [theme]);
 

@@ -166,35 +166,15 @@
 
 .tab:hover {
   color: var(--text);
-  border-color: rgb(var(--primary-soft-rgb) / 0.32);
-  background: rgb(var(--primary-soft-rgb) / 0.10);
+  border-color: var(--primary-border-strong);
+  background: var(--primary-tint);
 }
 
 .activeTab {
-  border-color:
-    color-mix(
-      in srgb,
-      var(--primary) 70%,
-      var(--primary-light)
-    );
-
-  background:
-    color-mix(
-      in srgb,
-      var(--primary) 18%,
-      var(--surface)
-    );
-
   color: var(--primary-light);
-
-  box-shadow:
-    0 4px 18px
-    color-mix(
-      in srgb,
-      var(--primary) 22%,
-      transparent
-    );
-
+  border-color: color-mix(in srgb, var(--primary) 62%, var(--border));
+  background: color-mix(in srgb, var(--primary) 16%, var(--surface));
+  box-shadow: 0 4px 18px color-mix(in srgb, var(--primary) 20%, transparent);
   font-weight: 700;
 }
 

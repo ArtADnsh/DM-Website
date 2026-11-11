@@ -118,8 +118,8 @@
 }
 
 .menuButton:hover {
-  background: rgb(var(--primary-soft-rgb) / 0.14);
-  border-color: rgb(var(--primary-soft-rgb) / 0.35);
+  background: var(--primary-tint-strong);
+  border-color: var(--primary-border-strong);
 }
 
 .menuIcon {
@@ -204,7 +204,7 @@
   place-items: center;
   border: none;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
   color: var(--text-muted);
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
@@ -217,7 +217,7 @@
 }
 
 .closeButton:hover {
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  background: var(--primary-tint-strong);
   color: var(--text);
 }
 
@@ -232,7 +232,7 @@
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgb(var(--primary-soft-rgb) / 0.16);
+  -webkit-tap-highlight-color: var(--primary-tint-strong);
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -241,18 +241,18 @@
 
 .menu a:hover,
 .menu a:active {
-  background: rgb(var(--primary-soft-rgb) / 0.14);
+  background: var(--primary-tint-strong);
   color: var(--text);
   transform: translateX(2px);
 }
 
 .menu a:focus-visible {
-  background: rgb(var(--primary-soft-rgb) / 0.14);
+  background: var(--primary-tint-strong);
   color: var(--text);
 }
 
 .menu a.activeLink {
-  background: color-mix(in srgb, var(--primary) 13%, transparent);
+  background: var(--primary-tint-selected);
   color: var(--text);
 }
 
@@ -263,7 +263,7 @@
   flex-shrink: 0;
   border-radius: var(--radius-pill);
   background: var(--primary-light);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent);
+  box-shadow: 0 0 0 4px var(--primary-tint-strong);
 }
 
 @media (max-width: 600px) {

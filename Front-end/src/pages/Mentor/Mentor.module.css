@@ -78,7 +78,7 @@
 }
 
 .table thead {
-  background: color-mix(in srgb, var(--primary) 9%, var(--surface));
+  background: var(--primary-tint);
 }
 
 .table th {
@@ -123,9 +123,9 @@
 
 .mentorName {
   padding: 6px 11px;
-  border: 1px solid rgb(var(--primary-soft-rgb) / 0.18);
+  border: 1px solid var(--primary-border);
   border-radius: var(--radius-pill);
-  background: rgb(var(--primary-soft-rgb) / 0.09);
+  background: var(--primary-tint);
   color: var(--primary-light);
   font-size: 13px;
   font-weight: 720;

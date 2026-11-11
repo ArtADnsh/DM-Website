@@ -8,7 +8,7 @@ export const courseSyllabus = [
     topics: ['Propositional Logic', 'Truth Tables', 'Predicate Calculus', 'Quantifiers (∀, ∃)', 'Variable Binding'],
     icon: 'logic',
     color: '#2859b8',
-    darkColor: '#8bb5ff',
+    darkColor: '#93b7f0',
   },
   {
     id: 'module-02',
@@ -19,7 +19,7 @@ export const courseSyllabus = [
     topics: ['Inference Rules', 'Direct & Indirect Proofs', 'Contradiction Proofs', 'Mathematical Induction', 'Well-Ordering Property'],
     icon: 'proofs',
     color: '#7042b4',
-    darkColor: '#bc9cf5',
+    darkColor: '#b89aef',
   },
   {
     id: 'module-03',
@@ -51,7 +51,7 @@ export const courseSyllabus = [
     description: 'Product and sum rules, tree diagrams, linear & cyclic permutations, combinations, Binomial Theorem & Pascal identities, and simple/generalized Pigeonhole Principle proofs.',
     topics: ['Product & Sum Rules', 'Permutations & Combinations', 'Binomial Theorem', 'Pigeonhole Principle', 'Double Counting'],
     icon: 'counting',
-    color: '#936018',
+    color: '#8f5c15',
     darkColor: '#e9bd75',
   },
   {

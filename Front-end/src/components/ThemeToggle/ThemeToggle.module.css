@@ -21,8 +21,8 @@
 }
 
 .toggle:hover {
-  background: rgb(var(--primary-soft-rgb) / 0.14);
-  border-color: rgb(var(--primary-soft-rgb) / 0.35);
+  background: var(--primary-tint-strong);
+  border-color: var(--primary-border-strong);
 }
 
 .iconWrap {
