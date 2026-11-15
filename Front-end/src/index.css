@@ -7,12 +7,12 @@
 :root {
   color-scheme: light;
 
-  --background: #f1f1f4;
-  --surface: #fafafc;
+  --background: #f2f0eb;
+  --surface: #faf9f6;
 
-  --primary: #625b9b;
+  --primary: #2e5089;
   --primary-light: var(--primary);
-  --primary-soft-rgb: 112 104 169;
+  --primary-soft-rgb: 59 99 160;
   --text-inverse: #fff;
 
   --primary-tint: rgb(var(--primary-soft-rgb) / 0.10);          /* resting fill: pills, links, table head */
@@ -43,17 +43,17 @@
   --radius-2xl: 28px;
   --radius-pill: 999px;
 
-  --text: #20212a;
-  --text-muted: #62646f;
+  --text: #1f232b;
+  --text-muted: #5d616b;
 
-  --border: rgba(35, 36, 44, 0.1);
+  --border: rgba(31, 35, 43, 0.1);
 
   --header-bg: rgba(255, 255, 255, 0.8);
   --menu-bg: rgba(255, 255, 255, 0.8);
   --footer-bg: rgba(255, 255, 255, 0.6);
-  --overlay-bg: rgba(15, 17, 35, 0.05);
+  --overlay-bg: rgba(16, 22, 34, 0.05);
   --card-bg: rgba(255, 255, 255, 0.82);
-  --shadow: rgba(23, 24, 42, 0.14);
+  --shadow: rgba(24, 30, 42, 0.14);
 
   /* Shared elevation tokens */
   --shadow-card: 0 12px 32px color-mix(in srgb, var(--shadow) 40%, transparent);
@@ -66,26 +66,26 @@
 
 [data-theme='dark'] {
   color-scheme: dark;
+  --background: #141b27;
+  --surface: #1b2433;
 
-  --background: #181a20;
-  --surface: #22252d;
-
-  --primary: #7068a9;
-  --primary-light: #a39bcf;
+  --primary: #4273b3;
+  --primary-light: #8fb4ea;
+  --primary-soft-rgb: 96 140 214;
 
   --accent-ta-text: #97c1f2;
   --accent-hta-text: #6cd0c1;
   --accent-head-text: #eac566;
   --accent-telegram: #80ccef;
 
-  --text: #eeeeef;
-  --text-muted: #aaadb6;
+  --text: #e8ecf3;
+  --text-muted: #a4aec0;
 
-  --border: rgba(196, 198, 210, 0.12);
+  --border: rgba(170, 190, 225, 0.13);
 
-  --header-bg: rgba(19, 21, 27, 0.9);
-  --menu-bg: rgba(34, 37, 45, 0.92);
-  --footer-bg: rgba(13, 15, 20, 0.72);
+  --header-bg: rgba(15, 21, 31, 0.9);
+  --menu-bg: rgba(27, 36, 51, 0.92);
+  --footer-bg: rgba(10, 14, 21, 0.72);
 
   --card-bg: rgba(255, 255, 255, 0.055);
   --shadow: rgba(0, 0, 0, 0.32);
